@@ -23,7 +23,6 @@ body{
   color:var(--ink); font-family:var(--sans);
   font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
 }
-body:not(.light){ background: radial-gradient(1200px 600px at 80% -10%, #0f1a2a 0%, transparent 55%), var(--bg); }
 a{color:var(--cyan)}
 h1,h2,h3,h4{margin:0 0 .4em; font-weight:650; letter-spacing:.2px}
 .mono{font-family:var(--mono)}
@@ -42,12 +41,19 @@ h1,h2,h3,h4{margin:0 0 .4em; font-weight:650; letter-spacing:.2px}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,230,166,.55)}70%{box-shadow:0 0 0 8px rgba(46,230,166,0)}100%{box-shadow:0 0 0 0 rgba(46,230,166,0)}}
 .brand b{font-size:14px; letter-spacing:.6px; text-transform:uppercase}
 .brand span{font-size:11px; color:var(--dim); font-family:var(--mono)}
-.clock{margin-left:auto; font-family:var(--mono); font-size:12px; color:var(--muted)}
+.jump{margin-left:auto; display:none; max-width:46vw; font-family:var(--mono); font-size:12px; padding:7px 8px; border-radius:8px; border:1px solid var(--line2); background:#f4f7fb; color:var(--ink)}
+@media(max-width:759px){.jump{display:block}}
+@media(max-width:479px){.brand span{display:none}}
 
 /* ---- module nav ---- */
 .nav{display:flex; gap:4px; overflow-x:auto; padding:8px 12px;
   background:var(--bg2); border-bottom:1px solid var(--line);
-  position:sticky; top:49px; z-index:38; scrollbar-width:thin}
+  position:sticky; top:49px; z-index:38; scrollbar-width:none; -ms-overflow-style:none;
+  -webkit-mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 56px),transparent 100%); mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 56px),transparent 100%)}
+.nav::-webkit-scrollbar{display:none}
+.nav.at-end{-webkit-mask-image:none; mask-image:none}
+.nav.mid{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 40px,#000 calc(100% - 56px),transparent 100%); mask-image:linear-gradient(to right,transparent 0,#000 40px,#000 calc(100% - 56px),transparent 100%)}
+.nav.at-end.mid{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 40px,#000 100%); mask-image:linear-gradient(to right,transparent 0,#000 40px,#000 100%)}
 .nav button{
   flex:0 0 auto; background:transparent; border:1px solid transparent;
   color:var(--muted); font-family:var(--mono); font-size:12px; letter-spacing:.4px;
@@ -147,7 +153,7 @@ table{width:100%; border-collapse:collapse; font-size:13px; margin:8px 0}
 th,td{text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top}
 th{font-family:var(--mono); font-size:10px; letter-spacing:.6px; text-transform:uppercase; color:var(--cyan)}
 td .mono{font-size:12.5px}
-.tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:11px}
+.tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:11px; -webkit-overflow-scrolling:touch}
 tr:last-child td{border-bottom:none}
 .sec{scroll-margin-top:120px}
 .secnum{font-family:var(--mono); color:var(--go); font-size:12px}
@@ -167,7 +173,6 @@ tr:last-child td{border-bottom:none}
 /* ---- flashcards ---- */
 .btn{font-family:var(--mono); font-size:12px; padding:7px 12px; border-radius:8px; cursor:pointer;
   border:1px solid var(--line2); background:#0a121d; color:var(--ink)}
-.theme-toggle{margin-left:10px; white-space:nowrap}
 .btn:hover{border-color:var(--cyan)}
 
 .rung.next{border-color:var(--cyan); color:var(--ink); box-shadow:0 0 0 1px var(--cyan) inset; font-weight:600}
@@ -239,8 +244,7 @@ tr:last-child td{border-bottom:none}
 <body class="light">
 <div class="topbar">
   <div class="brand"><span class="pulse"></span><div><b>Cardiac Critical Care Suite</b><br><span>post-cardiotomy · MCS · pacing</span></div></div>
-  <div class="clock mono" id="clock">--:--:--</div>
-  <button class="btn theme-toggle" id="themeBtn">☾ Dark</button>
+  <select class="jump" id="jump" aria-label="Jump to module"></select>
 </div>
 <nav class="nav" id="nav">
   <button data-m="lcos" class="on"><span class="k">01</span>LCOS Tool</button>
@@ -2158,20 +2162,44 @@ tr:last-child td{border-bottom:none}
 
 </div><!-- /wrap -->
 <script>
-/* ---------- clock ---------- */
-setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('en-GB');},1000);
+/* ---------- nav helpers ---------- */
+const navEl=document.getElementById('nav');
+function navState(){
+  const atEnd=navEl.scrollLeft+navEl.clientWidth>=navEl.scrollWidth-2;
+  navEl.classList.toggle('at-end',atEnd);
+  navEl.classList.toggle('mid',navEl.scrollLeft>4);
+}
+navEl.addEventListener('scroll',navState,{passive:true});
+window.addEventListener('resize',navState);
+function showModule(m){
+  document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('on',x.dataset.m===m));
+  document.querySelectorAll('.module').forEach(s=>s.classList.toggle('on',s.id==='m-'+m));
+  const b=navEl.querySelector('button[data-m="'+m+'"]');
+  if(b&&b.scrollIntoView)b.scrollIntoView({inline:'center',block:'nearest'});
+  const jump=document.getElementById('jump'); if(jump)jump.value=m;
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(navState,350);
+}
+(function(){
+  const jump=document.getElementById('jump');
+  navEl.querySelectorAll('button').forEach(b=>{const o=document.createElement('option');o.value=b.dataset.m;o.textContent=b.querySelector('.k').textContent+' \u00b7 '+b.textContent.replace(/^\d+/,'');jump.appendChild(o);});
+  jump.addEventListener('change',()=>showModule(jump.value));
+})();
+/* wide tables scroll on narrow screens instead of crushing */
+(function(){
+  document.querySelectorAll('.tbl-wrap table').forEach(t=>{
+    const cols=t.querySelector('tr')?t.querySelector('tr').children.length:0;
+    if(cols>=3)t.style.minWidth=Math.min(cols*170,760)+'px';
+  });
+})();
 
 /* ---------- module nav ---------- */
 document.getElementById('nav').addEventListener('click',e=>{
   const b=e.target.closest('button'); if(!b)return;
-  document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('on',x===b));
-  const m=b.dataset.m;
-  document.querySelectorAll('.module').forEach(s=>s.classList.toggle('on',s.id==='m-'+m));
-  window.scrollTo({top:0,behavior:'smooth'});
+  showModule(b.dataset.m);
 });
+navState();
 
-const themeBtn=document.getElementById('themeBtn');
-themeBtn.addEventListener('click',()=>{const light=!document.body.classList.contains('light');document.body.classList.toggle('light',light);themeBtn.textContent=light?'☾ Dark':'☀ Light';engine();});
 
 /* ============================================================
    LCOS ENGINE
