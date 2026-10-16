@@ -1265,7 +1265,7 @@ export default function App() {
       <div className="topbar">
         <div className="brand"><span className="pulse" /><div><b>Cardiac Critical Care Suite</b><br /><span>post-cardiotomy · MCS · pacing</span></div></div>
         <select className="jump" aria-label="Jump to module" value={mod} onChange={(e) => setMod(e.target.value)}>
-          {NAV.map(([m, k, label]) => <option key={m} value={m}>{k} \u00b7 {label}</option>)}
+          {NAV.map(([m, k, label]) => <option key={m} value={m}>{k} · {label}</option>)}
         </select>
       </div>
       <nav className="nav" ref={navRef} onScroll={navState}>
