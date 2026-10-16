@@ -198,6 +198,7 @@ tr:last-child td{border-bottom:none}
 .dv-card.na .v{color:var(--muted); opacity:.5}
 #m-deriv .unit{text-transform:none}
 #m-abg .unit{text-transform:none}
+a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--cyan)} a.xref:hover{border-bottom-style:solid}
 #m-vis .unit{text-transform:none}
 .vt input{width:100%; min-width:54px; background:#0a121d; border:1px solid var(--line2); color:var(--ink); border-radius:6px; padding:6px 6px; font-family:var(--mono); font-size:13px; outline:none}
 .vt input:focus{border-color:var(--cyan)}
@@ -339,6 +340,8 @@ tr:last-child td{border-bottom:none}
   <h2>LCOS after cardiac surgery — stepwise algorithm</h2>
   <p class="lead">The guideline-grounded pathway the live tool implements: exclude mechanical causes → optimise fundamentals → classify phenotype → phenotype-directed agent → escalate to MCS.</p>
 
+  <div class="note" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span><b>This pathway is what the LCOS tool runs.</b> Enter the patient’s numbers and it classifies the phenotype, picks the next agent, and explains why that one and not the others.</span><button class="btn" data-go="lcos" style="margin-left:auto;white-space:nowrap">▶ Run this patient in the tool</button></div>
+
   <div class="panel sec">
     <h3><span class="secnum">1</span> Exclude mechanical &amp; reversible causes first</h3>
     <p class="muted">Before titrating vasoactives, actively rule out the causes that drugs will not fix and may worsen:</p>
@@ -371,7 +374,8 @@ tr:last-child td{border-bottom:none}
       <tr><td>RV failure</td><td>low</td><td>variable</td><td>Dilated poor RV, CVP&gt;PAOP, septal shift</td><td>RV, PVR is afterload</td></tr>
       <tr><td>Mixed / biventricular</td><td>low</td><td>low–normal</td><td>Both ventricles impaired ± vasoplegia</td><td>Combined</td></tr>
       <tr><td>LVOT / SAM</td><td>low measured</td><td>often high</td><td>Small hyperdynamic LV, dynamic gradient</td><td>Obstruction</td></tr>
-      <tr><td>Tamponade</td><td>low</td><td>high (compensatory)</td><td>Effusion/clot, equalised pressures</td><td>Mechanical</td></tr>
+      <tr><td>RVOT obstruction</td><td>low</td><td>variable</td><td>Dynamic infundibular gradient, underfilled RV, worse on inotrope</td><td>Obstruction (dynamic vs fixed — Module 04 §6)</td></tr>
+      <tr><td>Tamponade</td><td>low</td><td>high (compensatory)</td><td>Effusion/clot — often loculated; pressures need <i>not</i> equalise post-op (Module 09)</td><td>Mechanical</td></tr>
     </table></div>
     <div class="note"><b>RV afterload is PVR, not SVR.</b> SVR is LV afterload and the determinant of RV coronary perfusion — this distinction organises agent choice: in RV failure you drop PVR (iNO/milrinone) while <i>defending</i> SVR/aortic root pressure (vasopressin/noradrenaline) to perfuse the RV.</div>
   </div>
@@ -385,7 +389,8 @@ tr:last-child td{border-bottom:none}
       <tr><td>RV failure</td><td>Optimise preload, ↓PVR (iNO / milrinone), inotrope; defend SVR (vasopressin)</td><td>RVAD / ProtekDuo</td><td>Vasopressin favoured — raises SVR without raising PVR</td></tr>
       <tr><td>Mixed</td><td>Noradrenaline + inotrope</td><td>Levosimendan; VA-ECMO if refractory</td><td>Treat both fronts</td></tr>
       <tr><td>LVOT / SAM <span class="pill alarm">invert</span></td><td><b>Stop / reduce inotropes</b>, fill, slow HR, pure α (phenylephrine / noradrenaline)</td><td>β-blockade, treat AF, restore synchrony</td><td>Everything is the opposite of cold-LV management</td></tr>
-      <tr><td>Tamponade</td><td>Re-exploration</td><td>Bridge with volume ± vasopressor only</td><td>Do not treat with escalating inotropes</td></tr>
+      <tr><td>RVOT obstruction <span class="pill alarm">invert</span></td><td><b>Stop / cut inotropes</b>, fill the RV, slow the rate, pure vasoconstrictor for RV-coronary pressure</td><td>β-blockade once filled; mechanical fix if fixed</td><td>Mirrors SAM on the right side (Module 04 §6)</td></tr>
+      <tr><td>Tamponade</td><td>Re-exploration (Module 09)</td><td>Bridge with volume ± vasopressor only</td><td>Do not treat with escalating inotropes</td></tr>
     </table></div>
   </div>
 
@@ -2162,8 +2167,42 @@ tr:last-child td{border-bottom:none}
 
 </div><!-- /wrap -->
 <script>
+/* turn plain "Module NN" / "Module NN §N" text into in-app links */
+const MODKEY={};
+function linkRefs(root){
+  if(!root)return;
+  const re=/Module (\d\d)(?:\s*§\s*(\d+))?/g;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    if(!re.test(n.nodeValue)){re.lastIndex=0;return NodeFilter.FILTER_REJECT;} re.lastIndex=0;
+    let p=n.parentNode; while(p&&p!==root){ if(/^(A|BUTTON|SELECT|OPTION|H2|SCRIPT|STYLE)$/.test(p.nodeName)||(p.classList&&p.classList.contains('eyebrow')))return NodeFilter.FILTER_REJECT; p=p.parentNode; }
+    return NodeFilter.FILTER_ACCEPT;}});
+  const nodes=[]; let n; while((n=walker.nextNode()))nodes.push(n);
+  nodes.forEach(function(t){
+    const frag=document.createDocumentFragment(); let last=0, m; const v=t.nodeValue; re.lastIndex=0;
+    while((m=re.exec(v))){
+      if(!MODKEY[m[1]])continue;
+      frag.appendChild(document.createTextNode(v.slice(last,m.index)));
+      const a=document.createElement('a'); a.href='#'; a.className='xref'; a.textContent=m[0]; a.setAttribute('data-go',MODKEY[m[1]]); if(m[2])a.setAttribute('data-sec',m[2]);
+      frag.appendChild(a); last=m.index+m[0].length;
+    }
+    if(last===0)return;
+    frag.appendChild(document.createTextNode(v.slice(last)));
+    t.parentNode.replaceChild(frag,t);
+  });
+}
+function gotoSection(sec){
+  if(!sec)return;
+  setTimeout(function(){
+    const on=document.querySelector('section.module.on'); if(!on)return;
+    const want=String(parseInt(sec,10));
+    const el=[].slice.call(on.querySelectorAll('.secnum')).find(function(x){return String(parseInt(x.textContent,10))===want;});
+    if(el){const h=el.closest('.panel')||el; h.scrollIntoView({behavior:'smooth',block:'start'});}
+  },380);
+}
 /* ---------- nav helpers ---------- */
 const navEl=document.getElementById('nav');
+navEl.querySelectorAll('button').forEach(b=>{MODKEY[b.querySelector('.k').textContent]=b.dataset.m;});
+document.querySelector('.wrap').addEventListener('click',e=>{const a=e.target.closest('[data-go]'); if(!a)return; e.preventDefault(); showModule(a.getAttribute('data-go')); gotoSection(a.getAttribute('data-sec'));});
 function navState(){
   const atEnd=navEl.scrollLeft+navEl.clientWidth>=navEl.scrollWidth-2;
   navEl.classList.toggle('at-end',atEnd);
@@ -2442,9 +2481,9 @@ function startOrder(s,d,ph,L){
   let order=[], why={}, deferred=false, note='';
   if(ph.mech){
     deferred=true;
-    if(n==='TAMPONADE'){ note='Mechanical \u2014 surgical drainage / re-exploration first. Pressors only as a holding measure; the inotrope ladder is deferred until the tamponade is relieved.'; }
-    else if(n==='RVOT OBSTRUCTION'){ note='Dynamic RVOT (infundibular) obstruction is an INVERTED state \u2014 catecholamines deepen the gradient. Stop or cut inotropes, fill the RV, slow the rate, and hold systemic / RV-coronary pressure with a pure vasoconstrictor (noradrenaline or vasopressin); \u03b2-blockade once filled. Exclude a FIXED cause (conduit kink, thrombus, compression) that needs a mechanical fix.'; }
-    else { note='SAM / LVOT obstruction is an INVERTED state \u2014 do not climb the inotrope ladder. Stop or cut inotropes, give volume, slow the rate, and raise afterload with a pure vasoconstrictor (phenylephrine or vasopressin).'; }
+    if(n==='TAMPONADE'){ note='Mechanical \u2014 surgical drainage / re-exploration first. Pressors only as a holding measure; the inotrope ladder is deferred until the tamponade is relieved. Recognition and the re-opening decision: Module 09.'; }
+    else if(n==='RVOT OBSTRUCTION'){ note='Dynamic RVOT (infundibular) obstruction is an INVERTED state \u2014 catecholamines deepen the gradient. Stop or cut inotropes, fill the RV, slow the rate, and hold systemic / RV-coronary pressure with a pure vasoconstrictor (noradrenaline or vasopressin); \u03b2-blockade once filled. Exclude a FIXED cause (conduit kink, thrombus, compression) that needs a mechanical fix. Playbook: Module 04 \u00a76.'; }
+    else { note='SAM / LVOT obstruction is an INVERTED state \u2014 do not climb the inotrope ladder. Stop or cut inotropes, give volume, slow the rate, and raise afterload with a pure vasoconstrictor (phenylephrine or vasopressin). Guided pathway: Module 08.'; }
     return {order, next:null, nextState:'off', deferred, note, why};
   }
   if(n==='VASOPLEGIA'){
@@ -2474,6 +2513,66 @@ function startOrder(s,d,ph,L){
   let next=null, nextState='off';
   for(let idx=0; idx<order.length; idx++){ const st=stOf(order[idx]); if(st!=='done'){ next=order[idx]; nextState=st; break; } }
   return {order, next, nextState, deferred, note, why};
+}
+
+const AGENTINFO={
+  dobut:{nm:'Dobutamine',cls:'β₁ inotrope (mild β₂ vasodilation)',
+    pro:['Raises contractility and cardiac output directly, with a mild fall in SVR that unloads the LV','Short half-life (~2 min) — titratable and quick to reverse','Less arrhythmogenic than adrenaline, no lactate or glucose artefact — the perfusion endpoints stay interpretable'],
+    con:['Vasodilates: MAP can fall — pair with noradrenaline','Tachycardia and atrial / ventricular arrhythmia, rising with dose','Raises myocardial oxygen demand; tachyphylaxis after ~72 h','Blunted on chronic β-blockade and in down-regulated chronic heart failure'],
+    start:'2.5 µg/kg/min; step 2.5 every 15–30 min to 5–10. Above 10 the extra output is small and the arrhythmia cost is not.',
+    watch:'HR and rhythm, MAP (expect it to soften), SvO₂ / CI / lactate at 30–60 min.'},
+  adr:{nm:'Adrenaline',cls:'β₁ + β₂ + α — inotrope and pressor in one',
+    pro:['Raises output and pressure together — the agent for low output with low MAP, and for the peri-arrest heart','Fast and potent; works when β₁ agents alone are not enough','Low dose (≤ 0.05) is mainly β — inotropy with modest vasoconstriction'],
+    con:['Type-B lactate and hyperglycaemia — the resuscitation endpoint becomes unreadable (Module 04 §4)','The most arrhythmogenic agent on the list','Raises myocardial O₂ demand and PVR; splanchnic vasoconstriction at higher dose','Worsens dynamic LVOT / RVOT obstruction'],
+    start:'0.02–0.05 µg/kg/min; step 0.02. Above 0.1–0.2 the returns diminish — that is the point to think about mechanical support, not a bigger number.',
+    watch:'Lactate (read it with glucose), rhythm, MAP, and whether the output has actually risen.'},
+  milrin:{nm:'Milrinone',cls:'PDE-3 inhibitor — inodilator',
+    pro:['Inotropy that bypasses the β-receptor — works on β-blocked patients and the down-regulated chronic heart','Lowers both SVR and PVR: afterload reduction for the LV, pulmonary unloading for the RV','Less tachycardia and arrhythmia than catecholamines; no lactate artefact'],
+    con:['Vasodilation — hypotension is the limiting side effect; needs a pressor to hold MAP','Long half-life (2–3 h, longer in renal failure): slow on, slow off, accumulates','Loading dose causes hypotension post-cardiotomy — usually omitted','Occasional thrombocytopenia'],
+    start:'0.125–0.25 µg/kg/min without a bolus; titrate to 0.375–0.5 over hours (max 0.75). Reduce in renal impairment.',
+    watch:'MAP over the first 1–2 h (it drifts down late), pressor requirement, CI / SvO₂ at 2–4 h because the effect arrives slowly.'},
+  vaso:{nm:'Vasopressin',cls:'V₁ agonist — non-catecholamine pressor',
+    pro:['Restores tone through a receptor catecholamines do not use — works in acidosis and catecholamine-refractory states','Catecholamine-sparing: lets you cut noradrenaline / adrenaline and their arrhythmia and demand cost (VANCS)','Relatively PVR-sparing — raises systemic and RV-coronary pressure without loading the RV'],
+    con:['No inotropy at all — does nothing for output; can lower it in a borderline heart by raising afterload','Digital, splanchnic and coronary vasoconstriction above ~0.04 U/min','Hyponatraemia; rebound hypotension if stopped abruptly'],
+    start:'0.02 U/min fixed or titrated in 0.01 steps to 0.03–0.04; 0.06 is the ceiling. Wean in 0.01 steps.',
+    watch:'Peripheries and lactate (ischaemic cost), cardiac output (it can fall), sodium.'}
+};
+function versus(chosen,alt,ph,hypo){
+  const n=ph.name;
+  const K=chosen+'>'+alt;
+  const T={
+    'dobut>adr': hypo?'Dobutamine gives the inotropy first while noradrenaline holds the pressure; adrenaline is kept back because it costs rhythm and an interpretable lactate, and only earns its place if output stays inadequate once dobutamine is at 5–10.':'Adrenaline adds pressor effect you do not need yet and an arrhythmia and lactate cost you do — held for the refractory LV.',
+    'dobut>milrin': hypo?'MAP is already low: milrinone’s vasodilation would drop it further and its 2–3 h half-life means you cannot take it back quickly. Dobutamine is titratable in minutes.':'Dobutamine is the β-receptor alternative if milrinone’s vasodilation proves limiting.',
+    'dobut>vaso':'Vasopressin adds no contractility — the problem here is output, not tone. It comes in only to defend MAP against inodilator vasodilation.',
+    'milrin>dobut': (n==='RV FAILURE')?'Milrinone lowers PVR — the RV’s afterload — as well as adding inotropy; dobutamine does not unload the RV and adds more tachycardia.':'With MAP secured, milrinone’s afterload reduction is the point: the failing LV is afterload-sensitive, and milrinone works even where β-receptors are blocked or down-regulated. Dobutamine is the fallback if hypotension limits.',
+    'milrin>adr': (n==='RV FAILURE')?'Adrenaline raises PVR and oxygen demand — both wrong for a failing RV — and muddies the lactate. It is later-line here.':'Adrenaline is held for the refractory LV: it buys more inotropy at the cost of rhythm, demand and an unreadable lactate.',
+    'milrin>vaso': (n==='RV FAILURE')?'Vasopressin is the partner, not the alternative — it holds RV-coronary pressure while milrinone drops PVR; the two are started close together.':'Vasopressin gives tone, not output; it follows milrinone to hold MAP.',
+    'vaso>adr': (n==='VASOPLEGIA')?'The deficit is tone, not contractility — adrenaline’s inotropy is unnecessary and its tachycardia and lactate are pure cost. Vasopressin restores tone through a non-catecholamine receptor and lets you cut the noradrenaline (VANCS).':(n==='RV FAILURE')?'Vasopressin raises systemic and RV-coronary pressure without raising PVR; adrenaline does both and adds demand.':'Restore tone first — catecholamine-sparing — then add adrenaline only for the low-output component.',
+    'vaso>dobut': (n==='VASOPLEGIA')?'Dobutamine would vasodilate a patient whose problem is already low tone — the wrong direction.':'Dobutamine vasodilates and adds no pressure; output is not the limiting problem at this point.',
+    'vaso>milrin': (n==='VASOPLEGIA')?'Milrinone is an inodilator — it would deepen the vasoplegia.':'Milrinone vasodilates; tone has to be secured first.',
+    'adr>dobut': (n.indexOf('MIXED')>=0)?'The biventricular low-output state needs inotropy and pressure together; dobutamine’s vasodilation would undercut a MAP that is already under threat.':'Adrenaline is reached because dobutamine’s inotropy is not enough, or its vasodilation cannot be covered.',
+    'adr>milrin': (n.indexOf('MIXED')>=0)?'Milrinone’s vasodilation is poorly tolerated while tone is marginal; it is added once MAP holds and an RV / afterload component dominates.':'Milrinone drops MAP and acts slowly; adrenaline is the faster, pressure-neutral escalation here.',
+    'adr>vaso':'Vasopressin adds no contractility; it has either been started already or is reserved to defend MAP.',
+  };
+  return T[K]||'';
+}
+function rationaleHTML(so,ph,s,d,L){
+  if(so.deferred||!so.next)return '';
+  const k=so.next, A=AGENTINFO[k]; if(!A)return '';
+  const hypo=!isNaN(s.map)&&s.map<65;
+  const running=(L&&L.rungs?L.rungs:[]).filter(r=>r.state==='done').map(r=>r.key);
+  const alts=so.order.filter(x=>x!==k&&running.indexOf(x)<0);
+  let html='<div class="rec cyan"><h4>Why '+A.nm.toLowerCase()+' here — and not the others <span class="pill info">'+A.cls+'</span></h4>';
+  html+='<div class="why"><b>For it in this phenotype:</b> '+so.why[k]+'.</div>';
+  html+='<ul>'+A.pro.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  html+='<div class="subhead">Why not the alternatives yet</div><ul>';
+  alts.forEach(a=>{const v=versus(k,a,ph,hypo); if(v)html+='<li><b>Not '+AGENTNAME[a].toLowerCase()+':</b> '+v+'</li>';});
+  html+='</ul>';
+  html+='<div class="subhead">Starting it</div><div class="why"><b>Dose:</b> '+A.start+'<br><b>Watch:</b> '+A.watch+'</div>';
+  html+='<div class="subhead">The cost</div><ul>'+A.con.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  html+='<div class="why">Pathway: Module 02 step 4 · Playbook: '+(ph.name==='RV FAILURE'?'Module 04 §3':ph.name==='VASOPLEGIA'?'Module 04 §7':ph.name.indexOf('MIXED')>=0?'Module 04 §1':'Module 04 §2')+' · Rate ⇄ dose: Module 12</div>';
+  html+='</div>';
+  return html;
 }
 
 function computeRecs(s,d,sc,ph,st,L){
@@ -2736,6 +2835,7 @@ function render(s,d,sc,ph,st,L,recs){
     else { const verb=so.nextState==='sub'?'Uptitrate':'Start next'; const why=so.why[so.next]?(' — '+so.why[so.next]):''; line=`▶ <b class="go">${verb}: ${AGENTNAME[so.next]}</b>${why}`; }
     html+=`<div class="startadvice">${line}<br><span class="seq">Order (${ph.name}, after first-line noradrenaline): ${chain}</span>${so.note?`<br><span class="seq">${so.note}</span>`:''}</div>`;
   }
+  html+=rationaleHTML(so,ph,s,d,L);
 
   const di=[
     ['SVRI',fmt(d.svri,0)+(d.svriCalc?'*':''),'dyn·s·cm⁻⁵·m²'],['SVI',fmt(d.svi,0),'mL/m²'],
@@ -2754,6 +2854,7 @@ function render(s,d,sc,ph,st,L,recs){
     html+='</div>';
   });
   document.getElementById('output').innerHTML=html;
+  linkRefs(document.getElementById('output'));
   document.getElementById('conf').textContent=(ph.conf==='CI+SVRI'||ph.conf==='CI+SVRI+echo'||ph.conf==='CI+SVRI+PA')?'high confidence':'add CI/SVRI for confidence';
 }
 
@@ -3125,6 +3226,7 @@ function vtInit(){
 
 cvInit();
 vtInit();
+linkRefs(document.querySelector('.wrap'));
 function ecmoSwap(m){
   const num=(x)=>{const v=parseFloat(x);return isNaN(v)?NaN:v;};
   const on=(x)=>x===true||x==='1'||x==='true';
