@@ -246,9 +246,10 @@ tr:last-child td{border-bottom:none}
   <button data-m="arr"><span class="k">07</span>Arrhythmias</button>
   <button data-m="lvoto"><span class="k">08</span>LVOTO / SAM</button>
   <button data-m="tamp"><span class="k">09</span>Tamponade / Bleeding</button>
-  <button data-m="abg"><span class="k">10</span>ABG / Acid–Base</button>
-  <button data-m="conv"><span class="k">11</span>Dose Converter</button>
-  <button data-m="deriv"><span class="k">12</span>Derived Values</button>
+  <button data-m="wean"><span class="k">10</span>Weaning</button>
+  <button data-m="abg"><span class="k">11</span>ABG / Acid–Base</button>
+  <button data-m="conv"><span class="k">12</span>Dose Converter</button>
+  <button data-m="deriv"><span class="k">13</span>Derived Values</button>
 </nav>
 <div class="wrap">
 
@@ -563,7 +564,7 @@ tr:last-child td{border-bottom:none}
 
     <div class="subhead">The four determinants — why it falls</div>
     <div class="note"><b>Rearranged Fick:</b> SvO₂ ≈ SaO₂ − VO₂ / (CO × Hb × 1.34). There are therefore only <b>four</b> reasons for a low SvO₂ — and the whole management of a low value is deciding which: <b>↓ CO</b> (the cardiogenic one), <b>↓ Hb</b> (anaemia), <b>↓ SaO₂</b> (hypoxaemia), or <b>↑ VO₂</b> (fever, shivering, agitation, work of breathing, thyrotoxicosis, seizure). Fix whichever applies; in post-cardiotomy LCOS it is usually output first, haemoglobin second.</div>
-    <div class="note"><b>Oxygen extraction ratio</b> — O₂ER = (SaO₂ − SvO₂) / SaO₂, normally <b>20–30%</b>. A rising O₂ER is the body compensating for falling delivery; above roughly 50–60% extraction is near-maximal and anaerobic metabolism follows. SvO₂ and O₂ER are two views of the same balance. <span class="pill info">Module 12 computes both</span></div>
+    <div class="note"><b>Oxygen extraction ratio</b> — O₂ER = (SaO₂ − SvO₂) / SaO₂, normally <b>20–30%</b>. A rising O₂ER is the body compensating for falling delivery; above roughly 50–60% extraction is near-maximal and anaerobic metabolism follows. SvO₂ and O₂ER are two views of the same balance. <span class="pill info">Module 13 computes both</span></div>
 
     <div class="subhead">Reading the value</div>
     <div class="tbl-wrap"><table>
@@ -1449,7 +1450,7 @@ tr:last-child td{border-bottom:none}
   <div class="panel sec">
     <h3><span class="secnum">7</span> Bedside sequence</h3>
     <div class="note"><b>Compromised?</b> → electricity (synchronised for VT/AF/flutter with a pulse; CALS if pulseless). <b>Not compromised</b> → K⁺ 4.5–5, Mg²⁺ 2 g, oxygen, pH, cut catecholamines, check the CXR for a wire or line in the heart → <b>AF:</b> β-blocker if the LV is good, amiodarone if it is not; pace VVI if slow, AV-sequential once in sinus → <b>Flutter / re-entrant AT:</b> overdrive pace the atrium → <b>VT:</b> amiodarone, overdrive pacing with the defibrillator charged, look for the ischaemia → <b>Torsades:</b> magnesium, pace at 90–110, stop the QT drugs → <b>Block:</b> DDD, remove rate-slowing drugs, reassess daily, refer if persisting at 5–7 days.</div>
-    <div class="disc">Decision-support aid — energies, doses and referral timing follow local protocol and the resuscitation council / CALS guidance; verify every dose independently (Module 11).</div>
+    <div class="disc">Decision-support aid — energies, doses and referral timing follow local protocol and the resuscitation council / CALS guidance; verify every dose independently (Module 12).</div>
   </div>
 </section>
 
@@ -1500,7 +1501,7 @@ tr:last-child td{border-bottom:none}
     <div class="subhead">Step 1 · Fill</div>
     <div class="note"><b>Volume</b> — fluid bolus (e.g. 250–500 mL crystalloid, repeat to response); passive leg raise as a test. A bigger LV cavity moves the mitral apparatus off the septum and lowers the gradient. Target generous, not dry, filling.</div>
     <div class="subhead">Step 2 · Raise afterload — pure vasoconstrictor</div>
-    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 11 for rate ⇄ dose</span></div>
+    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 12 for rate ⇄ dose</span></div>
     <div class="subhead">Step 3 · Slow &amp; synchronise</div>
     <div class="note"><b>β-blockade</b> — esmolol (titratable, ± load) or metoprolol — lowers contractility and lengthens diastolic filling, the two things that most reduce a dynamic gradient. <b>Restore AV synchrony</b>: cardiovert / rate-control AF, pace atrial or AV-sequential (the atrial kick fills the small stiff LV); avoid RV-only pacing, which loses the kick and can worsen the picture.</div>
     <div class="subhead">Step 4 · Reassess</div>
@@ -1537,7 +1538,7 @@ tr:last-child td{border-bottom:none}
   <div class="panel sec">
     <h3><span class="secnum">7</span> Bedside crash sequence</h3>
     <div class="note"><b>Recognise</b> (worse on inotrope) → <b>echo-confirm</b> (SAM / dagger gradient) → <b>STOP</b> inotropes + vasodilators → <b>FILL</b> → <b>phenylephrine</b> (pure α) to raise MAP → <b>β-block</b> (esmolol) + restore AV synchrony → <b>re-echo</b> and titrate to a falling gradient → <b>refractory:</b> sedation, disopyramide, surgeon (myectomy / repair revision); <b>not</b> IABP, <b>not</b> inotropes.</div>
-    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 11). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
+    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 12). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
   </div>
 </section>
 
@@ -1636,13 +1637,94 @@ tr:last-child td{border-bottom:none}
   <div class="panel sec">
     <h3><span class="secnum">7</span> Bedside sequence</h3>
     <div class="note"><b>Suspect</b> (rising filling pressures + falling output + climbing support, or drains that suddenly stopped) → <b>call the surgeon now</b>, not after the echo → <b>fill, keep the rate, vasopressor, drop PEEP</b> → <b>echo / TOE if it does not delay</b>; a normal study does not exclude it → <b>re-open</b>: on the unit if arresting or deteriorating faster than theatre can be reached, otherwise in theatre → <b>bleeding:</b> warm, pH, calcium, Hb → protamine for rebound → ROTEM-guided fibrinogen / platelets / PCC / TXA → <b>corrected and still bleeding = surgical</b>.</div>
-    <div class="disc">Decision-support aid — re-opening criteria, product thresholds and the CALS protocol are governed by local policy; verify every dose independently (Module 11).</div>
+    <div class="disc">Decision-support aid — re-opening criteria, product thresholds and the CALS protocol are governed by local policy; verify every dose independently (Module 12).</div>
   </div>
 </section>
 
-<!-- ============ MODULE 10 : ABG / ACID–BASE ============ -->
+<!-- ============ MODULE 10 : WEANING FROM SUPPORT ============ -->
+<section class="module" id="m-wean">
+  <div class="eyebrow">Module 10 · de-escalation</div>
+  <h2>Weaning from support — inotropes, IABP, the ventilator and the tube</h2>
+  <p class="lead">Escalation decisions are rare and dramatic; <b>weaning decisions are made several times a day on every patient</b>, and they go wrong quietly. The principles are the same for every form of support: <b>one thing at a time, a defined signal that says stop, and the willingness to go back a step without calling it failure</b>. ECMO weaning has its own section (VA-ECMO §07); this module covers the rest.</p>
+
+  <div class="note alarm"><b>The one rule:</b> wean to the <b>patient</b>, not to the clock or the number on the pump. The signals that say stop are the same every time — <b>falling SvO₂, rising lactate, falling urine output, rising filling pressures, a falling cardiac power, a new arrhythmia</b> — and they usually move before the blood pressure does. Set them up before you touch anything.</div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">1</span> Are they ready? — the preconditions for any wean</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Domain</th><th>Ready looks like</th><th>Not yet</th></tr>
+      <tr><td><b>Perfusion</b></td><td>Lactate normal and stable for &gt; 6–12 h · SvO₂ &gt; 65% · urine &gt; 0.5 mL/kg/h without escalating diuretic · warm peripheries</td><td>Lactate still clearing · SvO₂ borderline · oliguria</td></tr>
+      <tr><td><b>Haemodynamics</b></td><td>CI &gt; 2.2 · CPO &gt; 0.6 W · MAP at target on a <i>stable</i> or falling dose · filling pressures normal</td><td>Dose creeping up to hold the same numbers · PAOP / CVP rising</td></tr>
+      <tr><td><b>The cause</b></td><td>Stunning resolving on echo · ischaemia treated · tamponade excluded · rhythm controlled · sepsis treated</td><td>An unexplained or untreated driver — weaning will unmask it</td></tr>
+      <tr><td><b>The rest of the patient</b></td><td>Euvolaemic · electrolytes replete · normothermic · not bleeding · pain and agitation controlled</td><td>Any of these will be blamed on the wean</td></tr>
+    </table></div>
+    <div class="note"><b>Order of weaning:</b> in general, <b>the most harmful support comes off first and the most protective last</b>. Adrenaline and dopamine (arrhythmogenic, demand-raising) before milrinone or dobutamine; inotropes before the IABP; vasopressors are titrated to pressure throughout rather than "weaned" as a step. The ventilator is usually weaned in parallel once the inotrope wean is clearly succeeding, not before.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">2</span> Weaning inotropes and vasopressors</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Agent</th><th>How to wean</th><th>Watch</th></tr>
+      <tr><td><b>Adrenaline</b></td><td>First to go. Reduce by ~0.01–0.02 µg/kg/min every 1–2 h; <b>stop at 0.03 rather than tapering to zero</b> — the last fraction does little and keeps the lactate / glucose effect going (Module 04)</td><td>Lactate often <i>falls</i> as adrenaline comes off — do not read that as the patient tolerating the wean so well that you can go faster. Watch the SvO₂ instead</td></tr>
+      <tr><td><b>Dobutamine</b></td><td>Reduce by 1–2 µg/kg/min every 2–4 h; stop below 2.5</td><td>Tachycardia resolving is a good sign; a rising filling pressure is the stop signal</td></tr>
+      <tr><td><b>Milrinone</b></td><td>Reduce by 0.1 µg/kg/min every 4–6 h — its <b>half-life is 2–3 h (longer in renal failure)</b>, so the effect of each step appears late. Last to come off; often continued for 24 h after the others</td><td>Vasodilation persists after the inotropy fades — pressor need may rise transiently. Do not restart adrenaline for a vasoplegic MAP; adjust the pressor</td></tr>
+      <tr><td><b>Levosimendan</b></td><td>Not weaned — a 24 h infusion whose active metabolite lasts ~1 week</td><td>Its effect outlasts the drip; hypotension days later is still it</td></tr>
+      <tr><td><b>Noradrenaline / vasopressin</b></td><td>Titrated continuously to MAP; vasopressin usually weaned <i>before</i> noradrenaline reaches zero, or after it — local practice varies, but <b>not both at once</b></td><td>Rebound vasoplegia after stopping vasopressin — reduce by 0.01 U/min steps</td></tr>
+    </table></div>
+    <div class="note warn"><b>The step back.</b> If a stop signal appears, go back <b>one step</b> and hold for 4–6 h, then look for the reason — a new arrhythmia, a filling problem, a missed driver, the milrinone effect wearing off. Oscillating up and down several times in a shift means the patient is not ready, not that the wean needs more effort. Two failed attempts is a reason to re-examine the diagnosis (echo, rhythm, tamponade, sepsis) rather than to try a third.</div>
+    <div class="note"><b>Oral transition.</b> As the inotropes come off, a failing-heart oral regime is started rather than waiting for them to be gone: β-blocker cautiously only once off inotropes for 24 h and euvolaemic; ACE-inhibitor / ARNI as renal function and pressure allow; MRA; diuretics to a dry weight. This is the bridge from the unit to the ward, and it is often the step that gets forgotten.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">3</span> Weaning the IABP</h3>
+    <div class="note"><b>Readiness:</b> the native heart is doing the work — CI &gt; 2.2 on minimal inotrope, no ischaemia, lactate normal, no arrhythmia the balloon is covering for. The IABP comes off <b>after</b> the inotropes are down to low dose, not before: the balloon is the least harmful support you have, so it stays longest.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Step</th><th>Do</th><th>Watch · stop signal</th></tr>
+      <tr><td><b>1 · Ratio wean</b></td><td>1:1 → 1:2 for 1–4 h → 1:3 for 1–2 h. Some units volume-wean instead (reducing augmentation to ~50%); ratio weaning is more common and easier to read</td><td>MAP falling &gt; 10–15% · rising PAOP / CVP · falling SvO₂ or CI · new ST change · lactate rising · urine falling — any one, go back a step</td></tr>
+      <tr><td><b>2 · Short at low ratio</b></td><td>Keep the time at 1:3 (or less) <b>short — minutes to an hour</b>, not a night. The balloon is a thrombogenic foreign body; a non-augmenting balloon is the worst of both worlds</td><td>Never leave a balloon on standby or 1:3 unobserved; if you have stopped augmenting, remove it</td></tr>
+      <tr><td><b>3 · Remove</b></td><td>Heparin off 2–4 h (ACT / APTT normal), platelets &gt; 50; deflate fully; remove with the sheath, allowing a brief <b>back-bleed</b> to flush proximal thrombus; firm manual pressure proximal and distal for 30–45 min then a pressure dressing</td><td>Distal pulses and limb perfusion before and after; bleeding; retroperitoneal haematoma; the leg stays straight and the patient flat for 6 h</td></tr>
+    </table></div>
+    <div class="note warn"><b>Do not remove the balloon</b> to free the bed, to make the patient ward-ready, or because the inotropes are at a dose you can live with. A balloon that comes out of a heart that still needs it goes back in through a femoral artery that has just been compressed. If in doubt, 1:2 for another 12 h costs little.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">4</span> Weaning the ventilator in cardiogenic shock</h3>
+    <div class="note"><b>The physiology to respect:</b> positive-pressure ventilation <b>unloads the LV</b> (lowers transmural afterload, reduces preload) and <b>loads the RV</b> (raises PVR). Taking it away reverses both: spontaneous breathing increases venous return and LV afterload and raises the work of breathing — which in a borderline heart can be <b>20–30% of total oxygen consumption</b>. A failed wean in cardiogenic shock is more often <b>cardiac</b> than respiratory.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Ventricle</th><th>Positive pressure does</th><th>So when weaning</th></tr>
+      <tr><td><b>Failing LV</b></td><td>Helps — lowers afterload and preload, reduces pulmonary oedema</td><td>Expect <b>weaning-induced pulmonary oedema</b>: rising PAOP, falling SpO₂, a rising B-line count on lung ultrasound during the SBT. Diurese to a dry weight <i>before</i> the trial; consider a longer wean; extubate to CPAP / NIV</td></tr>
+      <tr><td><b>Failing RV</b></td><td>Hurts — raises PVR and RV afterload</td><td>Weaning often <b>helps</b> the RV: lower PEEP and plateau pressures, avoid hypercapnia and atelectasis in both directions; keep the RV warm, oxygenated and rhythm-controlled</td></tr>
+    </table></div>
+    <div class="subhead">The spontaneous breathing trial in a borderline heart</div>
+    <div class="note">Do it on <b>low pressure support or a T-piece</b> rather than high support — the point is to see the heart cope with the work. <b>Monitor the cardiac signals</b>, not just the respiratory ones: SvO₂ (a fall &gt; 5% is a cardiac failure of the wean), PAOP or echo E/e′, lung ultrasound B-lines, lactate at the end, and the inotrope dose needed to hold MAP. A trial that fails with rising filling pressures and B-lines is a <b>heart-failure</b> failure — treat with diuresis, afterload reduction and a longer wean, not more pressure support.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">5</span> Extubation — the decision in a borderline heart</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Extubate when</th><th>Hold when</th></tr>
+      <tr><td>SBT passed on cardiac <i>and</i> respiratory criteria · inotropes at low, stable dose or off · no IABP, or IABP on 1:1 that will stay · rhythm controlled · not bleeding · awake, cough, secretions manageable · lactate normal · filling pressures normal at the end of the SBT</td><td>Inotropes still being weaned · a wean failed within 24 h · an arrhythmia within 12 h · chest drains still brisk or a return to theatre possible · SvO₂ fell or B-lines rose during the SBT · likely need for a procedure (TOE, cardioversion, PPM) that will need sedation anyway</td></tr>
+    </table></div>
+    <div class="note warn"><b>Extubate to NIV / high-flow</b> in the LV-failure patient — it keeps the afterload-reduction benefit of positive pressure for the first hours, when weaning-induced oedema appears. Have the re-intubation plan explicit. <b>Reintubation in cardiogenic shock is not a failure of nerve; it is a failure of the heart that you were testing.</b></div>
+    <div class="note"><b>Tracheostomy</b> is considered from day 7–10 of ventilation when the limiting factor is <b>cardiac reserve or deconditioning rather than lung</b> — it reduces sedation, work of breathing and dead space, and allows a gradual, repeatable wean that a borderline heart tolerates better than an all-or-nothing extubation. Sternal wound proximity needs a surgical conversation.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">6</span> The patient who will not wean</h3>
+    <div class="note alarm"><b>Two failed weans = re-examine the diagnosis, not the technique.</b> Look again for: a <b>mechanical</b> problem (tamponade or loculated effusion — Module 09, a graft that has gone down, valve dysfunction, SAM — Module 08, a pseudoaneurysm), an <b>untreated driver</b> (sepsis, hypothyroidism, adrenal insufficiency, beta-blocker or calcium-channel blocker still on the chart), a <b>rhythm</b> that is costing output (AF, loss of AV synchrony — Module 07), a <b>volume</b> state that is wrong in either direction, <b>anaemia</b>, and <b>undertreated pain or agitation</b> driving demand.</div>
+    <div class="note">If the diagnosis is confirmed and the heart simply has not recovered, the conversation changes: <b>destination</b>. Durable MCS (LVAD) candidacy, transplant listing, or — for the patient who was never a candidate — the honest discussion about the limits of support. That conversation is better had on day 5 with the family prepared than on day 20 with everyone exhausted. Inotrope-dependence beyond 7–10 days is the trigger to have it.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">7</span> Bedside sequence</h3>
+    <div class="note"><b>Ready?</b> (lactate normal 6–12 h, SvO₂ &gt; 65, CPO &gt; 0.6, cause treated, euvolaemic, rhythm controlled) → <b>set the stop signals</b> → <b>adrenaline first</b> (stop at 0.03), then dobutamine, milrinone last and slowly → <b>IABP</b> after the inotropes are low: 1:2 then briefly 1:3, remove or restore, never leave it idling → <b>ventilator</b>: diurese first, SBT on low support, watch SvO₂ / B-lines / PAOP, extubate to NIV in LV failure → <b>stop signal</b> = one step back, hold, find the reason → <b>two failures</b> = re-examine the diagnosis → <b>no recovery by day 7–10</b> = the destination conversation.</div>
+    <div class="disc">Decision-support aid — weaning thresholds, IABP removal and tracheostomy timing follow local protocol; verify every dose independently (Module 12).</div>
+  </div>
+</section>
+
+<!-- ============ MODULE 11 : ABG / ACID–BASE ============ -->
 <section class="module" id="m-abg">
-  <div class="eyebrow">Module 10 · interpretation &amp; correction</div>
+  <div class="eyebrow">Module 11 · interpretation &amp; correction</div>
   <h2>The ABG in cardiogenic shock — reading it and fixing it</h2>
   <p class="lead">In low output the gas is a <b>perfusion readout</b> as much as a respiratory one. Read it in a fixed order so nothing is missed, then correct in a fixed order — <b>flow before buffer</b>. The acidosis of cardiogenic shock is a symptom of inadequate delivery; treating the number instead of the delivery is the classic error. Companion to Haemodynamics §8 (values, base excess, lactate types, the Stewart lens).</p>
 
@@ -1781,7 +1863,7 @@ tr:last-child td{border-bottom:none}
       <div class="note alarm"><b>Why it usually doesn't help</b><br>· <b>Generates CO₂</b> — worsens intracellular and CNS acidosis unless ventilation can clear it<br>· <b>Drops ionised calcium</b> — directly reduces contractility and vascular tone<br>· Sodium and volume load · hypernatraemia · hyperosmolality<br>· Left-shifts the oxyhaemoglobin curve — impairs tissue O₂ offloading<br>· Rebound alkalosis once the lactate is metabolised<br>· <b>No mortality benefit</b> in lactic acidosis of shock — it treats the number</div>
     </div>
     <div class="note"><b>If you give it:</b> only in a patient whose ventilation can clear the CO₂ generated; give it as a considered dose with a defined endpoint, re-gas early, and <b>watch ionised calcium</b> (replace it). <b>THAM</b> is an alternative that buffers without generating CO₂ — useful when hypercapnia is the limiting factor — but is contraindicated in anuria and can cause hypoglycaemia and hyperkalaemia.</div>
-    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 11).</div>
+    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 12).</div>
   </div>
 
   <div class="panel sec">
@@ -1803,9 +1885,9 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- ============ MODULE 11 : DOSE CONVERTER ============ -->
+<!-- ============ MODULE 12 : DOSE CONVERTER ============ -->
 <section class="module" id="m-conv">
-  <div class="eyebrow">Module 11 · bedside utility</div>
+  <div class="eyebrow">Module 12 · bedside utility</div>
   <h2>Dose converter — inotropes &amp; vasopressors</h2>
   <p class="lead">Two-way conversion between infusion rate and dose for the common agents, a noradrenaline-equivalent / VIS quick calc, and the standard concentrations. Weight- and concentration-aware; each agent carries its own units.</p>
   <div class="grid g2">
@@ -1848,9 +1930,9 @@ tr:last-child td{border-bottom:none}
   <p class="disc">Bedside aid — always cross-check against your unit's standard-concentration chart and an independent calculation before changing a rate. The concentrations shown are common examples, not a substitute for the prescribed dilution.</p>
 </section>
 
-<!-- ============ MODULE 12 : DERIVED VALUES ============ -->
+<!-- ============ MODULE 13 : DERIVED VALUES ============ -->
 <section class="module" id="m-deriv">
-  <div class="eyebrow">Module 12 · bedside calculator</div>
+  <div class="eyebrow">Module 13 · bedside calculator</div>
   <h2>Derived haemodynamic values</h2>
   <p class="lead">Enter what you have — the calculator derives everything it can (SVR / SVRI, PVR, indices, stroke work, cardiac power, PA gradients, oxygen delivery) and colour-codes each against its normal range. Give CO <i>or</i> CI plus weight &amp; height and it fills the other.</p>
   <div class="grid g2">
@@ -1890,7 +1972,7 @@ tr:last-child td{border-bottom:none}
 </section>
 
 
-<!-- ============ MODULE 12 : FLASHCARDS ============ -->
+<!-- ============ MODULE 13 : FLASHCARDS ============ -->
 
 
 
