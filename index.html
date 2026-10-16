@@ -165,36 +165,10 @@ tr:last-child td{border-bottom:none}
 .matrix td:first-child{font-family:var(--mono); color:var(--ink); font-size:12px}
 
 /* ---- flashcards ---- */
-.fc-stage{perspective:1400px; margin:12px 0}
-.fc-card{position:relative; min-height:230px; border-radius:16px; cursor:pointer;
-  transition:transform .5s; transform-style:preserve-3d}
-.fc-card.flip{transform:rotateY(180deg)}
-.fc-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px;
-  border:1px solid var(--line2); padding:20px; display:flex; flex-direction:column;
-  background:linear-gradient(180deg,var(--panel),var(--panel2)); overflow:auto}
-.fc-back{transform:rotateY(180deg)}
-.fc-face .qtag{font-family:var(--mono); font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--cyan); margin-bottom:10px}
-.fc-face .qtxt{font-size:17px; font-weight:600}
-.fc-face .atxt{font-size:14.5px; color:var(--ink)}
-.fc-face .atxt b{color:var(--go)}
-.fc-hint{text-align:center; font-family:var(--mono); font-size:11px; color:var(--dim); margin-top:6px}
-.fc-grade{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:12px}
-.fc-grade button{font-family:var(--mono); font-size:12px; padding:11px 6px; border-radius:9px; cursor:pointer; border:1px solid var(--line2); background:#0a121d; color:var(--ink)}
-.fc-grade .g0{border-color:var(--alarm-dim)} .fc-grade .g0:hover{background:rgba(255,84,104,.12)}
-.fc-grade .g1{border-color:var(--warn-dim)} .fc-grade .g1:hover{background:rgba(246,183,74,.12)}
-.fc-grade .g2{border-color:#204a63} .fc-grade .g2:hover{background:rgba(79,214,232,.12)}
-.fc-grade .g3{border-color:var(--go-dim)} .fc-grade .g3:hover{background:rgba(46,230,166,.12)}
-.fc-bar{display:flex; align-items:center; gap:12px; font-family:var(--mono); font-size:11px; color:var(--muted); flex-wrap:wrap}
-.fc-bar .prog{flex:1; height:6px; background:#0a121d; border-radius:4px; overflow:hidden; min-width:120px}
-.fc-bar .prog i{display:block; height:100%; background:var(--go); width:0; transition:.3s}
 .btn{font-family:var(--mono); font-size:12px; padding:7px 12px; border-radius:8px; cursor:pointer;
   border:1px solid var(--line2); background:#0a121d; color:var(--ink)}
 .theme-toggle{margin-left:10px; white-space:nowrap}
-.sbar-pre{white-space:pre-wrap; background:#0a121d; border:1px solid var(--line2); border-radius:9px; padding:12px; font-size:12.5px; line-height:1.55; color:var(--ink); margin:0}
 .btn:hover{border-color:var(--cyan)}
-.deck-tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px}
-.deck-tabs button{font-size:11px; padding:5px 10px; border-radius:16px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; font-family:var(--mono)}
-.deck-tabs button.on{background:var(--cyan); color:#04121a; border-color:var(--cyan)}
 
 .rung.next{border-color:var(--cyan); color:var(--ink); box-shadow:0 0 0 1px var(--cyan) inset; font-weight:600}
 .rung .ord{font-family:var(--mono); font-size:10px; color:var(--dim); margin-right:5px}
@@ -219,6 +193,12 @@ tr:last-child td{border-bottom:none}
 .dv-card.na .v{color:var(--muted); opacity:.5}
 #m-deriv .unit{text-transform:none}
 #m-abg .unit{text-transform:none}
+#m-ecmo .unit{text-transform:none}
+#m-ecmo select{width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); font-family:var(--mono); font-size:13px}
+.es-checks{display:grid; gap:6px; margin-top:10px}
+.es-chk{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--ink); font-family:var(--sans)}
+.es-chk input{width:16px; height:16px; accent-color:var(--warn)}
+#es-items .note,#es-prep .note{margin-top:8px}
 #m-abg select{width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); font-family:var(--mono); font-size:13px}
 #abg-find .note{margin-top:8px}
 /* ---- light / white theme ---- */
@@ -234,17 +214,16 @@ tr:last-child td{border-bottom:none}
 .light .topbar{background:linear-gradient(180deg,#f7f9fc,#eef2f7)}
 .light .field input,.light .field select,.light .inf,.light .inf .rt input,
 .light .chip,.light .score,.light .pheno,.light .tile,.light .note,
-.light .kbd,.light .fc-grade button,.light .fc-bar .prog,.light .btn,.light .sbar-pre{background:#f4f7fb}
+.light .kbd,.light .btn{background:#f4f7fb}
 .light .nav button:hover{background:#e6ecf3; color:var(--ink)}
 .light .inf.on{background:rgba(14,149,99,.08)}
 .light .chip.act{background:rgba(14,149,99,.10)}
 .light .chip.alm.act{background:rgba(209,47,73,.10)}
-.light .deck-tabs button.on{color:#fff}
 .light .wave{--cyan:#4fd6e8; --dim:#7d8ea3; --muted:#8093aa; color:#dbe6f2}
 
 @media print{
   body{background:#fff;color:#111}
-  .topbar,.nav,.disc,.fc-grade,.fc-hint,.deck-tabs{display:none!important}
+  .topbar,.nav,.disc{display:none!important}
   .module{display:block!important}
   .panel{border-color:#ccc;background:#fff;break-inside:avoid}
   th{color:#036}
@@ -264,11 +243,10 @@ tr:last-child td{border-bottom:none}
   <button data-m="vent"><span class="k">04</span>Ventricular Failure</button>
   <button data-m="ecmo"><span class="k">05</span>VA-ECMO</button>
   <button data-m="pace"><span class="k">06</span>Pacing</button>
-  <button data-m="conv"><span class="k">07</span>Dose Converter</button>
-  <button data-m="lvoto"><span class="k">08</span>LVOTO / SAM</button>
-  <button data-m="deriv"><span class="k">09</span>Derived Values</button>
-  <button data-m="abg"><span class="k">10</span>ABG / Acid–Base</button>
-  <button data-m="cards"><span class="k">11</span>Flashcards</button>
+  <button data-m="lvoto"><span class="k">07</span>LVOTO / SAM</button>
+  <button data-m="abg"><span class="k">08</span>ABG / Acid–Base</button>
+  <button data-m="conv"><span class="k">09</span>Dose Converter</button>
+  <button data-m="deriv"><span class="k">10</span>Derived Values</button>
 </nav>
 <div class="wrap">
 
@@ -337,14 +315,6 @@ tr:last-child td{border-bottom:none}
     <div id="output"></div>
   </div>
 
-  <div class="panel">
-    <h3>Handover <span class="tag">SBAR from current state</span></h3>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
-      <button class="btn" id="sbarBtn">Generate SBAR</button>
-      <button class="btn" id="sbarCopy" style="display:none">Copy</button>
-    </div>
-    <pre id="sbar" class="mono sbar-pre" style="display:none"></pre>
-  </div>
 
   <p class="disc">Decision aid only — not a substitute for bedside judgement, direct examination, or unit protocol. Verify every dose independently. Evidence anchors: VANCS (vasopressin in post-cardiotomy vasoplegia); LEVO-CTS / CHEETAH / LICORN (levosimendan as rescue adjunct, no survival benefit); 2020 EACTS/ELSO/STS/AATS post-cardiotomy ECLS consensus; SCAI shock stages A–E.</p>
 </section>
@@ -575,6 +545,48 @@ tr:last-child td{border-bottom:none}
       <div class="note warn"><b>Acidosis degrades the pump</b> — reduced contractility, catecholamine resistance (the reversible-contributor gate in Module 01), pulmonary vasoconstriction that loads the RV, and a lower arrhythmia threshold.</div>
       <div class="note alarm"><b>Bicarbonate rarely fixes lactic acidosis</b> — it generates CO₂ (worsening intracellular acidosis unless ventilation rises), lowers ionised Ca²⁺, and shifts the O₂ dissociation curve. Treat the cause (perfusion), not the number; reserve HCO₃⁻ for specific indications (severe hyperchloraemic acidosis, hyperkalaemia, certain toxins).</div>
     </div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">9</span> SvO₂ in cardiogenic shock — the delivery–demand balance</h3>
+    <p class="lead">Mixed venous saturation is the single number that asks whether the circulation is meeting the body’s needs. It does not measure cardiac output — it measures what is <i>left over</i> after the tissues have taken what they need, which in low output is the more useful question.</p>
+
+    <div class="subhead">What it is, and where it comes from</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Measure</th><th>Sampled from</th><th>Normal</th><th>Note</th></tr>
+      <tr><td><b>SvO₂</b> · true mixed venous</td><td>Distal (PA) port of a PA catheter — after SVC, IVC and coronary sinus blood have mixed</td><td class="mono">65–75%</td><td>The reference standard; requires a PA catheter</td></tr>
+      <tr><td><b>ScvO₂</b> · central venous</td><td>Tip of an SVC central line — upper body only</td><td class="mono">&gt; 70%</td><td>A usable surrogate for <i>trend</i>, not interchangeable in absolute terms</td></tr>
+    </table></div>
+    <div class="note"><b>The relationship inverts in shock.</b> In health ScvO₂ sits slightly <i>below</i> SvO₂ (the kidneys and splanchnic bed return relatively oxygen-rich blood). In shock, flow is redistributed to brain and heart and away from the splanchnic bed, so ScvO₂ typically runs <b>5–8% above</b> SvO₂. Track one or the other consistently — do not mix them within a trend.</div>
+
+    <div class="subhead">The four determinants — why it falls</div>
+    <div class="note"><b>Rearranged Fick:</b> SvO₂ ≈ SaO₂ − VO₂ / (CO × Hb × 1.34). There are therefore only <b>four</b> reasons for a low SvO₂ — and the whole management of a low value is deciding which: <b>↓ CO</b> (the cardiogenic one), <b>↓ Hb</b> (anaemia), <b>↓ SaO₂</b> (hypoxaemia), or <b>↑ VO₂</b> (fever, shivering, agitation, work of breathing, thyrotoxicosis, seizure). Fix whichever applies; in post-cardiotomy LCOS it is usually output first, haemoglobin second.</div>
+    <div class="note"><b>Oxygen extraction ratio</b> — O₂ER = (SaO₂ − SvO₂) / SaO₂, normally <b>20–30%</b>. A rising O₂ER is the body compensating for falling delivery; above roughly 50–60% extraction is near-maximal and anaerobic metabolism follows. SvO₂ and O₂ER are two views of the same balance. <span class="pill info">Module 10 computes both</span></div>
+
+    <div class="subhead">Reading the value</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>SvO₂</th><th>Means</th><th>Action in cardiogenic shock</th></tr>
+      <tr><td class="mono">&gt; 75%</td><td>High — delivery exceeds demand, <i>or</i> extraction has failed</td><td>If lactate is normal: over-support, sedation/paralysis, hypothermia. If lactate is high: suspect sepsis, shunt, cyanide, or a wedged sample — see the traps below</td></tr>
+      <tr><td class="mono">65–75%</td><td>Normal balance</td><td>Target range — but confirm with lactate and the CO₂ gap that it is real</td></tr>
+      <tr><td class="mono">50–65%</td><td>Compensated — extraction is rising</td><td>Delivery is marginal. Optimise CO, Hb, SaO₂; reduce VO₂. Trend closely</td></tr>
+      <tr><td class="mono">&lt; 50%</td><td>Extraction near maximal</td><td>Delivery is inadequate — escalate (Module 01 ladder). Expect lactate to be rising</td></tr>
+      <tr><td class="mono">&lt; 30%</td><td>Critical</td><td>Pre-terminal low output — immediate escalation, consider MCS</td></tr>
+    </table></div>
+
+    <div class="subhead">The traps — a “reassuring” SvO₂ that is not</div>
+    <div class="grid g2">
+      <div class="note warn"><b>Wedged or over-aspirated sample</b> — drawing from a catheter that has migrated distally, or aspirating too fast, pulls arterialised pulmonary capillary blood and gives a <b>falsely high</b> SvO₂. Aspirate slowly from the distal port, discard the deadspace, and check the waveform first.</div>
+      <div class="note warn"><b>Sepsis / mixed shock</b> — microcirculatory shunting means oxygen bypasses the tissues; SvO₂ looks normal or high while lactate climbs. Cardiogenic and septic shock coexist more often than not after cardiotomy.</div>
+      <div class="note warn"><b>Reduced demand masks low output</b> — sedation, neuromuscular blockade, hypothermia and mechanical ventilation all cut VO₂, lifting SvO₂ without any improvement in flow. A “normalising” SvO₂ after paralysis is not a haemodynamic win.</div>
+      <div class="note warn"><b>Left-to-right shunt</b> — a post-infarct VSD oxygenates right-heart blood directly: a <b>step-up</b> in saturation from RA to PA with a high SvO₂ in a shocked patient. Look for it (§6) rather than being reassured.</div>
+      <div class="note warn"><b>On VA-ECMO</b> — the circuit, not the native heart, governs the returned saturation; a PA sample reflects the small native flow and the mixing cloud. Use circuit venous saturation and the targets in the ECMO module instead.</div>
+      <div class="note warn"><b>Continuous oximetry drift</b> — fibreoptic PA catheters drift; <b>re-calibrate against a lab co-oximetry sample</b> before acting on an unexpected change, especially a reassuring one.</div>
+    </div>
+
+    <div class="note alarm"><b>Never read SvO₂ alone.</b> Pair it with <b>lactate</b> and the <b>CO₂ gap</b> (P<sub>v-a</sub>CO₂, normal &lt; 6 mmHg / 0.8 kPa). A normal-to-high SvO₂ with a <b>wide</b> CO₂ gap means flow is still inadequate for metabolic demand despite the reassuring saturation — the combination that most often prevents a missed low-output state. The four-quadrant reading is in the ABG module (§4).</div>
+
+    <div class="subhead">Using it</div>
+    <div class="note"><b>As a resuscitation target:</b> trend it alongside lactate clearance — a rising SvO₂ with falling lactate is the signature of successful escalation. <b>In weaning:</b> a fall in SvO₂ during an inotrope wean, a trial-off, or a spontaneous breathing trial is an early objective sign the patient is not ready, often preceding any change in blood pressure. <b>Before transfusing:</b> a low SvO₂ with a low Hb is one of the more defensible triggers in a shocked patient, since it demonstrates the anaemia is costing delivery.</div>
   </div>
 </section>
 
@@ -824,19 +836,150 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">11</span> Differential hypoxia (Harlequin) — management ladder</h3>
-    <p class="muted">Sentinel is the right radial (§04). When it desaturates with a recovering, ejecting heart pumping deoxygenated blood into the proximal arch:</p>
+    <h3><span class="secnum">11</span> Differential hypoxia (Harlequin) — recognition &amp; management ladder</h3>
+    <p class="lead">Upper-body hypoxaemia on peripheral VA-ECMO while every circuit number looks perfect. It is missed because the monitors that reassure you — circuit saturations, a left-sided or femoral arterial line — are all sampling the wrong circulation.</p>
+    <div class="note"><b>The mechanism in one line:</b> a <b>recovering heart ejects deoxygenated blood</b> from diseased native lungs into the proximal arch, while retrograde femoral return supplies the lower body with fully oxygenated circuit blood. The two meet at a <b>watershed (mixing cloud)</b> whose position is set by native cardiac output against ECMO flow — the better the heart gets and the worse the lungs are, the further distally that watershed sits. <b>The coronaries and cerebral vessels arise proximal to it, so they are hypoxic first.</b></div>
+    <div class="note alarm"><b>It is a disease of recovery.</b> Harlequin appears as native ejection returns, or as the lungs deteriorate (post-cannulation oedema, white-out). A patient who looked stable can be perfusing brain and myocardium with hypoxic blood while the circuit reads beautifully.</div>
+
+    <div class="subhead">The signs</div>
     <div class="tbl-wrap"><table>
-      <tr><th>Step</th><th>Action</th></tr>
-      <tr><td>1 · Lungs</td><td>Treat the native lung — recruit, optimise ventilator, diurese, treat oedema/pneumonia</td></tr>
-      <tr><td>2 · Circuit</td><td>Increase ECMO flow &amp; sweep to raise the mixing-cloud oxygen content</td></tr>
-      <tr><td>3 · Reconfigure return</td><td>Add an internal jugular return limb → <b>V-AV</b> (hybrid); or move arterial return more proximal (right axillary/subclavian, central)</td></tr>
-      <tr><td>4 · Reassess strategy</td><td>If oxygenation is the whole problem and the heart is recovering, consider transition toward VV support</td></tr>
+      <tr><th>Where</th><th>Sign</th><th>Why it matters</th></tr>
+      <tr><td><b>Right radial</b> gas / SpO₂</td><td>The sentinel — desaturation here, upper-body SaO₂ drifting below ~85–90%, with everything else looking well</td><td>Closest sample to the coronary and cerebral circulation (§04). <b>A left radial or femoral line will reassure you falsely</b></td></tr>
+      <tr><td><b>Gradient between sites</b></td><td><b>Right radial lower than left radial, both lower than femoral.</b> A right-hand to toe SpO₂ discordance of &gt; 5–10% is the signature</td><td>The gradient <i>is</i> the diagnosis — “north–south” or two-circulation syndrome. Probes on both hands and a foot make it continuous</td></tr>
+      <tr><td><b>Post-oxygenator PaO₂</b></td><td><b>Excellent</b> (150–300 at FdO₂ 1.0) while the right radial is poor</td><td>The key discriminator — the circuit is working perfectly. If post-oxy PaO₂ is <i>also</i> low, this is oxygenator failure (§14), not Harlequin</td></tr>
+      <tr><td><b>Look at the patient</b></td><td><b>Differential cyanosis</b> — dusky head, neck and right arm above a pink, well-perfused lower body: the “harlequin” appearance that names it</td><td>Available without any monitor — but late and insensitive</td></tr>
+      <tr><td><b>Arterial waveform</b></td><td><b>Rising pulsatility and widening pulse pressure</b> as native ejection returns</td><td>The precondition. Returning pulsatility with bad lungs should prompt an upper-body gas, not satisfaction</td></tr>
+      <tr><td><b>Cerebral NIRS</b></td><td>Frontal oximetry falling while somatic / lower-limb values hold</td><td>Continuous warning of cerebral hypoxia before anyone sends a gas</td></tr>
+      <tr><td><b>Heart</b></td><td>New ST change, rising troponin, new wall-motion abnormality, stalling ventricular recovery</td><td>The coronaries take that same deoxygenated native blood — <b>hypoxic coronary perfusion stuns the recovering heart</b>, a vicious circle</td></tr>
+      <tr><td><b>Brain</b></td><td>Agitation, seizures, failure to wake, unexplained neurological decline</td><td>The harm you are trying to prevent — do not wait for it to declare itself</td></tr>
+      <tr><td><b>Native lung</b></td><td>White-out, poor compliance, copious pulmonary oedema, low saturation sampled at the ET tube</td><td>The substrate — the worse the lung, the more deoxygenated the ejected blood</td></tr>
     </table></div>
+
+    <div class="note warn"><b>Confirm with the arch sampling ladder (§04):</b> simultaneous gases from the <b>right radial, left radial and a femoral or circuit arterial</b> site map the watershed and quantify the gradient. A single site, whichever it is, cannot show a gradient.</div>
+    <div class="grid g2">
+      <div class="note warn"><b>Mimics and traps.</b> Sampling the wrong side is the commonest error. <b>Oxygenator failure</b> drops the post-oxy PaO₂ too — check that first. A poor pleth trace in low pulsatility makes oximetry unreliable. And remember <b>reverse differential hypoxia</b>: with an axillary or central return it is the <i>lower</i> body that desaturates.</div>
+      <div class="note"><b>Monitoring that prevents the miss.</b> On peripheral VA-ECMO a <b>right radial arterial line is effectively mandatory</b>, with the SpO₂ probe on the <b>right hand</b> and ideally a second on a foot. Re-check the right radial gas after any change in pulsatility, ventilation or circuit flow.</div>
+    </div>
+
+    <div class="subhead">Treatment — the ladder</div>
+    <div class="note alarm"><b>Target and urgency:</b> aim for an <b>upper-body (right radial) SaO₂ ≥ 90%</b>, or at minimum a clear upward trend with recovering frontal NIRS. This is <b>hypoxic perfusion of brain and myocardium</b> — work in hours, not over a ward round. Escalate down this ladder until the right radial gas improves, and re-sample after every intervention.</div>
+
+    <div class="tbl-wrap"><table>
+      <tr><th>Step</th><th>What to do</th><th>Why / watch</th></tr>
+      <tr><td><b>1 · Native lung</b><br><span class="mono">first, always</span></td><td><b>Come off rest settings.</b> Raise ventilator <b>FiO₂ (to 1.0 while you work)</b>, recruit, increase PEEP, suction and bronchoscope for plugging, prone if appropriate. <b>Diurese or ultrafiltrate</b> the oedematous lung. Treat pneumonia</td><td>Every point of native SaO₂ you win is blood the heart ejects into the arch <i>already oxygenated</i>. Balance against lung-rest ventilation — oxygenating the brain wins</td></tr>
+      <tr><td><b>2 · Unload the LV</b><br><span class="mono">the missed step</span></td><td>If the lungs are wet because the LV is distended, <b>vent / unload</b> (§10) — Impella, trans-septal or surgical vent</td><td><b>The commonest reversible cause of the bad native lung is LV distension.</b> Treating the pulmonary oedema at source often fixes the Harlequin outright. An IABP does <i>not</i> fix it</td></tr>
+      <tr><td><b>3 · Circuit &amp; content</b></td><td>Confirm <b>FdO₂ 1.0</b> and a healthy post-oxy gas. <b>Increase ECMO flow</b> to push the watershed proximally. <b>Transfuse</b> toward a higher Hb</td><td>Only raise flow if drainage allows (§12) — if drainage-limited you will simply chatter. Raising Hb raises the oxygen <i>content</i> of upper-body blood, a legitimate temporising move</td></tr>
+      <tr><td><b>4 · Demand &amp; native ejection</b></td><td>Reduce VO₂: sedation, paralysis if needed, temperature control, treat fever and shivering. <b>Review inotropes</b></td><td>A deliberate trade-off: cutting inotrope lowers native output and moves the watershed proximally, improving upper-body oxygenation — but risks LV distension and stasis. Make it consciously, with echo</td></tr>
+      <tr><td><b>5 · Reconfigure the return</b><br><span class="mono">the definitive fix</span></td><td><b>Move the return proximal</b> — right axillary / subclavian graft or central aortic; or <b>add an IJ return limb → V-AV</b>, split controlled by a clamp and titrated to the right radial (§12)</td><td>Axillary return oxygenates the arch directly and solves flow limitation at the same time — often the cleaner answer. V-AV is effective but monitoring-hungry: over-split starves the systemic circulation, and return near the drainage cannula recirculates</td></tr>
+      <tr><td><b>6 · Change strategy</b></td><td>If oxygenation is now the whole problem and the <b>heart has recovered</b>, convert toward <b>VV</b>. If the heart has not recovered and the lung will not, the configuration question becomes a candidacy question</td><td>The configuration should follow the organ that still fails. Reassess daily rather than defending the original cannulation</td></tr>
+    </table></div>
+
+    <div class="grid g2">
+      <div class="note warn"><b>What does not work.</b> Turning up the <b>sweep</b> — that clears CO₂ and does nothing for this. An <b>IABP</b> — it does not change which blood reaches the arch. Raising <b>FdO₂</b> when the post-oxy gas is already excellent — the circuit is not the problem. Reassurance from a <b>left radial or femoral</b> gas.</div>
+      <div class="note"><b>After every step, re-measure.</b> Right radial gas, frontal NIRS, pulsatility and, where relevant, both limb flows. Improvement is judged on the <b>upper-body</b> sample — never on circuit saturations, which were always going to look good.</div>
+    </div>
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">12</span> Anticoagulation &amp; haematology</h3>
+    <h3><span class="secnum">12</span> Adding a cannula — escalating the configuration</h3>
+    <p class="lead">Every extra cannula answers a <i>different</i> question, so name the limiting problem before you name the configuration. Flow that will not rise is either <b>drainage-limited</b> or <b>return-limited</b>; upper-body hypoxaemia with a healthy circuit is an <b>oxygenation</b> problem, not a flow one. Adding a cannula is rarely the first move — reposition, upsize, or fix the patient first.</p>
+
+    <div class="wave">
+      <div class="cap">Configurations — what each added limb is for</div>
+      <svg viewBox="0 0 880 210" width="100%" height="210" style="display:block">
+        <rect x="0" y="0" width="880" height="210" fill="#060a10"/>
+        <g font-family="ui-monospace,monospace" font-size="9" fill="#8093aa">
+          <!-- panel 1 : VA -->
+          <rect x="24" y="30" width="40" height="96" rx="7" fill="#101724" stroke="#293a50" stroke-width="1.4"/>
+          <text x="44" y="82" text-anchor="middle" fill="#dbe6f2" font-size="10">PT</text>
+          <rect x="140" y="62" width="48" height="32" rx="6" fill="#101724" stroke="#2ee6a6" stroke-width="1.4"/>
+          <text x="164" y="82" text-anchor="middle" fill="#2ee6a6" font-size="8">CKT</text>
+          <path d="M64 52 H140" stroke="#4d8cf5" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M188 104 Q188 118 170 118 H82 Q64 118 64 106" stroke="#ff5468" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <text x="106" y="158" text-anchor="middle" fill="#dbe6f2" font-size="10">VA</text>
+          <text x="106" y="174" text-anchor="middle">baseline · 1 drain, 1 return</text>
+          <!-- panel 2 : VV-A -->
+          <rect x="244" y="30" width="40" height="96" rx="7" fill="#101724" stroke="#293a50" stroke-width="1.4"/>
+          <text x="264" y="82" text-anchor="middle" fill="#dbe6f2" font-size="10">PT</text>
+          <rect x="360" y="62" width="48" height="32" rx="6" fill="#101724" stroke="#2ee6a6" stroke-width="1.4"/>
+          <text x="384" y="82" text-anchor="middle" fill="#2ee6a6" font-size="8">CKT</text>
+          <path d="M284 44 H340 Q352 44 356 56 L360 66" stroke="#4d8cf5" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M284 64 H348 Q358 64 360 72" stroke="#4d8cf5" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M408 104 Q408 118 390 118 H302 Q284 118 284 106" stroke="#ff5468" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <text x="326" y="158" text-anchor="middle" fill="#4d8cf5" font-size="10">VV-A</text>
+          <text x="326" y="174" text-anchor="middle">+2nd DRAIN · flow-limited</text>
+          <!-- panel 3 : V-AV -->
+          <rect x="464" y="30" width="40" height="96" rx="7" fill="#101724" stroke="#293a50" stroke-width="1.4"/>
+          <text x="484" y="82" text-anchor="middle" fill="#dbe6f2" font-size="10">PT</text>
+          <rect x="580" y="62" width="48" height="32" rx="6" fill="#101724" stroke="#2ee6a6" stroke-width="1.4"/>
+          <text x="604" y="82" text-anchor="middle" fill="#2ee6a6" font-size="8">CKT</text>
+          <path d="M504 52 H580" stroke="#4d8cf5" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M628 104 Q628 118 610 118 H522 Q504 118 504 106" stroke="#ff5468" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M628 88 Q652 88 652 40 H520 Q504 40 504 46" stroke="#ff5468" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="7 4"/>
+          <circle cx="652" cy="64" r="6" fill="#060a10" stroke="#f6b74a" stroke-width="1.6"/>
+          <text x="652" y="108" text-anchor="middle" fill="#f6b74a" font-size="8">clamp</text>
+          <text x="546" y="158" text-anchor="middle" fill="#ff5468" font-size="10">V-AV</text>
+          <text x="546" y="174" text-anchor="middle">+RETURN to RIJ · Harlequin</text>
+          <!-- panel 4 : V-AA -->
+          <rect x="684" y="30" width="40" height="96" rx="7" fill="#101724" stroke="#293a50" stroke-width="1.4"/>
+          <text x="704" y="82" text-anchor="middle" fill="#dbe6f2" font-size="10">PT</text>
+          <rect x="800" y="62" width="48" height="32" rx="6" fill="#101724" stroke="#2ee6a6" stroke-width="1.4"/>
+          <text x="824" y="82" text-anchor="middle" fill="#2ee6a6" font-size="8">CKT</text>
+          <path d="M724 52 H800" stroke="#4d8cf5" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M848 104 Q848 118 830 118 H742 Q724 118 724 106" stroke="#ff5468" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M848 94 Q866 94 866 36 H740 Q724 36 724 44" stroke="#ff5468" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <text x="766" y="158" text-anchor="middle" fill="#ff5468" font-size="10">V-AA</text>
+          <text x="766" y="174" text-anchor="middle">+2nd ARTERIAL · return-limited</text>
+        </g>
+        <text x="24" y="198" fill="#586a80" font-family="ui-monospace,monospace" font-size="9">Blue = drainage · red = oxygenated return · dashed = flow-split limb requiring a clamp and its own flow measurement</text>
+      </svg>
+    </div>
+
+    <div class="subhead">Step 1 — which limb is limiting?</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Problem</th><th>Signature</th><th>Fix these FIRST</th><th>Then add</th></tr>
+      <tr><td><b>Drainage-limited</b></td><td>Flow will not rise; line chatter / kick; <b>very negative access pressure</b>; RPM up but flow flat</td><td>Volume; exclude tamponade, pneumothorax, abdominal compartment, high PEEP; reposition or advance the cannula; reduce RPM to stop suckdown</td><td class="mono">2nd VENOUS drain → VV-A</td></tr>
+      <tr><td><b>Return-limited</b></td><td>Cannot reach target flow; <b>high P<sub>int</sub> with a normal ΔP</b> (§14); haemolysis; small arterial cannula or vessel</td><td>Exclude kink, clamp and cannula malposition; treat hypertension / high afterload; confirm ΔP is normal so it is not the membrane</td><td class="mono">UPSIZE, or 2nd ARTERIAL → V-AA</td></tr>
+      <tr><td><b>Upper-body hypoxaemia</b></td><td>Right radial desaturated, <b>circuit post-oxy excellent</b>, poor native lung with a recovering LV (§11)</td><td>Recruit and optimise the ventilator, FiO₂; raise ECMO flow; reduce native ejection if appropriate; consider unloading (§10)</td><td class="mono">RETURN to vein → V-AV<br>or axillary arterial</td></tr>
+      <tr><td><b>Limb ischaemia</b></td><td>Cool, pulseless or painful cannulated leg; rising lactate / CK; NIRS fall</td><td>This is not a configuration problem — do not delay</td><td class="mono">DISTAL PERFUSION cannula</td></tr>
+      <tr><td><b>LV distension</b></td><td>Rising PAOP, pulmonary oedema, no pulsatility, stasis</td><td>Reduce flow? No — this needs decompression</td><td class="mono">VENT, not another inflow (§10)</td></tr>
+      <tr><td><b>Heart recovered, lungs not</b></td><td>Good pulsatility and native output, isolated respiratory failure</td><td>Reassess daily — the configuration should follow the organ that still fails</td><td class="mono">CONVERT to VV</td></tr>
+    </table></div>
+
+    <div class="note warn"><b>Before adding anything — the physics.</b> Flow through a cannula varies with the <b>fourth power of the radius</b> and inversely with length, so <b>upsizing or repositioning a single cannula usually beats adding a second small one</b>: going from a 21 Fr to a 25 Fr drainage cannula buys more than bolting on another 17 Fr. Check the cannula's pressure–flow (M-number) chart before assuming the circuit is at fault. And reduce the <i>demand</i> too — sedation, paralysis, temperature control and treating sepsis all lower the flow you need.</div>
+
+    <div class="subhead">Extra VENOUS drainage — VV-A</div>
+    <div class="grid g2">
+      <div class="note"><b>When:</b> genuinely drainage-limited after optimisation; required flow exceeds what one cannula delivers (large patient, high metabolic demand, vasoplegia or sepsis on top of cardiogenic shock); persistent chatter at target flow.<br><b>How:</b> a second drainage cannula — contralateral femoral or RIJ — Y-connected into the drainage limb; a long multistage cannula is often the better single answer.</div>
+      <div class="note warn"><b>Watch:</b> uneven split — the lower-resistance cannula takes most of the flow and the other chatters anyway; every connection is a potential <b>air entrainment</b> point on the negative-pressure side; more surface area and more shear if both are small; added bleeding and infection risk. Re-baseline access pressure after.</div>
+    </div>
+
+    <div class="subhead">Extra ARTERIAL return — V-AA</div>
+    <div class="grid g2">
+      <div class="note"><b>When:</b> return-limited — target flow unachievable without excessive line pressure, or haemolysis driven by a high-resistance arterial limb, in a vessel too small to upsize. Occasionally chosen to improve <b>upper-body</b> perfusion.<br><b>How:</b> contralateral femoral, or axillary / subclavian via a side graft, Y-connected to the return limb.</div>
+      <div class="note warn"><b>Watch:</b> flow follows the path of least resistance, so the split is rarely equal — measure it. An axillary graft can <b>hyperperfuse the arm</b> (oedema, compartment syndrome) and bleeds; more total return raises <b>LV afterload</b> and worsens distension, so watch pulsatility and PAOP.<br><b>Note:</b> adding an <b>axillary</b> return treats differential hypoxia <i>and</i> the flow limit at once — often the more elegant answer than V-AV when the heart still needs support.</div>
+    </div>
+
+    <div class="subhead">Extra return to the VENOUS side — V-AV</div>
+    <div class="note"><b>When:</b> differential hypoxia (§11) that persists after ventilator optimisation <i>and</i> the heart still needs circulatory support. If the heart has recovered, convert to VV instead; if the lungs are fine, stay VA.<br><b>How:</b> split the arterial return with a Y — one limb to the femoral artery, one to the RIJ. The split <b>must</b> be controlled with a clamp on the venous return limb and, ideally, a flow probe on each limb. Titrate to the <b>right radial</b> saturation.</div>
+    <div class="note alarm"><b>The V-AV traps:</b> every millilitre sent to the venous limb is a millilitre <i>not</i> supporting the systemic circulation — over-split and you fix the saturation while under-perfusing the patient. Oxygenated blood returned near the drainage cannula <b>recirculates</b>, giving a falsely reassuring SvO₂ with no gain in delivery. It is the most monitoring-hungry configuration on the unit: right radial gases, both limb flows, lactate and pulsatility, continuously.</div>
+
+    <div class="subhead">The short version</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>If the problem is…</th><th>Do this</th></tr>
+      <tr><td>Flow, and the <b>drainage</b> side is limiting</td><td class="mono">upsize / reposition → else add a venous drain (VV-A)</td></tr>
+      <tr><td>Flow, and the <b>return</b> side is limiting</td><td class="mono">upsize → else add an arterial return (V-AA)</td></tr>
+      <tr><td>Upper-body <b>oxygenation</b>, heart still failing</td><td class="mono">axillary arterial return, or V-AV</td></tr>
+      <tr><td>Upper-body <b>oxygenation</b>, heart recovered</td><td class="mono">convert to VV</td></tr>
+      <tr><td><b>Limb</b> perfusion</td><td class="mono">distal perfusion cannula — early, and prophylactically</td></tr>
+      <tr><td>LV <b>distension</b></td><td class="mono">vent / unload (§10) — never another return limb</td></tr>
+    </table></div>
+    <div class="note"><b>However you escalate:</b> it is an elective, planned, two-operator procedure with the perfusionist — primed circuit and Y-connectors ready, ultrasound for the new vessel, meticulous de-airing, <b>every limb labelled</b>, and a full re-baseline of flows, ΔP and all pressures afterwards. Anticipate it from the trend rather than doing it at 3 a.m. on a crashing patient.</div>
+    <div class="disc">Configuration choice is institution- and patient-specific — follow local ECMO protocol and ELSO guidance; cannula sizes and achievable flows depend on the device and the vessel.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">13</span> Anticoagulation &amp; haematology</h3>
     <div class="grid g2">
       <div class="note"><b>Default</b>: unfractionated heparin, titrated to <b>anti-Xa 0.3–0.5</b> IU/mL (or ACT / aPTT per unit). Anti-Xa is less confounded than ACT in the critically ill.</div>
       <div class="note"><b>Bivalirudin</b> (direct thrombin inhibitor): rising as an alternative — no antithrombin dependence, useful in HIT or heparin resistance; renally cleared, watch circuit stasis.</div>
@@ -848,7 +991,7 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">13</span> ECPR — candidacy at a glance</h3>
+    <h3><span class="secnum">14</span> ECPR — candidacy at a glance</h3>
     <div class="tbl-wrap"><table>
       <tr><th>Favourable</th><th>Against</th></tr>
       <tr><td>Witnessed arrest, immediate bystander CPR, shockable / reversible rhythm, short low-flow time, minimal no-flow, intermittent ROSC, end-tidal CO₂ maintained, younger with few comorbidities</td><td>Unwitnessed / prolonged downtime, asystole, severe comorbidity or non-survivable cause, signs of prolonged hypoperfusion</td></tr>
@@ -857,9 +1000,81 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">14</span> Oxygenator &amp; circuit health — TMP, post-oxy &amp; the trend</h3>
+    <h3><span class="secnum">15</span> Oxygenator &amp; circuit health — TMP, post-oxy &amp; the trend</h3>
     <p class="muted">You <i>monitor</i> the oxygenator's decline — you don't wait for it to fail. Four data streams read its health: transmembrane pressure, post-oxygenator gases, haemolysis markers and the consumptive coagulation profile. The <b>trend</b> beats any single value, and every pressure is read <b>at the same flow</b>.</p>
 
+    <div class="subhead">Where the numbers come from</div>
+    <div class="wave">
+      <div class="cap">VA-ECMO circuit — pressure taps, sampling ports and the transmembrane gradient</div>
+      <svg viewBox="0 0 880 320" width="100%" height="320" style="display:block">
+        <rect x="0" y="0" width="880" height="320" fill="#060a10"/>
+        <!-- patient -->
+        <rect x="24" y="96" width="96" height="128" rx="10" fill="#101724" stroke="#293a50" stroke-width="1.5"/>
+        <text x="72" y="150" text-anchor="middle" fill="#dbe6f2" font-family="ui-monospace,monospace" font-size="12">PATIENT</text>
+        <text x="72" y="170" text-anchor="middle" fill="#8093aa" font-family="ui-monospace,monospace" font-size="10">RA / femoral</text>
+        <text x="72" y="186" text-anchor="middle" fill="#8093aa" font-family="ui-monospace,monospace" font-size="10">+ arterial</text>
+        <!-- drainage (venous) limb : patient -> pump -->
+        <path d="M120 126 H300" stroke="#4d8cf5" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <polygon points="236,120 250,126 236,132" fill="#dbe6f2"/>
+        <text x="150" y="112" fill="#4d8cf5" font-family="ui-monospace,monospace" font-size="10">DRAINAGE · desaturated</text>
+        <!-- pump -->
+        <circle cx="330" cy="126" r="30" fill="#101724" stroke="#9d8cff" stroke-width="2"/>
+        <path d="M330 106 A20 20 0 0 1 348 132" stroke="#9d8cff" stroke-width="2.5" fill="none"/>
+        <circle cx="330" cy="126" r="4" fill="#9d8cff"/>
+        <text x="330" y="176" text-anchor="middle" fill="#9d8cff" font-family="ui-monospace,monospace" font-size="10">PUMP</text>
+        <!-- pump -> oxygenator -->
+        <path d="M360 126 H470" stroke="#4d8cf5" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <polygon points="416,120 430,126 416,132" fill="#dbe6f2"/>
+        <!-- oxygenator -->
+        <rect x="470" y="86" width="150" height="80" rx="8" fill="#101724" stroke="#2ee6a6" stroke-width="2"/>
+        <line x1="486" y1="94" x2="486" y2="158" stroke="#12664c" stroke-width="2"/>
+        <line x1="502" y1="94" x2="502" y2="158" stroke="#12664c" stroke-width="2"/>
+        <line x1="518" y1="94" x2="518" y2="158" stroke="#12664c" stroke-width="2"/>
+        <line x1="534" y1="94" x2="534" y2="158" stroke="#12664c" stroke-width="2"/>
+        <line x1="550" y1="94" x2="550" y2="158" stroke="#12664c" stroke-width="2"/>
+        <line x1="566" y1="94" x2="566" y2="158" stroke="#12664c" stroke-width="2"/>
+        <line x1="582" y1="94" x2="582" y2="158" stroke="#12664c" stroke-width="2"/>
+        <line x1="598" y1="94" x2="598" y2="158" stroke="#12664c" stroke-width="2"/>
+        <text x="545" y="180" text-anchor="middle" fill="#2ee6a6" font-family="ui-monospace,monospace" font-size="10">OXYGENATOR · fibre bundle</text>
+        <!-- gas: sweep in (bottom), exhaust out (top) -->
+        <path d="M415 238 H480 V176" stroke="#4fd6e8" stroke-width="2.5" fill="none" stroke-dasharray="5 4"/>
+        <polygon points="474,184 480,172 486,184" fill="#4fd6e8"/>
+        <text x="244" y="242" fill="#4fd6e8" font-family="ui-monospace,monospace" font-size="10">SWEEP GAS IN — sets CO₂</text>
+        <path d="M545 82 V36" stroke="#4fd6e8" stroke-width="2.5" fill="none" stroke-dasharray="5 4"/>
+        <polygon points="539,44 545,32 551,44" fill="#4fd6e8"/>
+        <text x="556" y="40" fill="#4fd6e8" font-family="ui-monospace,monospace" font-size="10">EXHAUST — plasma leak seen here</text>
+        <!-- return (arterial) limb -->
+        <path d="M620 126 H700 Q716 126 716 142 V232 Q716 248 700 248 H136 Q120 248 120 232 V206" stroke="#ff5468" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <polygon points="420,242 406,248 420,254" fill="#dbe6f2"/>
+        <text x="470" y="270" fill="#ff5468" font-family="ui-monospace,monospace" font-size="10">RETURN · oxygenated</text>
+        <!-- pressure taps -->
+        <circle cx="200" cy="126" r="7" fill="#070a10" stroke="#f6b74a" stroke-width="2"/>
+        <text x="200" y="96" text-anchor="middle" fill="#f6b74a" font-family="ui-monospace,monospace" font-size="10">P_ven · access</text>
+        <text x="200" y="84" text-anchor="middle" fill="#586a80" font-family="ui-monospace,monospace" font-size="9">negative · suckdown</text>
+        <circle cx="440" cy="126" r="7" fill="#070a10" stroke="#f6b74a" stroke-width="2"/>
+        <text x="440" y="96" text-anchor="middle" fill="#f6b74a" font-family="ui-monospace,monospace" font-size="10">P_int · pre-oxy</text>
+        <circle cx="716" cy="180" r="7" fill="#070a10" stroke="#f6b74a" stroke-width="2"/>
+        <text x="734" y="176" fill="#f6b74a" font-family="ui-monospace,monospace" font-size="10">P_art · post-oxy</text>
+        <text x="734" y="190" fill="#586a80" font-family="ui-monospace,monospace" font-size="9">+ post-oxy gas sample</text>
+        <!-- delta P bracket -->
+        <path d="M440 138 V206 H716 V190" stroke="#f6b74a" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+        <rect x="490" y="192" width="176" height="26" rx="6" fill="#0c1119" stroke="#5f4415" stroke-width="1"/>
+        <text x="578" y="209" text-anchor="middle" fill="#f6b74a" font-family="ui-monospace,monospace" font-size="11">ΔP = P_int − P_art</text>
+        <!-- legend -->
+        <text x="24" y="300" fill="#586a80" font-family="ui-monospace,monospace" font-size="10">Read every pressure at the SAME flow · ΔP rises with clot, flow, haematocrit and low temperature</text>
+      </svg>
+    </div>
+    <div class="note"><b>Reading the schematic:</b> a <b>rising ΔP</b> (pre minus post) at fixed flow means resistance inside the bundle — clot. <b>Both pressures rising together with ΔP unchanged</b> is obstruction downstream of the oxygenator, not membrane thrombosis. The <b>access pressure</b> is the negative one — excessively negative means suckdown or a drainage problem, and drives haemolysis. The <b>post-oxygenator port</b> gives the gas that tells you whether the membrane still works; the <b>exhaust port</b> is where a plasma leak appears.</div>
+    <div class="subhead">Console labels — what P<sub>int</sub> actually is</div>
+    <div class="note"><b>P<sub>int</sub> = “internal pressure”</b> — the pressure measured by the console’s integrated sensor sited <b>between the pump outlet and the oxygenator inlet</b>. It is simply the <b>pre-oxygenator pressure</b> under the manufacturer’s name for it, and it is the <b>highest pressure in the circuit</b> — everything downstream (membrane, return tubing, cannula) is resistance the pump must overcome. Integrated systems typically report three: <b>P<sub>ven</sub></b> (access, negative), <b>P<sub>int</sub></b> (pre-oxygenator) and <b>P<sub>art</sub></b> (post-oxygenator, return limb). <b>ΔP = P<sub>int</sub> − P<sub>art</sub></b> — so P<sub>int</sub> is one half of the transmembrane gradient, never interpreted alone.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Label</th><th>Where it is measured</th><th>Normally</th><th>Rises / falls with</th></tr>
+      <tr><td><b>P<sub>ven</sub></b> · access</td><td>Drainage limb, <i>before</i> the pump</td><td class="mono">negative</td><td>More negative with suckdown, hypovolaemia, cannula against wall, tamponade, kinked drainage, or too high a flow demand — drives haemolysis</td></tr>
+      <tr><td><b>P<sub>int</sub></b> · pre-oxy</td><td>Between pump outlet and oxygenator inlet</td><td class="mono">highest in circuit</td><td>Rises with oxygenator clot, <i>or</i> any obstruction downstream (kink, clamp, cannula problem), higher flow, higher haematocrit, lower temperature, smaller return cannula, higher patient afterload</td></tr>
+      <tr><td><b>P<sub>art</sub></b> · post-oxy</td><td>Return limb, <i>after</i> the oxygenator</td><td class="mono">high, &lt; P<sub>int</sub></td><td>Reflects return-cannula resistance and patient arterial pressure — it is <b>not</b> the patient’s blood pressure</td></tr>
+    </table></div>
+    <div class="note warn"><b>The discriminator, restated:</b> a rising P<sub>int</sub> tells you resistance has increased <i>somewhere downstream of the pump</i> — it does not tell you where. Subtract: if <b>ΔP rises with it</b>, the resistance is <i>in</i> the membrane (oxygenator thrombosis). If <b>ΔP is unchanged</b> and P<sub>art</sub> has risen in parallel, the resistance is <i>beyond</i> the membrane — kinked or clamped return line, cannula malposition, or a genuine rise in patient afterload. Never call an oxygenator failed on P<sub>int</sub> alone.</div>
+    <div class="note"><b>Practical points:</b> absolute values are device-, flow- and cannula-specific — <b>record your own baseline at your set flow</b> and trend from it rather than chasing a published number. Console alarm limits are set around that baseline. On a non-integrated circuit the same three points are transduced manually pre- and post-oxygenator. And a high P<sub>int</sub> with a normal ΔP should send you to look at the return line and the patient, not to change the oxygenator.</div>
     <div class="subhead">Transmembrane pressure (TMP / ΔP)</div>
     <div class="note"><b>TMP = P<sub>pre-oxy</sub> − P<sub>post-oxy</sub></b> — the pressure drop across the fibre bundle as blood traverses it. Baseline is device- and flow-dependent (tens of mmHg); <b>record it at your set flow</b>. A <b>rising TMP at fixed flow</b> means clot is accumulating in the bundle (rising resistance) — the earliest and most specific sign of oxygenator thrombosis. Contrast with <b>outflow obstruction</b>, which raises pre- and post-oxy pressure <i>together</i> with ΔP unchanged (§01–§02). Interpret only at constant flow — ΔP also rises with flow, haematocrit and low temperature.</div>
 
@@ -891,9 +1106,18 @@ tr:last-child td{border-bottom:none}
     </table></div>
     <div class="grid g2">
       <div class="note"><b>Fibrinogen is the pivot.</b> It is the first factor to fall to a critical level in consumption and dilution, and low fibrinogen both bleeds <i>and</i> starves the circuit's ability to be safely anticoagulated. Replace early to the target, guided where available by <b>viscoelastic testing</b> (ROTEM FIBTEM / TEG functional fibrinogen) rather than the lab number alone.</div>
-      <div class="note warn"><b>Replacement that doesn't hold = a circuit-change signal.</b> If fibrinogen and platelets keep falling <i>despite</i> adequate replacement and adequate anticoagulation, you are feeding a clotting circuit — stop transfusing into it and <b>change the oxygenator / circuit</b> (§15). Persistent consumption after the swap = look at the patient (sepsis, DIC, HIT).</div>
+      <div class="note warn"><b>Replacement that doesn't hold = a circuit-change signal.</b> If fibrinogen and platelets keep falling <i>despite</i> adequate replacement and adequate anticoagulation, you are feeding a clotting circuit — stop transfusing into it and <b>change the oxygenator / circuit</b> (§16). Persistent consumption after the swap = look at the patient (sepsis, DIC, HIT).</div>
     </div>
     <div class="note alarm"><b>Bleeding + clotting at once (the ECMO paradox):</b> a consumptive circuit makes the patient bleed while it clots. Prioritise — <b>secure haemostasis</b> (fibrinogen, platelets, surgical source), then <b>fix the circuit</b>; don't simply escalate anticoagulation into a bleeding patient, and don't simply stop it into a clotting circuit. Exclude <b>HIT</b> whenever platelets fall on heparin — switch to a DTI (bivalirudin) if suspected.</div>
+    <div class="subhead">When fibrinogen is <i>high</i></div>
+    <div class="note"><b>A fibrinogen above the normal 2–4 g/L (say 5) is not reassurance — and it is not a reason to replace anything.</b> It carries three separate messages on ECMO.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>What it means</th><th>Why it matters here</th><th>What to do</th></tr>
+      <tr><td><b>Acute-phase reactant</b></td><td>Usually just SIRS, tissue injury or sepsis in a post-cardiotomy or ECMO patient — it rises with CRP</td><td>Ask what is driving it; a rising fibrinogen with rising CRP / white count should prompt a look for infection (cannula site, mediastinum, chest)</td></tr>
+      <tr><td><b>Mildly prothrombotic</b></td><td>Raises clot firmness (high FIBTEM MCF), plasma viscosity and red-cell aggregation — the balance shifts toward circuit thrombosis, and viscosity alone nudges ΔP up</td><td>Confirm anticoagulation is genuinely adequate (anti-Xa / ACT and <b>antithrombin</b>); trend ΔP, D-dimer and the visual bundle more attentively; re-baseline ΔP rather than misreading viscosity as clot</td></tr>
+      <tr><td><b>It can MASK consumption</b></td><td>The 1.5 g/L trigger assumes a normal starting point. A patient starting at 5 can consume heavily and still read a “normal” 2.5 — no threshold is ever crossed</td><td><b>Trend the delta from that patient’s own baseline</b>, not the absolute number. A fall from 5 → 3 with a rising D-dimer is ongoing intra-circuit clot</td></tr>
+    </table></div>
+    <div class="note alarm"><b>High fibrinogen in a patient who is bleeding:</b> the problem is not fibrinogen. Look instead at <b>acquired von Willebrand syndrome</b> (high shear cleaves the high-molecular-weight multimers — essentially universal on ECMO), platelet number <i>and</i> function, heparin effect, and a surgical source. Cryoprecipitate here adds thrombotic risk with no benefit.</div>
     <div class="subhead">Look at it</div>
     <div class="note"><b>Inspect the oxygenator and circuit under good light every day</b> — clot or darkening within the fibre bundle, fibrin strands and clot at connectors, pigtails and the pump head, thrombus on the access (venous) side. Visible bundle thrombus <i>plus</i> a climbing ΔP is a failing oxygenator.</div>
 
@@ -912,7 +1136,7 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">15</span> When to change the circuit / oxygenator</h3>
+    <h3><span class="secnum">16</span> When to change the circuit / oxygenator</h3>
     <p class="muted">An oxygenator exchange is a planned, choreographed procedure — anticipate it from the trend rather than being forced into it by acute failure. The indications cluster into gas-exchange failure, thrombosis / consumption, haemolysis and mechanical problems.</p>
     <div class="tbl-wrap"><table>
       <tr><th>Indication</th><th>Signal</th></tr>
@@ -931,8 +1155,49 @@ tr:last-child td{border-bottom:none}
     <div class="disc">Trigger thresholds are device-specific — local ECMO protocol, ELSO guidance and the device IFU govern the exact numbers and the exchange technique.</div>
   </div>
 
+  <!--ECMOTOOL-START-->
   <div class="panel sec">
-    <h3><span class="secnum">16</span> Daily bundle</h3>
+    <h3><span class="secnum">17</span> Circuit-change decision aid</h3>
+    <p class="muted">Enter what you have. The tool applies the §16 criteria across five domains — thrombosis, gas exchange, haemolysis, consumption and mechanical — and tells you which criteria fired and why. It is deliberately explicit rather than a black-box score: the reasoning is the output.</p>
+    <div class="grid g2">
+      <div class="panel">
+        <h3>Circuit findings <span class="tag">leave blanks</span></h3>
+        <div class="field"><label>Units for gas tensions <span class="unit">post-oxy PaO₂</span></label><select id="es-unit"><option value="kPa">kPa</option><option value="mmHg">mmHg</option></select></div>
+        <div class="fieldgrid">
+          <div class="field"><label>ΔP at baseline <span class="unit">mmHg · at set flow</span></label><input id="es-dpBase" inputmode="decimal" placeholder="—"></div>
+          <div class="field"><label>ΔP now <span class="unit">mmHg · same flow</span></label><input id="es-dpNow" inputmode="decimal" placeholder="—"></div>
+          <div class="field"><label>Post-oxy PaO₂ at FdO₂ 1.0 <span class="unit" id="es-u1">kPa</span></label><input id="es-po2" inputmode="decimal" placeholder="—"></div>
+          <div class="field"><label>Plasma-free Hb <span class="unit">mg/dL</span></label><input id="es-pfhb" inputmode="decimal" placeholder="—"></div>
+          <div class="field"><label>Fibrinogen — this patient’s baseline <span class="unit">g/L · optional</span></label><input id="es-fibBase" inputmode="decimal" placeholder="—"></div>
+          <div class="field"><label>Fibrinogen — now <span class="unit">g/L</span></label><input id="es-fib" inputmode="decimal" placeholder="—"></div>
+          <div class="field"><label>Platelets <span class="unit">× 10⁹/L</span></label><input id="es-plt" inputmode="decimal" placeholder="—"></div>
+          <div class="field"><label>Visible clot in bundle <span class="unit">inspect daily</span></label><select id="es-clot"><option value="">—</option><option value="streaks">fibrin / streaks</option><option value="extensive">extensive clot</option></select></div>
+        </div>
+        <div class="es-checks">
+          <label class="es-chk"><input type="checkbox" id="es-co2fail"> Rising PaCO₂ at fixed sweep</label>
+          <label class="es-chk"><input type="checkbox" id="es-leak"> Plasma leak from exhaust port</label>
+          <label class="es-chk"><input type="checkbox" id="es-ldh"> Rising LDH / falling haptoglobin</label>
+          <label class="es-chk"><input type="checkbox" id="es-fibFall"> Fibrinogen falling despite replacement</label>
+          <label class="es-chk"><input type="checkbox" id="es-ddimer"> Rising D-dimer</label>
+          <label class="es-chk"><input type="checkbox" id="es-pump"> Abnormal pump noise / rising power</label>
+          <label class="es-chk"><input type="checkbox" id="es-mech"> Mechanical failure (housing, air, connector)</label>
+          <label class="es-chk"><input type="checkbox" id="es-flowfail"> Cannot maintain target flow</label>
+        </div>
+        <div class="cv-meta"><button class="btn" id="es-clear">Clear</button><button class="btn" id="es-ex1">Example · creeping</button><button class="btn" id="es-ex2">Example · failing</button></div>
+      </div>
+      <div class="panel">
+        <h3>Recommendation <span class="tag" id="es-count">—</span></h3>
+        <div class="note" id="es-tier"></div>
+        <div id="es-items"></div>
+        <div id="es-prep"></div>
+      </div>
+    </div>
+    <div class="disc">Thresholds are the commonly-taught defaults and are <b>device-specific</b> — your console's ΔP alarm limits, the oxygenator IFU, ELSO guidance and local protocol govern the actual numbers. This aid supports a decision made by the ECMO team; it does not make it.</div>
+  </div>
+  <!--ECMOTOOL-END-->
+
+  <div class="panel sec">
+    <h3><span class="secnum">18</span> Daily bundle</h3>
     <div class="tiles">
       <div class="tile"><div class="t">Circuit</div><div class="n" style="font-size:12px">ΔP · clot · connections</div></div>
       <div class="tile"><div class="t">Perfusion</div><div class="n" style="font-size:12px">lactate · SvO₂ · rt radial</div></div>
@@ -971,16 +1236,55 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">C</span> NBG mode selection</h3>
+    <h3><span class="secnum">C</span> Mode selection — when to use, when to avoid</h3>
+    <p class="muted">Mode choice is a haemodynamic decision, not a box setting. Two questions decide it: <b>is there a usable P wave?</b> (sinus vs AF) and <b>is AV conduction reliable?</b> Everything below follows from those two, plus a third that is forgotten until it causes harm: <b>does this patient depend on the atrial kick?</b></p>
+
+    <div class="subhead">The NBG code</div>
     <div class="tbl-wrap"><table>
-      <tr><th>Rhythm / need</th><th>Mode</th><th>Logic</th></tr>
-      <tr><td>Sinus brady, intact AV node</td><td class="mono">AAI</td><td>Pace atrium, preserve native conduction</td></tr>
-      <tr><td>AF + slow ventricle</td><td class="mono">VVI</td><td>No atrium to track</td></tr>
-      <tr><td>AV block, sinus intact</td><td class="mono">DDD</td><td>Track atrium, pace ventricle — restore synchrony</td></tr>
-      <tr><td>AV block + atrial tachyarrhythmia risk</td><td class="mono">DDI</td><td>AV sequential, no tracking of fast atria</td></tr>
-      <tr><td>Crash / asystole</td><td class="mono">DOO / VOO</td><td>Asynchronous — capture guaranteed, no sensing</td></tr>
+      <tr><th>Position</th><th>Means</th><th>Letters</th></tr>
+      <tr><td>I</td><td>Chamber <b>paced</b></td><td class="mono">A · V · D (both) · O (none)</td></tr>
+      <tr><td>II</td><td>Chamber <b>sensed</b></td><td class="mono">A · V · D · O (asynchronous)</td></tr>
+      <tr><td>III</td><td><b>Response</b> to a sensed event</td><td class="mono">I inhibit · T track/trigger · D both · O none</td></tr>
+      <tr><td>IV / V</td><td>Rate modulation (R) / multisite — not on temporary boxes</td><td class="mono">R · O</td></tr>
     </table></div>
-    <div class="note"><b>NBG</b>: position 1 = chamber <i>paced</i>, 2 = chamber <i>sensed</i>, 3 = <i>response</i> (I inhibit / T track / D both).</div>
+    <div class="note"><b>Read any mode left to right.</b> <span class="mono">DDD</span> = paces both, senses both, both responses (tracks the atrium <i>and</i> inhibits). <span class="mono">DDI</span> = paces both, senses both, but <i>inhibit only</i> — it will not track. <span class="mono">VVI</span> = ventricle only, inhibited by intrinsic beats. <span class="mono">DOO</span> = paces both, senses nothing. The third letter is where most of the clinical behaviour lives.</div>
+
+    <div class="subhead">Mode by mode</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Mode</th><th>What it does</th><th>Use when</th><th>AVOID when</th></tr>
+      <tr><td class="mono"><b>AAI</b></td><td>Paces atrium, inhibited by sensed P waves; relies entirely on native AV conduction</td><td>Sinus bradycardia or junctional rhythm with <b>reliable AV conduction</b> — preserves native ventricular activation, the most physiological option available</td><td><b>Any risk of AV block</b> — there is <b>no ventricular backup</b>, so block means asystole. Post-AVR, post-septal myectomy, following tricuspid or VSD surgery, pre-existing bifascicular block, or anyone on an AV-nodal blocker. Also useless in AF (nothing to pace)</td></tr>
+      <tr><td class="mono"><b>VVI</b></td><td>Paces ventricle, inhibited by sensed R waves; ignores the atrium entirely</td><td><b>AF / flutter with a slow ventricular response</b> — there is no organised atrium to track. Also a safe fallback when atrial wires have failed, and as backup during conduction-system recovery</td><td>Whenever the <b>atrial kick matters</b> and sinus rhythm exists: RV failure, severe diastolic dysfunction / stiff hypertrophied LV, <b>LVOTO/SAM</b> (Module 07), tamponade physiology, fresh post-cardiotomy LCOS. Loss of AV synchrony costs roughly <b>20–30% of cardiac output</b> and can cause pacemaker syndrome and cannon waves</td></tr>
+      <tr><td class="mono"><b>DDD</b></td><td>Paces and senses both chambers; <b>tracks</b> the atrium — a sensed P triggers a paced V after the set AV delay</td><td>The post-cardiotomy default: <b>AV block with an intact sinus node</b>. Preserves AV synchrony and lets the patient’s own atrial rate drive the ventricle through exercise, pain and fever</td><td><b>Atrial tachyarrhythmia</b> — the box will faithfully track AF or flutter up to the upper rate limit and pace the ventricle fast, exactly when the patient can least tolerate it. Also unreliable with poor atrial sensing. Watch for pacemaker-mediated tachycardia where retrograde VA conduction exists</td></tr>
+      <tr><td class="mono"><b>DDI</b></td><td>Paces and senses both, but <b>inhibit only — no tracking</b>. AV sequential at the set rate</td><td>The <b>safe middle ground</b>: AV block <i>plus</i> paroxysmal atrial arrhythmia, or frequent atrial ectopy. You keep AV sequential pacing without the risk of chasing a fast atrium</td><td>When you <i>want</i> rate responsiveness. Because it cannot track, an intrinsic atrial rate above the set rate produces <b>functional AV dissociation</b> — the atria run away from the paced ventricle and synchrony is lost anyway. Raise the rate or move to DDD</td></tr>
+      <tr><td class="mono"><b>VDD</b></td><td>Senses both, paces ventricle only — tracks the atrium without pacing it</td><td>Intact sinus node with AV block, when the atrial wire senses but will not capture. Rarely chosen deliberately on temporary boxes</td><td>Sinus node disease or atrial bradycardia — with no atrial pacing, a slow sinus rate means a slow ventricle. Useless in AF</td></tr>
+      <tr><td class="mono"><b>DOO / VOO / AOO</b></td><td><b>Asynchronous</b> — fires at the set rate, senses nothing, inhibits for nothing</td><td><b>Crash, asystole, or complete heart block with no escape</b> — capture is guaranteed and cannot be inhibited by noise. The mode of choice during <b>electrocautery / diathermy</b> or any time oversensing is causing dangerous pauses. Also the safe setting while troubleshooting</td><td><b>Any patient with a reasonable intrinsic rhythm</b> — competitive pacing risks a stimulus landing on the T wave (<b>R-on-T</b>) and provoking VF. Asynchronous mode is a deliberate, temporary, supervised choice — never a default to leave running</td></tr>
+      <tr><td class="mono"><b>ODO / OOO</b></td><td>Monitor only — no output</td><td>Assessing underlying rhythm during a wean</td><td>Anyone pacing-dependent — state the plan before you switch</td></tr>
+    </table></div>
+
+    <div class="subhead">Choosing by rhythm</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Rhythm / problem</th><th>First choice</th><th>Why, and what to watch</th></tr>
+      <tr><td>Sinus bradycardia, AV conduction intact</td><td class="mono">AAI</td><td>Keeps native ventricular activation. Only if block risk is genuinely low — otherwise DDD</td></tr>
+      <tr><td>Sinus brady post-AVR / myectomy / any block risk</td><td class="mono">DDD</td><td>Same atrial support <i>with</i> ventricular backup — the safer default in cardiac surgery</td></tr>
+      <tr><td>Complete heart block, sinus intact</td><td class="mono">DDD</td><td>Restores synchrony and lets the sinus node set the rate</td></tr>
+      <tr><td>Complete heart block + paroxysmal AF</td><td class="mono">DDI</td><td>AV sequential without tracking the fibrillating atrium</td></tr>
+      <tr><td>Established AF, slow ventricle</td><td class="mono">VVI</td><td>Nothing to track. Accept the loss of atrial kick — there was none to begin with</td></tr>
+      <tr><td>Asystole / crash / profound block</td><td class="mono">DOO or VOO</td><td>Guaranteed capture, high output, then convert to a sensing mode once stable</td></tr>
+      <tr><td>Oversensing causing pauses</td><td class="mono">→ asynchronous</td><td>A bridge while you reduce sensitivity (raise the mV number) or switch to bipolar</td></tr>
+      <tr><td>Junctional rhythm with poor output</td><td class="mono">DDD / AAI</td><td>Restoring the atrial kick alone often transforms the cardiac output</td></tr>
+      <tr><td>RV failure or LVOTO/SAM needing pacing</td><td class="mono">DDD (never VVI)</td><td>These are the patients most dependent on the atrial contribution — AV synchrony is therapeutic</td></tr>
+    </table></div>
+
+    <div class="subhead">Traps worth stating plainly</div>
+    <div class="grid g2">
+      <div class="note alarm"><b>AAI with any block risk.</b> The seductive mode after cardiac surgery — physiological, preserves conduction — and the one that kills if AV block develops, because nothing paces the ventricle. In a post-AVR or post-myectomy patient, choose DDD.</div>
+      <div class="note alarm"><b>DDD tracking a fast atrium.</b> AF or flutter in DDD drives ventricular pacing to the upper rate limit. If the ventricle suddenly paces fast and regularly at the upper rate, look at the atrial channel before you reach for a drug — switch to DDI.</div>
+      <div class="note warn"><b>Leaving VOO/DOO running.</b> Asynchronous pacing competing with an intrinsic rhythm risks R-on-T and VF. Use it deliberately, then come off it.</div>
+      <div class="note warn"><b>VVI in a stiff or failing ventricle.</b> Losing the atrial kick in RV failure, diastolic dysfunction or dynamic LVOTO can drop output sharply. If there is a P wave and wires, use it.</div>
+      <div class="note warn"><b>Pacing more than you need to.</b> RV apical pacing is itself dyssynchronous. If native conduction is adequate, let it conduct — lengthen the AV delay or lower the rate rather than pacing the ventricle for no reason.</div>
+      <div class="note warn"><b>Crosstalk and the AV delay.</b> In dual-chamber modes an atrial output sensed by the ventricular channel can inhibit ventricular pacing. Suspect it when ventricular pacing drops out in DDD; the blanking period and AV delay are where the fix lives (§F).</div>
+    </div>
+    <div class="note"><b>AV delay, briefly:</b> around <b>120–180 ms</b> suits most post-cardiotomy adults; shorter delays favour filling at faster rates, longer delays encourage native conduction in patients who have some. Optimise to the arterial trace and cardiac output, not to a number.</div>
   </div>
 
   <div class="panel sec">
@@ -1038,9 +1342,97 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- ============ MODULE 10 : ABG / ACID–BASE ============ -->
+<!-- ============ MODULE 07 : LVOTO / SAM ============ -->
+<section class="module" id="m-lvoto">
+  <div class="eyebrow">Module 07 · guided management</div>
+  <h2>Hypotension &amp; low output in dynamic LV outflow obstruction</h2>
+  <p class="lead">A bedside guide for the hypotensive, low-output patient whose problem is <b>dynamic obstruction of the LV outflow</b> — from systolic anterior motion (SAM) of the mitral valve, basal (septal) outflow obstruction, or both. The physiology inverts the usual shock reflexes: the instinctive moves (inotrope, vasodilate, restrict fluid) deepen the obstruction. Recognise it, then flip the management.</p>
+
+  <div class="note alarm"><b>The one pattern to catch:</b> hypotension / low output that <i>worsens</i> — or fails to respond — when you add an inotrope or pressor-inotrope. In a post-AVR, post-mitral-repair, hypovolaemic-hyperdynamic, septic or Takotsubo heart, that is dynamic LVOT obstruction until echo says otherwise. <b>Confirm on echo before you invert.</b></div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">1</span> The three mechanisms — one physiology</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Mechanism</th><th>What obstructs</th><th>Echo signature</th></tr>
+      <tr><td><b>SAM</b> — systolic anterior motion</td><td>The anterior mitral leaflet is dragged into the outflow in systole (Venturi + drag) → subaortic obstruction <i>and</i> a posteriorly-directed MR jet</td><td>SAM–septal contact, posterior MR jet, dagger-shaped LVOT CW signal</td></tr>
+      <tr><td><b>BOO</b> — basal (septal) outflow obstruction</td><td>A hypertrophied / sigmoid basal septum narrows the subaortic outflow — the septal contribution to LVOTO</td><td>Basal septal bulge, localised high velocity at the basal septum, turbulence proximal to the aortic valve</td></tr>
+      <tr><td><b>LVOTO</b> — the resulting gradient</td><td>The dynamic subaortic gradient the two produce — load-dependent, not fixed</td><td>Late-peaking <b>dagger</b> CW Doppler; gradient rises with provocation (Valsalva, post-ectopic beat, inotrope)</td></tr>
+    </table></div>
+    <div class="note"><b>Why it is dynamic:</b> the gradient is set by cavity size and ejection velocity. A small, hyperdynamic, under-filled LV ejecting fast generates a Venturi effect that pulls the leaflet in and collapses the outflow — so anything that shrinks the cavity or speeds ejection (hypovolaemia, tachycardia, inotropes, vasodilatation) worsens it, and anything that enlarges the cavity or slows ejection (volume, afterload, β-blockade) relieves it.</div>
+    <div class="note"><b>Related patterns:</b> mid-cavity and apical obstruction behave the same way — treat identically. A <i>fixed</i> subaortic membrane or valvular AS does <b>not</b> — that is a structural lesion and afterload / volume will not relieve it.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">2</span> Confirm — echo &amp; bedside</h3>
+    <div class="grid g2">
+      <div class="note"><b>Bedside</b><br>Hypotension worse on inotrope · new dynamic harsh systolic ejection murmur (louder with Valsalva / post-ectopic beat) · often a hyperdynamic-looking LV on the monitor with a low output number.</div>
+      <div class="note"><b>Echo (point-of-care)</b><br>SAM of the anterior mitral leaflet · small hyperdynamic LV with near-cavity obliteration · <b>dagger-shaped, late-peaking</b> CW-Doppler LVOT signal · mid-systolic aortic-valve closure / notch · posteriorly-directed MR jet · quantify the gradient (rest &amp; provoked).</div>
+    </div>
+    <div class="note warn"><b>Don't be fooled:</b> the SAM-related MR is dynamic and vanishes when you relieve the obstruction — treat the obstruction, not the “acute MR.” And a normal resting study does not exclude it — provoke (Valsalva, passive-leg-raise release, post-extrasystolic beat) if suspicion is high.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">3</span> Worsens vs relieves — the four levers</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Lever</th><th>Worsens the gradient</th><th>Relieves the gradient</th></tr>
+      <tr><td>Preload</td><td>Hypovolaemia, venodilatation, over-diuresis</td><td><b>Volume</b> — fill the cavity</td></tr>
+      <tr><td>Afterload</td><td>Vasodilators (GTN, ACEi, milrinone), vasoplegia</td><td><b>Raise afterload</b> — pure vasoconstrictor</td></tr>
+      <tr><td>Contractility</td><td>Inotropes (adrenaline, dobutamine, milrinone, dopamine), sympathetic surge</td><td><b>Negative inotropy</b> — β-blockade</td></tr>
+      <tr><td>Rate / rhythm</td><td>Tachycardia, AF, loss of AV synchrony</td><td><b>Slow &amp; synchronise</b> — rate control, sinus / AV synchrony</td></tr>
+    </table></div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">4</span> The management pathway</h3>
+    <div class="subhead">Step 0 · Stop the harm</div>
+    <div class="note alarm"><b>Stop / wean inotropes</b> (adrenaline, dobutamine, milrinone, dopamine) · <b>stop vasodilators</b> (GTN, ACE-inhibitor, milrinone's vasodilator effect) · <b>stop over-diuresis</b>. These are the moves deepening the obstruction.</div>
+    <div class="subhead">Step 1 · Fill</div>
+    <div class="note"><b>Volume</b> — fluid bolus (e.g. 250–500 mL crystalloid, repeat to response); passive leg raise as a test. A bigger LV cavity moves the mitral apparatus off the septum and lowers the gradient. Target generous, not dry, filling.</div>
+    <div class="subhead">Step 2 · Raise afterload — pure vasoconstrictor</div>
+    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 09 for rate ⇄ dose</span></div>
+    <div class="subhead">Step 3 · Slow &amp; synchronise</div>
+    <div class="note"><b>β-blockade</b> — esmolol (titratable, ± load) or metoprolol — lowers contractility and lengthens diastolic filling, the two things that most reduce a dynamic gradient. <b>Restore AV synchrony</b>: cardiovert / rate-control AF, pace atrial or AV-sequential (the atrial kick fills the small stiff LV); avoid RV-only pacing, which loses the kick and can worsen the picture.</div>
+    <div class="subhead">Step 4 · Reassess</div>
+    <div class="note"><b>Re-echo:</b> is the gradient falling, the SAM resolving, the MR shrinking, the MAP holding? Titrate volume + vasoconstrictor + β-blocker to a <i>resolving gradient</i>, not to a single number.</div>
+    <div class="subhead">Step 5 · Refractory obstruction</div>
+    <div class="note warn">Deepen the same levers — confirm genuine euvolaemia-plus, more afterload, more β-blockade; cut sympathetic drive (analgesia / sedation). <b>Disopyramide</b> (negative inotrope) reduces the gradient in specialist hands. Treat the precipitant. <b>Definitive:</b> surgical relief (septal myectomy, revision of the mitral repair) or, in chronic HOCM, alcohol septal ablation.</div>
+    <div class="note alarm"><b>Devices — mind the trap:</b> an <b>IABP is contraindicated</b> — afterload reduction worsens the gradient. If mechanical support is unavoidable, prefer one that maintains or raises aortic pressure (peripheral VA-ECMO raises afterload); an LV-unloading device (Impella) has a nuanced, specialist-only role. Never reach for an inotrope-based device strategy.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">5</span> Precipitant-specific moves</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Setting</th><th>Tailored move</th></tr>
+      <tr><td><b>Post-AVR</b></td><td>Unmasked basal septal bulge in a now freely-emptying LV — fill, afterload, β-block; suspect it in any hypotensive-on-inotrope post-AVR patient</td></tr>
+      <tr><td><b>Post-mitral repair</b></td><td>SAM from a long / residual anterior leaflet or small annulus — same inverted bundle; flag early to the surgeon (may need revision)</td></tr>
+      <tr><td><b>Hypovolaemic / haemorrhagic</b></td><td>The commonest trigger — fill first; control bleeding; hold pressure with phenylephrine, not an inotrope</td></tr>
+      <tr><td><b>Sepsis / vasoplegia</b></td><td>Vasoplegia + a hyperdynamic small LV = dynamic LVOTO; noradrenaline / vasopressin for tone, fill, avoid the inotrope reflex</td></tr>
+      <tr><td><b>Takotsubo</b></td><td>Basal hyperkinesis with apical ballooning generates dynamic LVOTO — β-block + afterload; avoid inotropes (which also worsen the apical injury)</td></tr>
+      <tr><td><b>HOCM</b></td><td>Chronic substrate — same acute bundle; disopyramide, and septal reduction (myectomy / alcohol ablation) for the fixed problem</td></tr>
+      <tr><td><b>Tachyarrhythmia / AF</b></td><td>Rate + rhythm are therapeutic — restore sinus / slow the rate to lengthen filling and recover the atrial kick</td></tr>
+    </table></div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">6</span> Do NOT</h3>
+    <div class="grid g2">
+      <div class="note alarm"><b>No inotropes</b> — adrenaline, dobutamine, milrinone, dopamine all deepen the gradient. A BP / lactate that worsens as you uptitrate is the clue you are on the wrong path.</div>
+      <div class="note alarm"><b>No vasodilators</b> — GTN, ACE-inhibitors and milrinone's vasodilator effect drop afterload and worsen obstruction.</div>
+      <div class="note alarm"><b>No IABP</b> — diastolic afterload reduction worsens a dynamic outflow gradient.</div>
+      <div class="note alarm"><b>Don't run dry or fast</b> — over-diuresis and tachycardia shrink the cavity and speed ejection; both feed the Venturi.</div>
+    </div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">7</span> Bedside crash sequence</h3>
+    <div class="note"><b>Recognise</b> (worse on inotrope) → <b>echo-confirm</b> (SAM / dagger gradient) → <b>STOP</b> inotropes + vasodilators → <b>FILL</b> → <b>phenylephrine</b> (pure α) to raise MAP → <b>β-block</b> (esmolol) + restore AV synchrony → <b>re-echo</b> and titrate to a falling gradient → <b>refractory:</b> sedation, disopyramide, surgeon (myectomy / repair revision); <b>not</b> IABP, <b>not</b> inotropes.</div>
+    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 09). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
+  </div>
+</section>
+
+<!-- ============ MODULE 08 : ABG / ACID–BASE ============ -->
 <section class="module" id="m-abg">
-  <div class="eyebrow">Module 10 · interpretation &amp; correction</div>
+  <div class="eyebrow">Module 08 · interpretation &amp; correction</div>
   <h2>The ABG in cardiogenic shock — reading it and fixing it</h2>
   <p class="lead">In low output the gas is a <b>perfusion readout</b> as much as a respiratory one. Read it in a fixed order so nothing is missed, then correct in a fixed order — <b>flow before buffer</b>. The acidosis of cardiogenic shock is a symptom of inadequate delivery; treating the number instead of the delivery is the classic error. Companion to Haemodynamics §8 (values, base excess, lactate types, the Stewart lens).</p>
 
@@ -1179,7 +1571,7 @@ tr:last-child td{border-bottom:none}
       <div class="note alarm"><b>Why it usually doesn't help</b><br>· <b>Generates CO₂</b> — worsens intracellular and CNS acidosis unless ventilation can clear it<br>· <b>Drops ionised calcium</b> — directly reduces contractility and vascular tone<br>· Sodium and volume load · hypernatraemia · hyperosmolality<br>· Left-shifts the oxyhaemoglobin curve — impairs tissue O₂ offloading<br>· Rebound alkalosis once the lactate is metabolised<br>· <b>No mortality benefit</b> in lactic acidosis of shock — it treats the number</div>
     </div>
     <div class="note"><b>If you give it:</b> only in a patient whose ventilation can clear the CO₂ generated; give it as a considered dose with a defined endpoint, re-gas early, and <b>watch ionised calcium</b> (replace it). <b>THAM</b> is an alternative that buffers without generating CO₂ — useful when hypercapnia is the limiting factor — but is contraindicated in anuria and can cause hypoglycaemia and hyperkalaemia.</div>
-    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 07).</div>
+    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 09).</div>
   </div>
 
   <div class="panel sec">
@@ -1201,10 +1593,9 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- ============ MODULE 11 : FLASHCARDS ============ -->
-<!-- ============ MODULE 07 : DOSE CONVERTER ============ -->
+<!-- ============ MODULE 09 : DOSE CONVERTER ============ -->
 <section class="module" id="m-conv">
-  <div class="eyebrow">Module 07 · bedside utility</div>
+  <div class="eyebrow">Module 09 · bedside utility</div>
   <h2>Dose converter — inotropes &amp; vasopressors</h2>
   <p class="lead">Two-way conversion between infusion rate and dose for the common agents, a noradrenaline-equivalent / VIS quick calc, and the standard concentrations. Weight- and concentration-aware; each agent carries its own units.</p>
   <div class="grid g2">
@@ -1247,97 +1638,9 @@ tr:last-child td{border-bottom:none}
   <p class="disc">Bedside aid — always cross-check against your unit's standard-concentration chart and an independent calculation before changing a rate. The concentrations shown are common examples, not a substitute for the prescribed dilution.</p>
 </section>
 
-<!-- ============ MODULE 08 : DYNAMIC LVOT OBSTRUCTION ============ -->
-<section class="module" id="m-lvoto">
-  <div class="eyebrow">Module 08 · guided management</div>
-  <h2>Hypotension &amp; low output in dynamic LV outflow obstruction</h2>
-  <p class="lead">A bedside guide for the hypotensive, low-output patient whose problem is <b>dynamic obstruction of the LV outflow</b> — from systolic anterior motion (SAM) of the mitral valve, basal (septal) outflow obstruction, or both. The physiology inverts the usual shock reflexes: the instinctive moves (inotrope, vasodilate, restrict fluid) deepen the obstruction. Recognise it, then flip the management.</p>
-
-  <div class="note alarm"><b>The one pattern to catch:</b> hypotension / low output that <i>worsens</i> — or fails to respond — when you add an inotrope or pressor-inotrope. In a post-AVR, post-mitral-repair, hypovolaemic-hyperdynamic, septic or Takotsubo heart, that is dynamic LVOT obstruction until echo says otherwise. <b>Confirm on echo before you invert.</b></div>
-
-  <div class="panel sec">
-    <h3><span class="secnum">1</span> The three mechanisms — one physiology</h3>
-    <div class="tbl-wrap"><table>
-      <tr><th>Mechanism</th><th>What obstructs</th><th>Echo signature</th></tr>
-      <tr><td><b>SAM</b> — systolic anterior motion</td><td>The anterior mitral leaflet is dragged into the outflow in systole (Venturi + drag) → subaortic obstruction <i>and</i> a posteriorly-directed MR jet</td><td>SAM–septal contact, posterior MR jet, dagger-shaped LVOT CW signal</td></tr>
-      <tr><td><b>BOO</b> — basal (septal) outflow obstruction</td><td>A hypertrophied / sigmoid basal septum narrows the subaortic outflow — the septal contribution to LVOTO</td><td>Basal septal bulge, localised high velocity at the basal septum, turbulence proximal to the aortic valve</td></tr>
-      <tr><td><b>LVOTO</b> — the resulting gradient</td><td>The dynamic subaortic gradient the two produce — load-dependent, not fixed</td><td>Late-peaking <b>dagger</b> CW Doppler; gradient rises with provocation (Valsalva, post-ectopic beat, inotrope)</td></tr>
-    </table></div>
-    <div class="note"><b>Why it is dynamic:</b> the gradient is set by cavity size and ejection velocity. A small, hyperdynamic, under-filled LV ejecting fast generates a Venturi effect that pulls the leaflet in and collapses the outflow — so anything that shrinks the cavity or speeds ejection (hypovolaemia, tachycardia, inotropes, vasodilatation) worsens it, and anything that enlarges the cavity or slows ejection (volume, afterload, β-blockade) relieves it.</div>
-    <div class="note"><b>Related patterns:</b> mid-cavity and apical obstruction behave the same way — treat identically. A <i>fixed</i> subaortic membrane or valvular AS does <b>not</b> — that is a structural lesion and afterload / volume will not relieve it.</div>
-  </div>
-
-  <div class="panel sec">
-    <h3><span class="secnum">2</span> Confirm — echo &amp; bedside</h3>
-    <div class="grid g2">
-      <div class="note"><b>Bedside</b><br>Hypotension worse on inotrope · new dynamic harsh systolic ejection murmur (louder with Valsalva / post-ectopic beat) · often a hyperdynamic-looking LV on the monitor with a low output number.</div>
-      <div class="note"><b>Echo (point-of-care)</b><br>SAM of the anterior mitral leaflet · small hyperdynamic LV with near-cavity obliteration · <b>dagger-shaped, late-peaking</b> CW-Doppler LVOT signal · mid-systolic aortic-valve closure / notch · posteriorly-directed MR jet · quantify the gradient (rest &amp; provoked).</div>
-    </div>
-    <div class="note warn"><b>Don't be fooled:</b> the SAM-related MR is dynamic and vanishes when you relieve the obstruction — treat the obstruction, not the “acute MR.” And a normal resting study does not exclude it — provoke (Valsalva, passive-leg-raise release, post-extrasystolic beat) if suspicion is high.</div>
-  </div>
-
-  <div class="panel sec">
-    <h3><span class="secnum">3</span> Worsens vs relieves — the four levers</h3>
-    <div class="tbl-wrap"><table>
-      <tr><th>Lever</th><th>Worsens the gradient</th><th>Relieves the gradient</th></tr>
-      <tr><td>Preload</td><td>Hypovolaemia, venodilatation, over-diuresis</td><td><b>Volume</b> — fill the cavity</td></tr>
-      <tr><td>Afterload</td><td>Vasodilators (GTN, ACEi, milrinone), vasoplegia</td><td><b>Raise afterload</b> — pure vasoconstrictor</td></tr>
-      <tr><td>Contractility</td><td>Inotropes (adrenaline, dobutamine, milrinone, dopamine), sympathetic surge</td><td><b>Negative inotropy</b> — β-blockade</td></tr>
-      <tr><td>Rate / rhythm</td><td>Tachycardia, AF, loss of AV synchrony</td><td><b>Slow &amp; synchronise</b> — rate control, sinus / AV synchrony</td></tr>
-    </table></div>
-  </div>
-
-  <div class="panel sec">
-    <h3><span class="secnum">4</span> The management pathway</h3>
-    <div class="subhead">Step 0 · Stop the harm</div>
-    <div class="note alarm"><b>Stop / wean inotropes</b> (adrenaline, dobutamine, milrinone, dopamine) · <b>stop vasodilators</b> (GTN, ACE-inhibitor, milrinone's vasodilator effect) · <b>stop over-diuresis</b>. These are the moves deepening the obstruction.</div>
-    <div class="subhead">Step 1 · Fill</div>
-    <div class="note"><b>Volume</b> — fluid bolus (e.g. 250–500 mL crystalloid, repeat to response); passive leg raise as a test. A bigger LV cavity moves the mitral apparatus off the septum and lowers the gradient. Target generous, not dry, filling.</div>
-    <div class="subhead">Step 2 · Raise afterload — pure vasoconstrictor</div>
-    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 07 for rate ⇄ dose</span></div>
-    <div class="subhead">Step 3 · Slow &amp; synchronise</div>
-    <div class="note"><b>β-blockade</b> — esmolol (titratable, ± load) or metoprolol — lowers contractility and lengthens diastolic filling, the two things that most reduce a dynamic gradient. <b>Restore AV synchrony</b>: cardiovert / rate-control AF, pace atrial or AV-sequential (the atrial kick fills the small stiff LV); avoid RV-only pacing, which loses the kick and can worsen the picture.</div>
-    <div class="subhead">Step 4 · Reassess</div>
-    <div class="note"><b>Re-echo:</b> is the gradient falling, the SAM resolving, the MR shrinking, the MAP holding? Titrate volume + vasoconstrictor + β-blocker to a <i>resolving gradient</i>, not to a single number.</div>
-    <div class="subhead">Step 5 · Refractory obstruction</div>
-    <div class="note warn">Deepen the same levers — confirm genuine euvolaemia-plus, more afterload, more β-blockade; cut sympathetic drive (analgesia / sedation). <b>Disopyramide</b> (negative inotrope) reduces the gradient in specialist hands. Treat the precipitant. <b>Definitive:</b> surgical relief (septal myectomy, revision of the mitral repair) or, in chronic HOCM, alcohol septal ablation.</div>
-    <div class="note alarm"><b>Devices — mind the trap:</b> an <b>IABP is contraindicated</b> — afterload reduction worsens the gradient. If mechanical support is unavoidable, prefer one that maintains or raises aortic pressure (peripheral VA-ECMO raises afterload); an LV-unloading device (Impella) has a nuanced, specialist-only role. Never reach for an inotrope-based device strategy.</div>
-  </div>
-
-  <div class="panel sec">
-    <h3><span class="secnum">5</span> Precipitant-specific moves</h3>
-    <div class="tbl-wrap"><table>
-      <tr><th>Setting</th><th>Tailored move</th></tr>
-      <tr><td><b>Post-AVR</b></td><td>Unmasked basal septal bulge in a now freely-emptying LV — fill, afterload, β-block; suspect it in any hypotensive-on-inotrope post-AVR patient</td></tr>
-      <tr><td><b>Post-mitral repair</b></td><td>SAM from a long / residual anterior leaflet or small annulus — same inverted bundle; flag early to the surgeon (may need revision)</td></tr>
-      <tr><td><b>Hypovolaemic / haemorrhagic</b></td><td>The commonest trigger — fill first; control bleeding; hold pressure with phenylephrine, not an inotrope</td></tr>
-      <tr><td><b>Sepsis / vasoplegia</b></td><td>Vasoplegia + a hyperdynamic small LV = dynamic LVOTO; noradrenaline / vasopressin for tone, fill, avoid the inotrope reflex</td></tr>
-      <tr><td><b>Takotsubo</b></td><td>Basal hyperkinesis with apical ballooning generates dynamic LVOTO — β-block + afterload; avoid inotropes (which also worsen the apical injury)</td></tr>
-      <tr><td><b>HOCM</b></td><td>Chronic substrate — same acute bundle; disopyramide, and septal reduction (myectomy / alcohol ablation) for the fixed problem</td></tr>
-      <tr><td><b>Tachyarrhythmia / AF</b></td><td>Rate + rhythm are therapeutic — restore sinus / slow the rate to lengthen filling and recover the atrial kick</td></tr>
-    </table></div>
-  </div>
-
-  <div class="panel sec">
-    <h3><span class="secnum">6</span> Do NOT</h3>
-    <div class="grid g2">
-      <div class="note alarm"><b>No inotropes</b> — adrenaline, dobutamine, milrinone, dopamine all deepen the gradient. A BP / lactate that worsens as you uptitrate is the clue you are on the wrong path.</div>
-      <div class="note alarm"><b>No vasodilators</b> — GTN, ACE-inhibitors and milrinone's vasodilator effect drop afterload and worsen obstruction.</div>
-      <div class="note alarm"><b>No IABP</b> — diastolic afterload reduction worsens a dynamic outflow gradient.</div>
-      <div class="note alarm"><b>Don't run dry or fast</b> — over-diuresis and tachycardia shrink the cavity and speed ejection; both feed the Venturi.</div>
-    </div>
-  </div>
-
-  <div class="panel sec">
-    <h3><span class="secnum">7</span> Bedside crash sequence</h3>
-    <div class="note"><b>Recognise</b> (worse on inotrope) → <b>echo-confirm</b> (SAM / dagger gradient) → <b>STOP</b> inotropes + vasodilators → <b>FILL</b> → <b>phenylephrine</b> (pure α) to raise MAP → <b>β-block</b> (esmolol) + restore AV synchrony → <b>re-echo</b> and titrate to a falling gradient → <b>refractory:</b> sedation, disopyramide, surgeon (myectomy / repair revision); <b>not</b> IABP, <b>not</b> inotropes.</div>
-    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 07). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
-  </div>
-</section>
-
-<!-- ============ MODULE 09 : DERIVED VALUE CALCULATOR ============ -->
+<!-- ============ MODULE 10 : DERIVED VALUES ============ -->
 <section class="module" id="m-deriv">
-  <div class="eyebrow">Module 09 · bedside calculator</div>
+  <div class="eyebrow">Module 10 · bedside calculator</div>
   <h2>Derived haemodynamic values</h2>
   <p class="lead">Enter what you have — the calculator derives everything it can (SVR / SVRI, PVR, indices, stroke work, cardiac power, PA gradients, oxygen delivery) and colour-codes each against its normal range. Give CO <i>or</i> CI plus weight &amp; height and it fills the other.</p>
   <div class="grid g2">
@@ -1376,29 +1679,13 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- ============ MODULE 10 : FLASHCARDS ============ -->
-<section class="module" id="m-cards">
-  <div class="eyebrow">Module 11 · spaced repetition (SM-2)</div>
-  <h2>Pacing &amp; MCS flashcards</h2>
-  <p class="lead">Grade each card and the SM-2 scheduler spaces the next review. Progress is saved on this device.</p>
-  <div class="deck-tabs" id="deckTabs"></div>
-  <div class="fc-bar">
-    <span id="fcCount">—</span>
-    <div class="prog"><i id="fcProg"></i></div>
-    <span id="fcDue">—</span>
-    <button class="btn" id="fcReset">Reset progress</button>
-  </div>
-  <div class="fc-stage">
-    <div class="fc-card" id="fcCard">
-      <div class="fc-face fc-front"><div class="qtag" id="fcTag">—</div><div class="qtxt" id="fcQ">Loading…</div><div class="fc-hint" style="margin-top:auto">tap to flip</div></div>
-      <div class="fc-face fc-back"><div class="qtag">Answer</div><div class="atxt" id="fcA"></div><div class="fc-grade" id="fcGrade">
-        <button class="g0" data-q="0">Again</button><button class="g1" data-q="3">Hard</button>
-        <button class="g2" data-q="4">Good</button><button class="g3" data-q="5">Easy</button>
-      </div></div>
-    </div>
-  </div>
-  <p class="disc">SM-2 intervals are a study aid. Clinical content is condensed for revision — verify against unit protocol and primary sources.</p>
-</section>
+
+<!-- ============ MODULE 11 : FLASHCARDS ============ -->
+
+
+
+
+
 
 </div><!-- /wrap -->
 <script>
@@ -1412,7 +1699,6 @@ document.getElementById('nav').addEventListener('click',e=>{
   const m=b.dataset.m;
   document.querySelectorAll('.module').forEach(s=>s.classList.toggle('on',s.id==='m-'+m));
   window.scrollTo({top:0,behavior:'smooth'});
-  if(m==='cards') fcInit();
 });
 
 const themeBtn=document.getElementById('themeBtn');
@@ -1974,18 +2260,6 @@ function render(s,d,sc,ph,st,L,recs){
   document.getElementById('conf').textContent=(ph.conf==='CI+SVRI'||ph.conf==='CI+SVRI+echo'||ph.conf==='CI+SVRI+PA')?'high confidence':'add CI/SVRI for confidence';
 }
 
-function sbarText(s,d,sc,ph,st,L,recs){
-  const f=x=>isNaN(x)?'—':(''+x);
-  const n=(x,p)=>isNaN(x)?'—':x.toFixed(p);
-  const agents=INF.filter(x=>s.inf[x.id].on).map(x=>x.nm+(isNaN(s.inf[x.id].dose)?'':' '+s.inf[x.id].dose+' '+x.u)).join(', ')||'none';
-  const S='S:  Post-cardiotomy low cardiac output. SCAI '+st.s+' — '+st.l+'. Phenotype: '+ph.name+'.';
-  const B='B:  Support load — VIS '+sc.vis.toFixed(0)+', NE-eq '+sc.nee.toFixed(2)+' µg/kg/min. Infusions: '+agents+'.';
-  const A1='A:  MAP '+f(!isNaN(s.map)?Math.round(s.map):NaN)+' · CI '+n(s.ci,1)+' · CPO '+n(d.cpo,2)+' W · SVRI '+n(d.svri,0)+' · PAPi '+n(d.papi,1)+' · PVR '+n(d.pvr,0);
-  const A2='    LVSWI '+n(d.lvswi,0)+' · DO₂i '+n(d.do2i,0)+' · O₂ER '+(isNaN(d.o2er)?'—':(d.o2er*100).toFixed(0)+'%')+' · lactate '+f(s.lac)+' ('+(isNaN(d.lacRate)?s.lactTrend:d.lacRate.toFixed(0)+'%/h')+') · SvO₂ '+f(s.svo2)+' · UO '+f(s.uo);
-  const ladder='    Ladder: '+L.rungs.map(r=>r.name+' '+(r.state==='done'?'✓':r.state==='sub'?'↑sub':'✗')).join(' · ')+(L.complete?'  [COMPLETE]':'');
-  const plan=recs.filter(r=>r.c!=='go'&&r.t!=='Perfusion').map(r=>'    • '+r.t).join('\n')||'    • Continue current management';
-  return [S,B,A1,A2,ladder,'R:',plan].join('\n');
-}
 
 document.querySelectorAll('#m-lcos input, #m-lcos select').forEach(el=>el.addEventListener('input',engine));
 INF.forEach(d=>{
@@ -1995,18 +2269,6 @@ INF.forEach(d=>{
 document.querySelectorAll('#flags input, #fund input').forEach(el=>el.addEventListener('change',()=>{
   const lab=el.closest('.chip'); if(lab) lab.classList.toggle('act',el.checked); engine();
 }));
-document.getElementById('sbarBtn').addEventListener('click',()=>{
-  const s=readState(),d=deriv(s),sc=scores(s),ph=phenotype(s,d);
-  const anySupport=INF.some(x=>s.inf[x.id].on)||s.flags.arrest;
-  const st=scai(s,d,anySupport),L=ladderState(s),recs=computeRecs(s,d,sc,ph,st,L);
-  const el=document.getElementById('sbar'); el.textContent=sbarText(s,d,sc,ph,st,L,recs); el.style.display='block';
-  document.getElementById('sbarCopy').style.display='inline-block';
-});
-document.getElementById('sbarCopy').addEventListener('click',()=>{
-  const t=document.getElementById('sbar').textContent;
-  if(navigator.clipboard) navigator.clipboard.writeText(t);
-  const b=document.getElementById('sbarCopy'); b.textContent='Copied'; setTimeout(()=>b.textContent='Copy',1200);
-});
 engine();
 
 
@@ -2249,7 +2511,139 @@ function abgInit(){
 }
 
 cvInit();
+function ecmoSwap(m){
+  const num=(x)=>{const v=parseFloat(x);return isNaN(v)?NaN:v;};
+  const on=(x)=>x===true||x==='1'||x==='true';
+  const kpa=(m.unit||'kPa')==='kPa';
+  const K=kpa?7.5:1;
+  const dpBase=num(m.dpBase), dpNow=num(m.dpNow);
+  const dpRatio=(!isNaN(dpBase)&&!isNaN(dpNow)&&dpBase>0)?dpNow/dpBase:NaN;
+  const po2=num(m.po2), po2mm=isNaN(po2)?NaN:po2*K;
+  const pfhb=num(m.pfhb), fib=num(m.fib), plt=num(m.plt), fibBase=num(m.fibBase);
+  const fibDrop=(!isNaN(fibBase)&&!isNaN(fib)&&fibBase>0)?(fibBase-fib)/fibBase:NaN;
+  const items=[];
+  const flag=(dom,lv,t)=>items.push({dom:dom,lv:lv,t:t});
+  // --- thrombosis / transmembrane pressure ---
+  if(!isNaN(dpRatio)){
+    if(dpRatio>=2)flag('Thrombosis','red','\u0394P has at least DOUBLED from baseline ('+dpNow.toFixed(0)+' vs '+dpBase.toFixed(0)+' mmHg) \u2014 established oxygenator thrombosis.');
+    else if(dpRatio>=1.5)flag('Thrombosis','amber','\u0394P is rising ('+Math.round((dpRatio-1)*100)+'% above baseline) \u2014 clot is accumulating in the fibre bundle.');
+    else if(dpRatio>=1.25)flag('Thrombosis','watch','\u0394P modestly above baseline \u2014 re-measure at the same flow and trend it.');
+  }
+  if(m.clot==='extensive')flag('Thrombosis','red','Extensive visible clot within the fibre bundle.');
+  else if(m.clot==='streaks')flag('Thrombosis','amber','Visible fibrin / clot streaks in the bundle or at connectors.');
+  // --- gas exchange ---
+  if(!isNaN(po2mm)){
+    if(po2mm<100)flag('Gas exchange','red','Post-oxygenator PaO\u2082 '+(kpa?po2.toFixed(1)+' kPa':po2mm.toFixed(0)+' mmHg')+' at FdO\u2082 1.0 \u2014 the membrane is failing to oxygenate.');
+    else if(po2mm<150)flag('Gas exchange','amber','Post-oxygenator PaO\u2082 '+(kpa?po2.toFixed(1)+' kPa':po2mm.toFixed(0)+' mmHg')+' at FdO\u2082 1.0 \u2014 below the expected 150\u2013300; trend it.');
+  }
+  if(on(m.co2fail))flag('Gas exchange','amber','Rising PaCO\u2082 at fixed sweep \u2014 exclude a water-logged membrane (flush / brief high sweep) before calling it failure.');
+  if(on(m.leak))flag('Gas exchange','red','Plasma leak from the gas-exhaust port \u2014 membrane breakdown; gas exchange will follow it down.');
+  // --- haemolysis ---
+  if(!isNaN(pfhb)){
+    if(pfhb>100)flag('Haemolysis','red','Plasma-free Hb '+pfhb.toFixed(0)+' mg/dL \u2014 significant circuit-related haemolysis.');
+    else if(pfhb>50)flag('Haemolysis','amber','Plasma-free Hb '+pfhb.toFixed(0)+' mg/dL \u2014 rising; exclude suckdown and cannula malposition as well as the circuit.');
+  }
+  if(on(m.ldh))flag('Haemolysis','amber','Rising LDH / falling haptoglobin \u00b1 haemoglobinuria.');
+  // --- consumption ---
+  if(!isNaN(fib)&&fib<1.5)flag('Consumption','amber','Fibrinogen '+fib.toFixed(1)+' g/L \u2014 below the 1.5 g/L target on ECMO.');
+  if(!isNaN(fibDrop)&&fibDrop>=0.3&&!isNaN(fib)&&fib>=1.5)flag('Consumption','amber','Fibrinogen has fallen '+Math.round(fibDrop*100)+'% from this patient\u2019s own baseline ('+fibBase.toFixed(1)+' \u2192 '+fib.toFixed(1)+' g/L) while still reading in range \u2014 consumption hides behind a high starting value. Trend the delta, not the threshold.');
+  if(!isNaN(fib)&&fib>4&&(isNaN(fibDrop)||fibDrop<0.3))flag('Consumption','watch','Fibrinogen '+fib.toFixed(1)+' g/L is HIGH \u2014 an acute-phase reactant (look for the inflammatory or septic driver), mildly prothrombotic, and it nudges \u0394P up via viscosity. Do not replace it; confirm anticoagulation is adequate including antithrombin.');
+  if(on(m.fibFall))flag('Consumption','red','Fibrinogen continues to FALL despite replacement \u2014 you are transfusing into a clotting circuit.');
+  if(!isNaN(plt)&&plt<50)flag('Consumption','amber','Platelets '+plt.toFixed(0)+' \u00d7 10\u2079/L \u2014 consumptive fall (exclude HIT).');
+  if(on(m.ddimer))flag('Consumption','amber','Rising D-dimer \u2014 early marker of intra-circuit fibrin turnover; often precedes the \u0394P rise.');
+  // --- mechanical / pump ---
+  if(on(m.pump))flag('Mechanical','red','Abnormal pump noise or rising power at fixed flow \u2014 suspect pump-head thrombosis.');
+  if(on(m.mech))flag('Mechanical','red','Mechanical failure \u2014 cracked housing, entrained air or connector failure.');
+  if(on(m.flowfail))flag('Mechanical','red','Unable to maintain target flow with the current circuit.');
+  const red=items.filter((x)=>x.lv==='red');
+  const amber=items.filter((x)=>x.lv==='amber');
+  const doms=(arr)=>Array.from(new Set(arr.map((x)=>x.dom)));
+  const redDom=doms(red), amberDom=doms(amber);
+  const emergency=on(m.mech)||on(m.flowfail)||(on(m.pump)&&on(m.flowfail));
+  let tier, band, note;
+  if(emergency){
+    tier='EXCHANGE NOW \u2014 emergency';
+    band='alarm';
+    note='A pump or mechanical failure is not a trend to watch. Go to the emergency circuit-change procedure: hand-crank / backup console to hand, call for help, clamp\u2013cut\u2013connect, de-air meticulously.';
+  } else if(red.length>=1&&(redDom.length>=2||amberDom.length>=1)){
+    tier='URGENT EXCHANGE \u2014 within hours';
+    band='alarm';
+    note='A hard criterion is met and the picture is corroborated across domains. Prime a new circuit now and exchange semi-electively before it becomes an emergency.';
+  } else if(red.length>=1){
+    tier='EXCHANGE \u2014 plan today';
+    band='alarm';
+    note='A hard criterion is met. Confirm it is genuine (right sampling site, same flow, exclude a water-logged membrane), then plan the exchange rather than waiting.';
+  } else if(amberDom.length>=2){
+    tier='PLAN AN ELECTIVE EXCHANGE \u2014 within 24 h';
+    band='warn';
+    note='Soft signs across more than one domain is the classic pattern of a circuit heading for failure. Anticipate: prime ahead and choose your timing while the patient is stable.';
+  } else if(amber.length>=1){
+    tier='HEIGHTENED SURVEILLANCE';
+    band='warn';
+    note='A single soft sign. Re-measure \u0394P at the same flow, repeat post-oxygenator gases and the haemolysis / consumption panel, and inspect the bundle. Trend beats snapshot.';
+  } else if(items.length>0){
+    tier='CONTINUE \u2014 trend closely';
+    band='ok';
+    note='Nothing meets a change threshold, but values are drifting. Keep the daily bundle and re-baseline after any intervention.';
+  } else {
+    tier='\u2014';
+    band='na';
+    note='Enter what you have. \u0394P at a known flow plus post-oxygenator gases are the highest-yield pair.';
+  }
+  const prep=[];
+  if(band==='alarm'||band==='warn'){
+    prep.push('Prime a new oxygenator / circuit \u2014 CO\u2082 flush, crystalloid prime, de-air fully.');
+    prep.push('Optimise the patient first: increase ventilator support and FiO\u2082, ensure volume and haemodynamic reserve.');
+    prep.push('Blood products available (fibrinogen / cryoprecipitate, platelets); plan anticoagulation across the swap.');
+    prep.push('Two operators, a checklist, hand-crank and backup console to hand.');
+    prep.push('Minimise off-support time: clamp, modular swap or whole-circuit exchange, de-air meticulously, resume flow.');
+    prep.push('Watch for air and hypotension on resumption; re-baseline \u0394P, post-oxygenator gases and all pressures on the new circuit.');
+  }
+  return {tier:tier,band:band,note:note,items:items,prep:prep,red:red.length,amber:amber.length,
+          redDom:redDom,amberDom:amberDom,dpRatio:dpRatio,n:items.length};
+}
+const ESNUM=['dpBase','dpNow','po2','pfhb','fibBase','fib','plt'];
+const ESCHK=['co2fail','leak','ldh','fibFall','ddimer','pump','mech','flowfail'];
+function esRead(){
+  const o={unit:document.getElementById('es-unit').value,clot:document.getElementById('es-clot').value};
+  ESNUM.forEach(k=>o[k]=document.getElementById('es-'+k).value);
+  ESCHK.forEach(k=>o[k]=document.getElementById('es-'+k).checked);
+  return o;
+}
+function esRender(){
+  const m=esRead();
+  const r=ecmoSwap(m);
+  document.getElementById('es-u1').textContent=m.unit;
+  document.getElementById('es-count').textContent=r.n?(r.n+' criteria met'):'\u2014';
+  const cls=r.band==='alarm'?' alarm':(r.band==='warn'?' warn':'');
+  document.getElementById('es-tier').className='note'+cls;
+  document.getElementById('es-tier').innerHTML='<b>'+r.tier+'</b><br><span class="muted">'+r.note+'</span>';
+  document.getElementById('es-items').innerHTML=r.items.length?r.items.map(x=>
+    '<div class="note'+(x.lv==='red'?' alarm':(x.lv==='amber'?' warn':''))+'"><b>'+x.dom+'</b> \u00b7 '+x.t+'</div>'
+  ).join(''):'';
+  document.getElementById('es-prep').innerHTML=r.prep.length?
+    '<div class="subhead">Before you swap</div>'+r.prep.map(p=>'<div class="note">'+p+'</div>').join(''):'';
+}
+function esSet(o){
+  document.getElementById('es-unit').value=o.unit||'kPa';
+  document.getElementById('es-clot').value=o.clot||'';
+  ESNUM.forEach(k=>document.getElementById('es-'+k).value=(o[k]===undefined?'':o[k]));
+  ESCHK.forEach(k=>document.getElementById('es-'+k).checked=!!o[k]);
+  esRender();
+}
+function esInit(){
+  document.getElementById('es-unit').addEventListener('change',esRender);
+  document.getElementById('es-clot').addEventListener('change',esRender);
+  ESNUM.forEach(k=>document.getElementById('es-'+k).addEventListener('input',esRender));
+  ESCHK.forEach(k=>document.getElementById('es-'+k).addEventListener('change',esRender));
+  document.getElementById('es-clear').addEventListener('click',()=>esSet({unit:document.getElementById('es-unit').value}));
+  document.getElementById('es-ex1').addEventListener('click',()=>esSet({unit:'kPa',dpBase:'32',dpNow:'48',po2:'22',pfhb:'68',fibBase:'3.4',fib:'1.4',plt:'78',ddimer:true,clot:'streaks'}));
+  document.getElementById('es-ex2').addEventListener('click',()=>esSet({unit:'kPa',dpBase:'30',dpNow:'72',po2:'11',pfhb:'150',fibBase:'4.2',fib:'0.9',plt:'42',ddimer:true,ldh:true,fibFall:true,leak:true,clot:'extensive'}));
+  esRender();
+}
+
 abgInit();
+esInit();
 
 
 /* ======================= DERIVED VALUE CALCULATOR UI ======================= */
@@ -2285,127 +2679,6 @@ function dvInit(){
 dvInit();
 
 
-
-/* ============================================================
-   FLASHCARDS — SM-2 spaced repetition
-   ============================================================ */
-const DECK=[
- ['Pacing','Sensitivity number vs actual sensitivity','A <b>lower</b> mV number = <b>more</b> sensitive. Turn the number DOWN to sense more (fix undersensing); UP to sense less (fix oversensing).'],
- ['Pacing','Capture-threshold procedure','Pace ~10 bpm above intrinsic, step output <b>down</b> to loss of capture then up to return. Set output ≥ 2× threshold (or ≥5 V).'],
- ['Pacing','Sensing-threshold procedure','Rate below intrinsic; raise the mV number until the sense marker drops (don\'t sustain), lower until it tracks. Set ≈ ½ the measured value.'],
- ['Pacing','Southampton viva trap','A common reference mislabels the <b>sensing</b> endpoint as the "pacing threshold." They are different measurements — capture ≠ sensing.'],
- ['Pacing','Failure to capture — appearance & causes','Spike with <b>no</b> following QRS. Causes: low output, lead fracture/dislodgement, exit block, hyperkalaemia/acidosis, anti-arrhythmics. Fix: ↑output, check connections, reposition, new wires.'],
- ['Pacing','Undersensing — appearance & fix','Spikes appear where they shouldn\'t (on/after intrinsic beats) — box is blind. Fix: <b>lower</b> the mV number (more sensitive).'],
- ['Pacing','Oversensing — appearance & fix','Inappropriate inhibition / pauses — box sees noise, T waves, myopotentials. Fix: <b>raise</b> the mV number (less sensitive); check crosstalk.'],
- ['Pacing','Fusion vs pseudofusion','Fusion = spike + simultaneous intrinsic → hybrid QRS. Pseudofusion = spike lands on native QRS but contributes nothing. Both benign — not failure.'],
- ['Pacing','Mode for AV block with intact sinus','<b>DDD</b> — track the atrium, pace the ventricle, restore AV synchrony.'],
- ['Pacing','Mode for AF with slow ventricle','<b>VVI</b> — no organised atrium to track.'],
- ['Pacing','Crash / asystole mode','<b>DOO / VOO</b> — asynchronous, capture guaranteed, no sensing.'],
- ['Pacing','Atrial electrogram technique','Use atrial wires as recording electrodes (unipolar to a V lead, or bipolar to arm leads read as lead I). Large A waves diagnose SVT vs VT and reveal AV dissociation.'],
- ['Pacing','Atrial overdrive for type I flutter','Burst-pace 10–20% above the flutter rate (≈400–600/min), defibrillator ready — AF-conversion risk.'],
- ['Pacing','Ventricular safety pacing','Atrial output sensed on the V channel triggers a safety-paced beat at a short AV interval — protects against inappropriate V inhibition from crosstalk.'],
- ['Pacing','Runaway pacemaker','Rare rapid pacing from generator failure — disconnect and replace the box immediately.'],
- ['Pacing','RV apical paced morphology','LBBB pattern + <b>superior (northwest) axis</b> — negative in II, III, aVF.'],
- ['Pacing','RVOT vs LV/epicardial paced site','RVOT: LBBB + <b>inferior</b> axis. LV / epicardial sites tend to give an RBBB-like pattern.'],
- ['Pacing','Sgarbossa in paced rhythm','Concordant ST↑ ≥1 mm; concordant ST↓ ≥1 mm V1–3; discordant ST↑ ≥5 mm (Smith-modified ratio ≥0.25). Flags ischaemia through pacing.'],
- ['LCOS','Preferred pressor in post-cardiotomy vasoplegia','<b>Vasopressin</b> (VANCS — reduced major morbidity vs noradrenaline). Ceiling ~0.04 U/min.'],
- ['LCOS','Where does levosimendan sit?','Rescue <b>adjunct</b>, not first-line. LEVO-CTS/CHEETAH/LICORN: no survival benefit; LEVO-CTS reduced LCOS incidence.'],
- ['LCOS','RV afterload — which resistance?','<b>PVR</b>, not SVR. SVR is LV afterload and the driver of RV coronary perfusion — defend it (vasopressin) while dropping PVR (iNO/milrinone).'],
- ['LCOS','SAM / LVOT obstruction management','INVERT: stop/reduce inotropes, fill, slow rate, pure α (phenylephrine/noradrenaline), β-blockade. Opposite of cold-LV management.'],
- ['LCOS','Escalation gate before MCS/levosimendan','Vasopressin + adrenaline + (dobutamine or milrinone) all running with persistent hypoperfusion — then escalate. Exception: peri-arrest → mobilise MCS in parallel.'],
- ['LCOS','MCS device by phenotype','LV → IABP/Impella · RV → RVAD/ProtekDuo · mixed/refractory → VA-ECMO (watch LV distension → vent).'],
- ['ECMO','Discriminate oxygenator clot from outflow obstruction','Both raise P_internal; only rising transmembrane <b>ΔP</b> marks the failing oxygenator.'],
- ['ECMO','Harlequin sentinel site','<b>Right radial</b> (most proximal arch branch) — reflects native LV/lung output, the true watershed.'],
- ['ECMO','Leading cause of death on VA-ECMO','Neurological injury (stroke/ICH/HIE). Pitfall: rapid PaCO₂ correction → cerebral haemorrhage.'],
- ['ECMO','Low-flow wean echo criteria','Aortic VTI >10 cm, LVEF >20–25%, TDI S′ >6 cm/s — with adequate anticoagulation.'],
- ['LCOS','Cardiac power output — formula & threshold','CPO = (MAP × CO) / 451 watts. <b>&lt;0.6 W</b> is a strong mortality predictor in cardiogenic shock.'],
- ['LCOS','PAPi — formula & use','PAPi = (PASP − PADP) / CVP. Low PAPi (~&lt;1.0) predicts RV failure and the need for RV mechanical support.'],
- ['LCOS','LVSWI / RVSWI','Stroke work indices = SVI × (mean chamber outflow − filling pressure) × 0.0136. Low values = poor ventricular work (contractility) for the load.'],
- ['LCOS','DO₂i and O₂ER','DO₂i = CI × CaO₂ × 10 (target ~500–600). O₂ER = (SaO₂ − SvO₂)/SaO₂; <b>&gt;0.3–0.4</b> signals delivery not meeting demand.'],
- ['LCOS','Diastolic pressure gradient (DPG)','DPG = PADP − PAOP. <b>&gt;7 mmHg</b> suggests a pre-capillary (pulmonary vascular) component beyond back-pressure alone.'],
- ['LCOS','SVV / PPV caveats','Predicts fluid responsiveness only with controlled ventilation, adequate tidal volume, sinus rhythm and a closed chest. Vasoactive venous tone shifts SVV independent of volume.'],
- ['LCOS','Agent ceilings (rough)','Noradrenaline ~0.5, adrenaline ~0.2, vasopressin ~0.04 U/min, dobutamine ~20, milrinone ~0.75 µg/kg/min — beyond these, add a mechanism rather than push dose.'],
- ['LCOS','Levosimendan pharmacology','Calcium-sensitiser + K-ATP opener; inodilator. Active metabolite OR-1896 gives effect lasting days. Usually no bolus if BP borderline. LEVO-CTS: ↓LCOS, no survival benefit.'],
- ['ECMO','VA-ECMO LV distension — signs & fix','Loss of pulsatility (PP <10–15), no aortic-valve opening, rising PADP/oedema, LV stasis. Vent: IABP, Impella (ECPELLA), atrial septostomy/pigtail, surgical vent.'],
- ['ECMO','Differential hypoxia management','Treat native lungs, ↑flow/sweep, reconfigure return to V-AV or a proximal (axillary/central) site; consider VV transition if the heart is recovering.'],
- ['ECMO','Anticoagulation targets & HIT','Heparin to anti-Xa 0.3–0.5 IU/mL (or ACT/aPTT). HIT → stop heparin, switch to a direct thrombin inhibitor (bivalirudin/argatroban).'],
- ['ECMO','ECPR favourable factors','Witnessed arrest, bystander CPR, shockable/reversible cause, short low-flow & no-flow time, maintained end-tidal CO₂.'],
- ['Pacing','AV-sequential paced appearance','Two spikes per beat — atrial then ventricular — with a paced P and a wide paced QRS. Loss of the atrial spike/kick drops CO in the stiff post-op ventricle.'],
- ['LCOS','LV failure — first lever','Afterload reduction, not more inotrope: LV wall stress rises with afterload. Vasodilator if BP allows, IABP (unload + coronary), or Impella (unload + flow). Avoid heavy vasoconstriction — it worsens afterload mismatch.'],
- ['LCOS','VA-ECMO in LV failure — the catch','Retrograde arch flow raises LV afterload and can distend a non-ejecting LV to pulmonary oedema, stasis and thrombus. Always plan LV unloading / venting (IABP, Impella, septostomy, surgical vent) in parallel.'],
- ['LCOS','RV failure — preferred drug pairing','Milrinone + vasopressin: the inodilator augments the RV and lowers PVR while vasopressin holds systemic (RV coronary) pressure with a relatively PVR-sparing profile. Avoid phenylephrine / heavy alpha — they raise PVR.'],
- ['LCOS','The RV death spiral','Hypotension leads to RV ischaemia, worse RV function, septal shift and worse LV filling, then deeper hypotension. Break it with perfusion pressure (vasopressin), PVR reduction (iNO, correct hypoxia/hypercarbia/acidosis) and inotropy. Do NOT volume-load the distended RV.'],
- ['LCOS','Adrenaline lactate \u2014 type A or B?','Adrenaline raises lactate (\u03b2\u2082 glycolysis) AND glucose directly \u2014 a type-B lactataemia. If delivery is adequate (SvO\u2082/CI/CPO ok) and glucose is high, the rising lactate is usually the drug, not worse shock. Control glucose and follow clearance; do not reflexively escalate.'],
- ['LCOS','Adrenaline \u2014 continue vs stop','Continue if it holds CI/CPO/MAP and the rising lactate is type B (control the glucose). Stop/wean if the ventricle has recovered on noradrenaline + milrinone, if there is tachyarrhythmia/ectopy, or if it buys metabolic cost without benefit. Adrenaline is the first catecholamine to come off.'],
- ['LCOS','Rising CVP \u2014 the drug manoeuvre','A climbing CVP = RV strain. Shift the inotrope off adrenaline (raises PVR + O\u2082 demand) onto milrinone (inodilator, lowers PVR), and hold systemic / RV-coronary perfusion pressure with noradrenaline (or vasopressin, PVR-sparing). Reduce PVR (O\u2082, correct acidosis / hypercarbia, iNO); do not volume-load.'],
- ['LCOS','PAC float \u2014 the two step-ups','RA\u2192RV the SYSTOLIC pressure steps up (RV ~25 vs RA ~5); RV\u2192PA the DIASTOLIC pressure steps up (PA diastole ~10 vs RV diastole ~0\u20135) and a dicrotic notch appears; PA\u2192wedge the trace damps and the mean falls below PA diastolic.'],
- ['LCOS','Pre- vs post-capillary PH on the PAC','Wedge splits them: PCWP >15 = post-capillary (LV / back-pressure); PCWP \u226415 with high PVR = pre-capillary. DPG (PADP\u2212PCWP) >7 and TPG (mPAP\u2212PCWP) >12 flag a pulmonary-vascular (pre-capillary) component; DPG is relatively flow / filling-independent.'],
- ['LCOS','Dynamic RVOT obstruction management','INVERT (as for SAM): stop inotropes / catecholamines \u2014 they deepen the infundibular gradient \u2014 fill the RV, slow & synchronise, hold pressure with a PURE vasoconstrictor (noradrenaline / vasopressin), \u03b2-blockade once filled. The opposite of the RV-failure four-lever plan; exclude a FIXED cause (conduit kink / compression) that needs a mechanical fix.'],
- ['LCOS','Outflow obstruction inverts the shock reflexes','Dynamic LVOT (SAM) and dynamic RVOT obstruction are BOTH worsened by inotropes, vasodilators, tachycardia and hypovolaemia; both treated by volume + pure afterload (vasoconstriction) + rate control / \u03b2-blockade. Separate dynamic (medical) from fixed (mechanical fix), and from true pump failure (opposite inotrope call).'],
- ['LCOS','Dynamic LVOTO / SAM \u2014 the management flip','Hypotension worse on inotrope = dynamic LVOT obstruction (SAM \u00b1 basal septal) until echo says otherwise. INVERT: stop inotropes & vasodilators, FILL, raise afterload with a pure vasoconstrictor (phenylephrine), \u03b2-block + restore AV synchrony. NOT IABP, NOT inotropes.'],
- ['LCOS','Why afterload relieves LVOTO','Raising aortic pressure increases LV end-systolic volume, widens the outflow and slows ejection velocity \u2014 cutting the dynamic gradient and the SAM-driven (posteriorly-directed) MR. Phenylephrine (pure \u03b1) is the clean choice; volume + \u03b2-blockade complete the bundle.'],
- ['ECMO','Rising transmembrane pressure (\u0394P)','TMP / \u0394P = P(pre-oxy) \u2212 P(post-oxy) across the fibre bundle. A sustained rise at FIXED flow = clot accumulating in the oxygenator \u2014 the earliest, most specific sign of oxygenator thrombosis. Outflow obstruction instead raises pre- & post-oxy pressure together with \u0394P unchanged. Read only at constant flow (\u0394P also rises with flow / Hct / low temp).'],
- ['ECMO','When to change the ECMO circuit','Plan a swap for: rising TMP/\u0394P from baseline; falling post-oxy PaO\u2082 at FdO\u2082 1.0 or rising PaCO\u2082 at fixed sweep; plasma leak from the gas-exhaust port; progressive haemolysis (pfHb/LDH \u2191, haptoglobin \u2193); consumptive coagulopathy (fibrinogen + platelets falling, D-dimer rising despite anticoagulation); visible clot / pump thrombosis. Usually several soft signs together \u2014 anticipate, prime ahead, minimise off-support time.'],
- ['ECMO','Consumption on ECMO \u2014 what to give','Confirm consumption (D-dimer \u2191, platelets \u2193, fibrinogen \u2193) and adequate anticoagulation (anti-Xa, ANTITHROMBIN). Fibrinogen is the pivot: cryoprecipitate (2 pools \u2248 +0.5\u20131 g/L) or fibrinogen concentrate 3\u20134 g \u2192 >1.5 g/L (>2 if bleeding); platelets >50 (>80\u2013100 bleeding); AT concentrate for heparin resistance. If replacement will not hold \u2192 change the circuit, not more transfusion. Exclude HIT.'],
- ['LCOS','SVR vs SVRI \u2014 formula & normal','SVR = (MAP \u2212 CVP) \u00d7 80 \u00f7 CO (normal 800\u20131200 dyn\u00b7s\u00b7cm\u207b\u2075). SVRI = (MAP \u2212 CVP) \u00d7 80 \u00f7 CI (normal ~1970\u20132390). Index to BSA to compare across body sizes. SVRI <1600 = vasoplegia; >2400 = vasoconstricted / cardiogenic. \u00d780 converts mmHg\u00b7min/L (Wood units) to dyn\u00b7s\u00b7cm\u207b\u2075.'],
- ['LCOS','Cardiac power output','CPO = MAP \u00d7 CO \u00f7 451 (W); normal ~1 W. CPO <0.6 W is the strongest single haemodynamic predictor of mortality in cardiogenic shock (SHOCK trial). CPI = MAP \u00d7 CI \u00f7 451, <0.4 W/m\u00b2 flags severe shock.'],
- ['ABG','CO\u2082 gap (Pv-aCO\u2082) in shock','Central venous CO\u2082 \u2212 arterial CO\u2082; normal <6 mmHg (\u22480.8 kPa). A WIDE gap = inadequate flow (sluggish transit accumulates CO\u2082). Most useful when ScvO\u2082 looks reassuring: ScvO\u2082 >70% WITH a wide CO\u2082 gap means output is still inadequate \u2014 raise cardiac output rather than be falsely reassured.'],
- ['ABG','Bicarbonate in lactic acidosis of shock','Treats the number, not the delivery. Harms: generates CO\u2082 (worsens intracellular/CNS acidosis), drops ionised calcium (\u2193 contractility & tone), Na/volume load, left-shifts the O\u2082 curve, rebound alkalosis. No mortality benefit in shock lactic acidosis. Defensible: pH <7.10\u20137.20 with instability, bicarbonate-LOSING (normal-gap) acidosis, hyperkalaemia, TCA toxicity, severe acidosis + AKI (BICAR-ICU AKIN 2\u20133). THAM buffers without generating CO\u2082.'],
- ['ABG','Failing compensation \u2014 the ominous gas','In metabolic acidosis expect Winter\u2019s PaCO\u2082 (mmHg) = 1.5\u00d7HCO\u2083 + 8 \u00b1 2. A NORMAL or RISING PaCO\u2082 with a severe metabolic acidosis means compensation is failing \u2014 the patient can no longer sustain the work of breathing. Support ventilation, and after intubation MATCH their compensatory minute ventilation or the pH falls off a cliff.'],
-];
-const DECKS=['All','Pacing','LCOS','ECMO','ABG'];
-let fcFilter='All', fcIdx=0, fcStore={}, fcQueue=[];
-const LS_KEY='ccc-suite-sm2-v1';
-function fcLoad(){try{fcStore=JSON.parse(localStorage.getItem(LS_KEY))||{};}catch(e){fcStore={};}}
-function fcSave(){try{localStorage.setItem(LS_KEY,JSON.stringify(fcStore));}catch(e){}}
-function fcCardState(i){return fcStore[i]||(fcStore[i]={ef:2.5,reps:0,intv:0,due:0});}
-function fcSchedule(i,q){
-  const c=fcCardState(i); const now=Date.now();
-  if(q<3){c.reps=0;c.intv=0;}
-  else{
-    c.ef=Math.max(1.3,c.ef+(0.1-(5-q)*(0.08+(5-q)*0.02)));
-    c.reps++;
-    c.intv=c.reps===1?1:c.reps===2?6:Math.round(c.intv*c.ef);
-  }
-  c.due=now+(q<3?0:c.intv*864e5);
-  fcSave();
-}
-function fcBuildQueue(){
-  const now=Date.now();
-  fcQueue=DECK.map((_,i)=>i).filter(i=>fcFilter==='All'||DECK[i][0]===fcFilter);
-  // due first, then unseen, keep order otherwise
-  fcQueue.sort((a,b)=>((fcStore[a]?.due||0))-((fcStore[b]?.due||0)));
-  fcIdx=0;
-}
-function fcRender(){
-  const card=document.getElementById('fcCard'); card.classList.remove('flip');
-  if(!fcQueue.length){document.getElementById('fcQ').textContent='No cards in this deck.';document.getElementById('fcTag').textContent='';document.getElementById('fcA').textContent='';return;}
-  const i=fcQueue[fcIdx%fcQueue.length];
-  document.getElementById('fcTag').textContent=DECK[i][0];
-  document.getElementById('fcQ').innerHTML=DECK[i][1];
-  document.getElementById('fcA').innerHTML=DECK[i][2];
-  const now=Date.now();
-  const due=fcQueue.filter(x=>((fcStore[x]?.due||0))<=now).length;
-  const learned=fcQueue.filter(x=>fcStore[x]&&fcStore[x].reps>0).length;
-  document.getElementById('fcCount').textContent=`Card ${(fcIdx%fcQueue.length)+1}/${fcQueue.length}`;
-  document.getElementById('fcDue').textContent=`${due} due · ${learned} learned`;
-  document.getElementById('fcProg').style.width=(learned/fcQueue.length*100)+'%';
-}
-function fcInit(){
-  fcLoad();
-  const tabs=document.getElementById('deckTabs');
-  if(!tabs.dataset.built){
-    DECKS.forEach(d=>{const b=document.createElement('button');b.textContent=d;b.className=d==='All'?'on':'';
-      b.onclick=()=>{fcFilter=d;document.querySelectorAll('#deckTabs button').forEach(x=>x.classList.toggle('on',x===b));fcBuildQueue();fcRender();};
-      tabs.appendChild(b);});
-    tabs.dataset.built='1';
-    document.getElementById('fcCard').addEventListener('click',e=>{if(e.target.closest('.fc-grade'))return;document.getElementById('fcCard').classList.toggle('flip');});
-    document.getElementById('fcGrade').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
-      const i=fcQueue[fcIdx%fcQueue.length];fcSchedule(i,parseInt(b.dataset.q,10));fcIdx++;fcRender();});
-    document.getElementById('fcReset').addEventListener('click',()=>{if(confirm('Reset all flashcard progress on this device?')){fcStore={};fcSave();fcBuildQueue();fcRender();}});
-  }
-  fcBuildQueue(); fcRender();
-}
 </script>
 </body>
 </html>

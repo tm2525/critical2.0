@@ -1,39 +1,42 @@
-# Cardiac Critical Care Suite — React build
+# Cardiac Critical Care Suite
 
-A Vite + React single-page version of the suite. The whole app is one component
-(`src/App.jsx`, default export) that injects its own CSS and needs no UI library.
+The suite is **`index.html`** — one self-contained file. The flashcards are now a **separate** self-contained file, **`flashcards.html`** (74 cards, SM-2 spaced repetition), reachable at `/flashcards.html` once published. No build step, no
+dependencies, no internet connection needed.
 
-## Develop / build
+## Publish on GitHub Pages
 
-```bash
-npm install
-npm run dev        # http://localhost:5173
-npm run build      # production build -> dist/
-npm run preview    # serve dist/ locally
-```
+1. Upload `index.html` to a **public** repository (drag the *file*, not a folder or a zip).
+2. **Settings → Pages → Source → Deploy from a branch**
+3. Branch: `main` (or `master`) · Folder: **`/ (root)`** → **Save**
+4. Wait ~1 minute, then open `https://<username>.github.io/<repo>/`
 
-## Deploy dist/ to GitHub Pages
+There is deliberately **no GitHub Actions workflow** in this repository. A workflow publishing
+its own output is what overrides a correct root `index.html` and serves a blank page instead —
+with no workflow present, Pages can only serve this file.
 
-The config uses `base: "./"`, so `dist/` works under any Pages path. Two options:
+If the page is blank, check that `index.html` shows as ~267 KB in the repo file list. Anything
+under 1 KB is the wrong file.
 
-**1. Push the built dist/ to a `gh-pages` branch** (e.g. with the `gh-pages` npm
-package, or manually), then set Settings -> Pages -> Deploy from a branch ->
-`gh-pages` / root.
+## Without GitHub
 
-**2. Build in CI.** Replace the repo-root workflow's upload step so it builds
-this project and publishes `react-app/dist`:
+Open `index.html` in any browser — double-click it, or save it to a phone or tablet. It works
+fully offline. Flashcard progress is stored in that browser's local storage.
 
-```yaml
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm, cache-dependency-path: react-app/package-lock.json }
-      - run: npm ci
-        working-directory: react-app
-      - run: npm run build
-        working-directory: react-app
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: react-app/dist }
-```
+## Modules
 
-> Flashcard progress in this build is session-only (resets on reload). For
-> persistent progress and offline use, deploy the single-file `index.html` at the
-> repository root instead (see the top-level README).
+1. LCOS Tool — interactive phenotype and escalation engine (VIS/NEE, SCAI, dose-aware ladder)
+2. Algorithm — post-cardiotomy low output pathway
+3. Haemodynamics — pressures, waveforms, PA catheter, shock states, acid–base, SvO₂
+4. Ventricular Failure — LV, RV, biventricular, LVOT/RVOT obstruction
+5. VA-ECMO — 18 sections incl. circuit + configuration schematics, cannula-escalation pathway, oxygenator health, circuit-change decision aid
+6. Pacing — epicardial pacing, modes (when to use / when to avoid), thresholds, troubleshooting
+7. LVOTO / SAM — guided management of dynamic outflow obstruction
+8. ABG / Acid–Base — interactive interpreter plus interpretation and correction guide
+9. Dose Converter — rate ⇄ dose, noradrenaline equivalents, VIS
+10. Derived Values — SVR/SVRI, PVR, indices, stroke work, oxygen delivery
+
+
+## Disclaimer
+
+A decision-support and education aid for qualified clinicians. It does not replace clinical
+judgement, local protocol, or independent verification of drug doses. MIT licensed.
