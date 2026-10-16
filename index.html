@@ -193,6 +193,12 @@ tr:last-child td{border-bottom:none}
 .dv-card.na .v{color:var(--muted); opacity:.5}
 #m-deriv .unit{text-transform:none}
 #m-abg .unit{text-transform:none}
+#m-vis .unit{text-transform:none}
+.vt input{width:100%; min-width:54px; background:#0a121d; border:1px solid var(--line2); color:var(--ink); border-radius:6px; padding:6px 6px; font-family:var(--mono); font-size:13px; outline:none}
+.vt input:focus{border-color:var(--cyan)}
+.vt td{padding:4px 4px}
+.light .vt input{background:#f4f7fb}
+#vt-find .note{margin-top:8px}
 #m-ecmo .unit{text-transform:none}
 #m-ecmo select{width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); font-family:var(--mono); font-size:13px}
 .es-checks{display:grid; gap:6px; margin-top:10px}
@@ -250,6 +256,7 @@ tr:last-child td{border-bottom:none}
   <button data-m="abg"><span class="k">11</span>ABG / Acid–Base</button>
   <button data-m="conv"><span class="k">12</span>Dose Converter</button>
   <button data-m="deriv"><span class="k">13</span>Derived Values</button>
+  <button data-m="vis"><span class="k">14</span>VIS Trend</button>
 </nav>
 <div class="wrap">
 
@@ -2030,6 +2037,117 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
+<!-- ============ MODULE 14 : VIS TREND ============ -->
+<section class="module" id="m-vis">
+  <div class="eyebrow">Module 14 · trajectory calculator</div>
+  <h2>VIS trend &amp; SCAI staging — is the support going up or down?</h2>
+  <p class="lead">The Vasoactive-Inotropic Score adds up the whole vasoactive load in one number. Its value at any instant matters less than its <b>direction</b>: a patient whose VIS is rising to hold the same targets is losing, whatever the blood pressure says. Enter up to six timepoints and the tool plots the trajectory, stages the latest point by SCAI, and says what the pattern means. Uses the same formulae as the LCOS tool (Module 01).</p>
+  <div class="note"><b>VIS</b> = dopamine + dobutamine + 100 × (adrenaline + noradrenaline) + 10 × milrinone + 10,000 × vasopressin (U/kg/min). Doses in <b>µg/kg/min</b>; vasopressin in <b>U/min</b> (converted using weight). <b>NEE</b> = noradrenaline equivalent. Bands: &lt; 10 low · 10–20 moderate · 20–30 high · &gt; 30 very high.</div>
+  <!--VIS-TOOL-START-->
+  <div class="panel">
+    <h3>Timepoints <span class="tag">leave unused rows blank</span></h3>
+    <div class="field" style="max-width:200px"><label>Weight <span class="unit">kg · for vasopressin</span></label><input id="vt-wt" inputmode="decimal" placeholder="70"></div>
+    <div class="tbl-wrap vt-wrap"><table class="vt">
+      <tr><th>Time</th><th>Norad</th><th>Adr</th><th>Dobut</th><th>Milrin</th><th>Dopa</th><th>Vaso <span class="unit">U/min</span></th><th>MAP</th><th>Lactate</th></tr>
+        <tr class="vt-row">
+          <td><input id="vt-t-0" placeholder="T1"></td>
+          <td><input id="vt-norad-0" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-adr-0" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dobut-0" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-milrin-0" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dopa-0" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-vaso-0" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-map-0" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-lac-0" inputmode="decimal" placeholder="—"></td>
+        </tr>
+        <tr class="vt-row">
+          <td><input id="vt-t-1" placeholder="T2"></td>
+          <td><input id="vt-norad-1" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-adr-1" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dobut-1" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-milrin-1" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dopa-1" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-vaso-1" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-map-1" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-lac-1" inputmode="decimal" placeholder="—"></td>
+        </tr>
+        <tr class="vt-row">
+          <td><input id="vt-t-2" placeholder="T3"></td>
+          <td><input id="vt-norad-2" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-adr-2" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dobut-2" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-milrin-2" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dopa-2" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-vaso-2" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-map-2" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-lac-2" inputmode="decimal" placeholder="—"></td>
+        </tr>
+        <tr class="vt-row">
+          <td><input id="vt-t-3" placeholder="T4"></td>
+          <td><input id="vt-norad-3" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-adr-3" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dobut-3" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-milrin-3" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dopa-3" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-vaso-3" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-map-3" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-lac-3" inputmode="decimal" placeholder="—"></td>
+        </tr>
+        <tr class="vt-row">
+          <td><input id="vt-t-4" placeholder="T5"></td>
+          <td><input id="vt-norad-4" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-adr-4" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dobut-4" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-milrin-4" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dopa-4" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-vaso-4" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-map-4" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-lac-4" inputmode="decimal" placeholder="—"></td>
+        </tr>
+        <tr class="vt-row">
+          <td><input id="vt-t-5" placeholder="T6"></td>
+          <td><input id="vt-norad-5" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-adr-5" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dobut-5" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-milrin-5" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-dopa-5" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-vaso-5" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-map-5" inputmode="decimal" placeholder="—"></td>
+          <td><input id="vt-lac-5" inputmode="decimal" placeholder="—"></td>
+        </tr>
+    </table></div>
+    <div class="cv-meta"><button class="btn" id="vt-clear">Clear</button><button class="btn" id="vt-ex1">Example · deteriorating</button><button class="btn" id="vt-ex2">Example · recovering</button></div>
+  </div>
+  <div class="grid g2">
+    <div class="panel">
+      <h3>Trajectory <span class="tag" id="vt-count">—</span></h3>
+      <div class="wave"><div class="cap">VIS over time</div><svg id="vt-svg" viewBox="0 0 400 140" width="100%" height="140" style="display:block"></svg></div>
+      <div class="dv-grid" id="vt-cards"></div>
+    </div>
+    <div class="panel">
+      <h3>Reading <span class="tag" id="vt-scai-chip">—</span></h3>
+      <div class="note" id="vt-scai"></div>
+      <div id="vt-find"></div>
+    </div>
+  </div>
+  <!--VIS-TOOL-END-->
+  <div class="panel sec">
+    <h3><span class="secnum">1</span> How to read it</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Pattern</th><th>Means</th><th>Do</th></tr>
+      <tr><td><b>Rising VIS, rising lactate</b></td><td>Deteriorating on support — SCAI D. The support is not treating the cause</td><td>Stop titrating and re-examine: tamponade (Module 09), LVOTO (Module 08), ischaemia, vasoplegia (Module 04 §7), RV failure. Mechanical support conversation now</td></tr>
+      <tr><td><b>Rising VIS, stable lactate, stable MAP</b></td><td>Escalating to hold the line — early D, or a vasoplegic drift</td><td>Same differential; consider a non-catecholamine pressor before the next catecholamine increment</td></tr>
+      <tr><td><b>Plateau at high VIS</b></td><td>Stable but dependent; not recovering</td><td>Define the exit plan: what reverses this, and what is the MCS / destination plan if nothing does (Module 10 §6)</td></tr>
+      <tr><td><b>Falling VIS, clearing lactate</b></td><td>Recovering</td><td>Wean to the patient (Module 10)</td></tr>
+      <tr><td><b>Falling VIS, rising lactate</b></td><td>Weaning too fast — or a type-B lactate from adrenaline that is now clearing as the drug comes off</td><td>Check SvO₂ and the CO₂ gap before reversing the wean (Module 11 §4)</td></tr>
+      <tr><td><b>Low VIS, hypotensive, hypoperfused</b></td><td>Under-supported, or a mechanical problem that drugs cannot fix</td><td>Volume status, tamponade, rhythm, obstruction — then escalate deliberately</td></tr>
+    </table></div>
+    <div class="note warn"><b>The thresholds are population averages.</b> Peak VIS ≥ 20 in the first 24 h after cardiac surgery is the figure most consistently tied to mortality and morbidity in adults; above ~30–45 the outlook is poor without mechanical support. But a VIS of 25 falling fast is a better place than a VIS of 15 rising — the slope beats the level. SCAI staging is a snapshot; re-stage with every change.</div>
+    <div class="disc">Decision-support aid — VIS thresholds vary by population and study; SCAI staging is from the shared LCOS engine and depends on the inputs given. Verify every dose independently (Module 12).</div>
+  </div>
+</section>
+
+
 
 <!-- ============ MODULE 13 : FLASHCARDS ============ -->
 
@@ -2861,7 +2979,124 @@ function abgInit(){
   abgRender();
 }
 
+function vtCalc(rows,wtIn){
+  const num=(x)=>{const v=parseFloat(x);return isNaN(v)?NaN:v;};
+  const wt=num(wtIn); const W=isNaN(wt)?70:wt;
+  const out=[];
+  rows.forEach((r,i)=>{
+    const o={norad:num(r.norad)||0,adr:num(r.adr)||0,dobut:num(r.dobut)||0,milrin:num(r.milrin)||0,dopa:num(r.dopa)||0,vaso:num(r.vaso)||0};
+    const any=Object.values(o).some((v)=>v>0);
+    const hasRow=any||!isNaN(num(r.map))||!isNaN(num(r.lac));
+    if(!hasRow)return;
+    out.push({i:i,t:(r.t||('T'+(i+1))),vis:visScore(o,W),nee:neEquiv(o),map:num(r.map),lac:num(r.lac),any:any,agents:Object.keys(o).filter((k)=>o[k]>0).length});
+  });
+  const n=out.length;
+  const vis=out.map((x)=>x.vis);
+  const peak=n?Math.max.apply(null,vis):NaN;
+  const latest=n?out[n-1]:null;
+  const prev=n>1?out[n-2]:null;
+  const first=n?out[0]:null;
+  const delta=(latest&&prev)?latest.vis-prev.vis:NaN;
+  const dFirst=(latest&&first&&n>1)?latest.vis-first.vis:NaN;
+  const band=(v)=>isNaN(v)?'na':(v<10?'ok':(v<20?'lo':(v<30?'hi':'hi')));
+  const bandLabel=(v)=>isNaN(v)?'—':(v<10?'low':(v<20?'moderate':(v<30?'high':'very high')));
+  let trend='—';
+  if(n>1){
+    if(dFirst>=5&&delta>=0)trend='RISING';
+    else if(dFirst<=-5&&delta<=0)trend='FALLING';
+    else if(Math.abs(dFirst)<5)trend='PLATEAU';
+    else trend=delta>0?'RISING (recent)':'FALLING (recent)';
+  }
+  // lactate trajectory
+  const lacs=out.map((x)=>x.lac).filter((v)=>!isNaN(v));
+  const lacLatest=lacs.length?lacs[lacs.length-1]:NaN;
+  const lacPrev=lacs.length>1?lacs[lacs.length-2]:NaN;
+  const lacFirst=lacs.length?lacs[0]:NaN;
+  let lacTrend='—';
+  if(lacs.length>1){const d=lacLatest-lacFirst; lacTrend=(d>0.5)?'rising':((d<-0.5)?'clearing':'flat');}
+  // SCAI at latest row, using the shared engine
+  let st={s:'—',l:'enter MAP and lactate on the latest row'};
+  if(latest&&(!isNaN(latest.map)||!isNaN(latest.lac))){
+    const s={map:latest.map,lac:latest.lac,lactTrend:(lacTrend==='rising'?'rising':''),svo2:NaN,uo:NaN,ci:NaN,flags:{arrest:false}};
+    let lacClr=NaN;
+    if(!isNaN(lacLatest)&&!isNaN(lacFirst)&&lacFirst>0&&lacs.length>1)lacClr=(lacFirst-lacLatest)/lacFirst*100;
+    const d={lacRate:NaN,lacClr:lacClr,cpo:NaN,o2er:NaN,do2i:NaN};
+    st=scai(s,d,latest.any);
+  }
+  const f=[];
+  const add=(lv,t)=>f.push({lv:lv,t:t});
+  if(n===0)add('info','Enter at least one timepoint — doses in µg/kg/min (vasopressin in U/min). Weight defaults to 70 kg if blank.');
+  if(latest){
+    if(latest.vis>=30)add('alarm','Latest VIS '+latest.vis.toFixed(0)+' — very high vasoactive load. In post-cardiotomy adults a VIS above ~30 carries a sharply higher mortality; this is a mechanical-support conversation, not a dose-titration one (Module 01 ladder, Module 05).');
+    else if(latest.vis>=20)add('warn','Latest VIS '+latest.vis.toFixed(0)+' — high. Peak VIS ≥ 20 in the first 24 h is the threshold most consistently associated with poor outcome after cardiac surgery. Ask whether the support is treating the cause or masking a mechanical one (tamponade, Module 09; LVOTO, Module 08).');
+    else if(latest.vis>=10)add('info','Latest VIS '+latest.vis.toFixed(0)+' — moderate. Acceptable early; a plateau here beyond 24–48 h is the point to look harder for a reversible driver.');
+  }
+  if(trend==='RISING')add('alarm','VIS is RISING across the series ('+first.vis.toFixed(0)+' → '+latest.vis.toFixed(0)+'). Escalating support to hold the same targets is the single most reliable sign of a patient who is losing — and of SCAI stage D. Re-examine the diagnosis before the next increment.');
+  if(trend==='PLATEAU'&&latest&&latest.vis>=20)add('warn','VIS has PLATEAUED at a high level — stable on heavy support is not the same as recovering. Plan the exit: what is the reversible cause, and what is the MCS plan if it does not reverse?');
+  if(trend==='FALLING')add('ok','VIS is FALLING — the trajectory is the reassuring part. Keep weaning to the patient, one agent at a time (Module 10).');
+  if(lacTrend==='rising'&&trend!=='FALLING')add('alarm','Lactate is RISING with support that is not falling — hypoperfusion despite escalation. This is the SCAI D signature.');
+  if(lacTrend==='rising'&&trend==='FALLING')add('warn','Lactate rising while VIS falls — either the wean is too fast, or the lactate is type B (adrenaline / glycolysis, Module 04 §4). Check the SvO₂ and CO₂ gap before reversing the wean.');
+  if(lacTrend==='clearing'&&latest&&latest.vis<20)add('ok','Lactate clearing on moderate or falling support — the resuscitation is working.');
+  if(latest&&latest.agents>=3)add('warn',latest.agents+' vasoactive agents running at once. Beyond two or three the marginal benefit falls and the cost (arrhythmia, splanchnic ischaemia, demand) rises — consolidate, and consider whether this is an MCS indication.');
+  if(latest&&!isNaN(latest.map)&&latest.map<65&&latest.vis>=20)add('alarm','MAP below 65 on a VIS of '+latest.vis.toFixed(0)+' — pressor-refractory. Exclude tamponade, vasoplegia (Module 04 §7), adrenal insufficiency, and a mechanical cause; escalate the support strategy, not the dose.');
+  if(latest&&!isNaN(latest.nee)&&latest.nee>=0.5)add('warn','Noradrenaline-equivalent '+latest.nee.toFixed(2)+' µg/kg/min — above the ~0.5 mark where catecholamine returns diminish. Add a non-catecholamine (vasopressin, methylene blue) rather than escalating further.');
+  return {rows:out,peak:peak,latest:latest,delta:delta,dFirst:dFirst,trend:trend,band:band,bandLabel:bandLabel,lacTrend:lacTrend,scai:st,findings:f,n:n};
+}
+
+const VTN=6, VTK=['t','norad','adr','dobut','milrin','dopa','vaso','map','lac'];
+function vtRead(){
+  const rows=[];
+  for(let i=0;i<VTN;i++){const o={};VTK.forEach(k=>o[k]=document.getElementById('vt-'+k+'-'+i).value);rows.push(o);}
+  return rows;
+}
+function vtSpark(r){
+  const svg=document.getElementById('vt-svg');
+  const pts=r.rows; if(!pts.length){svg.innerHTML='<text x="200" y="76" text-anchor="middle" fill="#586a80" font-family="ui-monospace,monospace" font-size="11">no data</text>';return;}
+  const W=400,H=140,L=34,R=12,T=14,B=26; const maxV=Math.max(30,Math.ceil(Math.max.apply(null,pts.map(p=>p.vis))/10)*10);
+  const x=(i)=>pts.length===1?(L+(W-L-R)/2):L+(W-L-R)*i/(pts.length-1); const y=(v)=>T+(H-T-B)*(1-v/maxV);
+  let s='';
+  [10,20,30].forEach(g=>{if(g<=maxV){s+='<line x1="'+L+'" y1="'+y(g)+'" x2="'+(W-R)+'" y2="'+y(g)+'" stroke="'+(g===20?'#5f4415':'#1d2939')+'" stroke-width="1" stroke-dasharray="3 3"/><text x="'+(L-4)+'" y="'+(y(g)+3)+'" text-anchor="end" fill="#586a80" font-family="ui-monospace,monospace" font-size="9">'+g+'</text>';}});
+  const path=pts.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.vis).toFixed(1)).join(' ');
+  const col=r.trend.indexOf('RISING')===0?'#ff5468':(r.trend.indexOf('FALLING')===0?'#2ee6a6':'#f6b74a');
+  s+='<path d="'+path+'" stroke="'+col+'" stroke-width="2.5" fill="none" stroke-linejoin="round"/>';
+  pts.forEach((p,i)=>{s+='<circle cx="'+x(i)+'" cy="'+y(p.vis)+'" r="4" fill="'+col+'"/><text x="'+x(i)+'" y="'+(y(p.vis)-8)+'" text-anchor="middle" fill="#dbe6f2" font-family="ui-monospace,monospace" font-size="10">'+p.vis.toFixed(0)+'</text><text x="'+x(i)+'" y="'+(H-8)+'" text-anchor="middle" fill="#8093aa" font-family="ui-monospace,monospace" font-size="9">'+p.t.replace(/</g,'')+'</text>';});
+  svg.innerHTML=s;
+}
+function vtRender(){
+  const r=vtCalc(vtRead(),document.getElementById('vt-wt').value);
+  document.getElementById('vt-count').textContent=r.n?(r.n+' timepoint'+(r.n>1?'s':'')):'\u2014';
+  vtSpark(r);
+  const L=r.latest;
+  const cards=[
+    ['Latest VIS',L?L.vis.toFixed(0):'\u2014','',L?r.band(L.vis):'na',L?r.bandLabel(L.vis):''],
+    ['Peak VIS',isNaN(r.peak)?'\u2014':r.peak.toFixed(0),'',isNaN(r.peak)?'na':r.band(r.peak),'across series'],
+    ['Change (last step)',isNaN(r.delta)?'\u2014':((r.delta>=0?'+':'')+r.delta.toFixed(0)),'',isNaN(r.delta)?'na':(r.delta>0?'hi':(r.delta<0?'ok':'lo')),'vs previous'],
+    ['Trend',r.trend,'',r.trend.indexOf('RISING')===0?'hi':(r.trend.indexOf('FALLING')===0?'ok':(r.n>1?'lo':'na')),r.n>1?'first \u2192 latest':''],
+    ['NEE (latest)',L?L.nee.toFixed(2):'\u2014','\u00b5g/kg/min',L?(L.nee>=0.5?'hi':(L.nee>=0.2?'lo':'ok')):'na','norad-equivalent'],
+    ['Lactate trend',r.lacTrend,'',r.lacTrend==='rising'?'hi':(r.lacTrend==='clearing'?'ok':(r.lacTrend==='flat'?'lo':'na')),'']
+  ];
+  document.getElementById('vt-cards').innerHTML=cards.map(c=>'<div class="dv-card '+c[3]+'"><div class="k">'+c[0]+'</div><div class="v">'+c[1]+'</div><div class="u">'+c[2]+'</div><div class="r">'+c[4]+'</div></div>').join('');
+  document.getElementById('vt-scai-chip').textContent='SCAI '+r.scai.s;
+  document.getElementById('vt-scai').className='note'+(r.scai.s==='D'||r.scai.s==='E'?' alarm':(r.scai.s==='C'?' warn':''));
+  document.getElementById('vt-scai').innerHTML='<b>SCAI stage '+r.scai.s+'</b> \u2014 '+r.scai.l+(L?'<br><span class="muted">latest point: '+L.t+'</span>':'');
+  document.getElementById('vt-find').innerHTML=r.findings.map(x=>'<div class="note'+(x.lv==='alarm'?' alarm':(x.lv==='warn'?' warn':''))+'">'+x.t+'</div>').join('');
+}
+function vtSet(rows,wt){
+  document.getElementById('vt-wt').value=wt||'';
+  for(let i=0;i<VTN;i++){const o=rows[i]||{};VTK.forEach(k=>document.getElementById('vt-'+k+'-'+i).value=(o[k]===undefined?'':o[k]));}
+  vtRender();
+}
+function vtInit(){
+  document.getElementById('vt-wt').addEventListener('input',vtRender);
+  for(let i=0;i<VTN;i++)VTK.forEach(k=>document.getElementById('vt-'+k+'-'+i).addEventListener('input',vtRender));
+  document.getElementById('vt-clear').addEventListener('click',()=>vtSet([],''));
+  document.getElementById('vt-ex1').addEventListener('click',()=>vtSet([{t:'0h',norad:'0.1',map:'70',lac:'2.1'},{t:'6h',norad:'0.2',adr:'0.05',map:'65',lac:'3.4'},{t:'12h',norad:'0.35',adr:'0.1',vaso:'0.03',map:'60',lac:'5.2'}],'80'));
+  document.getElementById('vt-ex2').addEventListener('click',()=>vtSet([{t:'0h',norad:'0.3',adr:'0.1',map:'62',lac:'4.8'},{t:'12h',norad:'0.15',adr:'0.04',map:'68',lac:'2.9'},{t:'24h',norad:'0.06',map:'72',lac:'1.6'}],'80'));
+  vtRender();
+}
+
 cvInit();
+vtInit();
 function ecmoSwap(m){
   const num=(x)=>{const v=parseFloat(x);return isNaN(v)?NaN:v;};
   const on=(x)=>x===true||x==='1'||x==='true';
