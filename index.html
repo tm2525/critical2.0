@@ -243,11 +243,12 @@ tr:last-child td{border-bottom:none}
   <button data-m="vent"><span class="k">04</span>Ventricular Failure</button>
   <button data-m="ecmo"><span class="k">05</span>VA-ECMO</button>
   <button data-m="pace"><span class="k">06</span>Pacing</button>
-  <button data-m="lvoto"><span class="k">07</span>LVOTO / SAM</button>
-  <button data-m="tamp"><span class="k">08</span>Tamponade / Bleeding</button>
-  <button data-m="abg"><span class="k">09</span>ABG / Acid–Base</button>
-  <button data-m="conv"><span class="k">10</span>Dose Converter</button>
-  <button data-m="deriv"><span class="k">11</span>Derived Values</button>
+  <button data-m="arr"><span class="k">07</span>Arrhythmias</button>
+  <button data-m="lvoto"><span class="k">08</span>LVOTO / SAM</button>
+  <button data-m="tamp"><span class="k">09</span>Tamponade / Bleeding</button>
+  <button data-m="abg"><span class="k">10</span>ABG / Acid–Base</button>
+  <button data-m="conv"><span class="k">11</span>Dose Converter</button>
+  <button data-m="deriv"><span class="k">12</span>Derived Values</button>
 </nav>
 <div class="wrap">
 
@@ -562,7 +563,7 @@ tr:last-child td{border-bottom:none}
 
     <div class="subhead">The four determinants — why it falls</div>
     <div class="note"><b>Rearranged Fick:</b> SvO₂ ≈ SaO₂ − VO₂ / (CO × Hb × 1.34). There are therefore only <b>four</b> reasons for a low SvO₂ — and the whole management of a low value is deciding which: <b>↓ CO</b> (the cardiogenic one), <b>↓ Hb</b> (anaemia), <b>↓ SaO₂</b> (hypoxaemia), or <b>↑ VO₂</b> (fever, shivering, agitation, work of breathing, thyrotoxicosis, seizure). Fix whichever applies; in post-cardiotomy LCOS it is usually output first, haemoglobin second.</div>
-    <div class="note"><b>Oxygen extraction ratio</b> — O₂ER = (SaO₂ − SvO₂) / SaO₂, normally <b>20–30%</b>. A rising O₂ER is the body compensating for falling delivery; above roughly 50–60% extraction is near-maximal and anaerobic metabolism follows. SvO₂ and O₂ER are two views of the same balance. <span class="pill info">Module 11 computes both</span></div>
+    <div class="note"><b>Oxygen extraction ratio</b> — O₂ER = (SaO₂ − SvO₂) / SaO₂, normally <b>20–30%</b>. A rising O₂ER is the body compensating for falling delivery; above roughly 50–60% extraction is near-maximal and anaerobic metabolism follows. SvO₂ and O₂ER are two views of the same balance. <span class="pill info">Module 12 computes both</span></div>
 
     <div class="subhead">Reading the value</div>
     <div class="tbl-wrap"><table>
@@ -1254,7 +1255,7 @@ tr:last-child td{border-bottom:none}
     <div class="tbl-wrap"><table>
       <tr><th>Mode</th><th>What it does</th><th>Use when</th><th>AVOID when</th></tr>
       <tr><td class="mono"><b>AAI</b></td><td>Paces atrium, inhibited by sensed P waves; relies entirely on native AV conduction</td><td>Sinus bradycardia or junctional rhythm with <b>reliable AV conduction</b> — preserves native ventricular activation, the most physiological option available</td><td><b>Any risk of AV block</b> — there is <b>no ventricular backup</b>, so block means asystole. Post-AVR, post-septal myectomy, following tricuspid or VSD surgery, pre-existing bifascicular block, or anyone on an AV-nodal blocker. Also useless in AF (nothing to pace)</td></tr>
-      <tr><td class="mono"><b>VVI</b></td><td>Paces ventricle, inhibited by sensed R waves; ignores the atrium entirely</td><td><b>AF / flutter with a slow ventricular response</b> — there is no organised atrium to track. Also a safe fallback when atrial wires have failed, and as backup during conduction-system recovery</td><td>Whenever the <b>atrial kick matters</b> and sinus rhythm exists: RV failure, severe diastolic dysfunction / stiff hypertrophied LV, <b>LVOTO/SAM</b> (Module 07), tamponade physiology, fresh post-cardiotomy LCOS. Loss of AV synchrony costs roughly <b>20–30% of cardiac output</b> and can cause pacemaker syndrome and cannon waves</td></tr>
+      <tr><td class="mono"><b>VVI</b></td><td>Paces ventricle, inhibited by sensed R waves; ignores the atrium entirely</td><td><b>AF / flutter with a slow ventricular response</b> — there is no organised atrium to track. Also a safe fallback when atrial wires have failed, and as backup during conduction-system recovery</td><td>Whenever the <b>atrial kick matters</b> and sinus rhythm exists: RV failure, severe diastolic dysfunction / stiff hypertrophied LV, <b>LVOTO/SAM</b> (Module 08), tamponade physiology, fresh post-cardiotomy LCOS. Loss of AV synchrony costs roughly <b>20–30% of cardiac output</b> and can cause pacemaker syndrome and cannon waves</td></tr>
       <tr><td class="mono"><b>DDD</b></td><td>Paces and senses both chambers; <b>tracks</b> the atrium — a sensed P triggers a paced V after the set AV delay</td><td>The post-cardiotomy default: <b>AV block with an intact sinus node</b>. Preserves AV synchrony and lets the patient’s own atrial rate drive the ventricle through exercise, pain and fever</td><td><b>Atrial tachyarrhythmia</b> — the box will faithfully track AF or flutter up to the upper rate limit and pace the ventricle fast, exactly when the patient can least tolerate it. Also unreliable with poor atrial sensing. Watch for pacemaker-mediated tachycardia where retrograde VA conduction exists</td></tr>
       <tr><td class="mono"><b>DDI</b></td><td>Paces and senses both, but <b>inhibit only — no tracking</b>. AV sequential at the set rate</td><td>The <b>safe middle ground</b>: AV block <i>plus</i> paroxysmal atrial arrhythmia, or frequent atrial ectopy. You keep AV sequential pacing without the risk of chasing a fast atrium</td><td>When you <i>want</i> rate responsiveness. Because it cannot track, an intrinsic atrial rate above the set rate produces <b>functional AV dissociation</b> — the atria run away from the paced ventricle and synchrony is lost anyway. Raise the rate or move to DDD</td></tr>
       <tr><td class="mono"><b>VDD</b></td><td>Senses both, paces ventricle only — tracks the atrium without pacing it</td><td>Intact sinus node with AV block, when the atrial wire senses but will not capture. Rarely chosen deliberately on temporary boxes</td><td>Sinus node disease or atrial bradycardia — with no atrial pacing, a slow sinus rate means a slow ventricle. Useless in AF</td></tr>
@@ -1343,9 +1344,118 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- ============ MODULE 07 : LVOTO / SAM ============ -->
+<!-- ============ MODULE 07 : ARRHYTHMIAS ============ -->
+<section class="module" id="m-arr">
+  <div class="eyebrow">Module 07 · rhythm decisions</div>
+  <h2>Post-operative arrhythmias — the decisions, not the box</h2>
+  <p class="lead">Pacing (Module 06) covers the wires and the modes. This is the other half: <b>what to do about the rhythm itself</b> in a heart with no reserve. The post-cardiotomy rules differ from the ward: a rhythm that would be tolerated at home drops cardiac output here, and almost every drug on the list is a negative inotrope.</p>
+
+  <div class="note alarm"><b>The two questions for any arrhythmia on this unit:</b> (1) <b>Is the patient compromised by it?</b> — falling MAP, rising lactate, falling SvO₂, rising filling pressures, chest pain, pulmonary oedema. Compromise means <b>electricity</b>, not drugs. (2) <b>What is driving it?</b> — hypokalaemia, hypomagnesaemia, ischaemia, tamponade, hypoxia, acidosis, a pacing wire, a misplaced line, catecholamines. Treat the driver or the rhythm comes back.</div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">1</span> First, always — the substrate</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Fix</th><th>Target</th><th>Why</th></tr>
+      <tr><td><b>Potassium</b></td><td class="mono">4.5–5.0 mmol/L</td><td>The single most effective anti-arrhythmic on the unit. Replace centrally; re-check in an hour; it moves with pH and insulin</td></tr>
+      <tr><td><b>Magnesium</b></td><td class="mono">&gt; 1.0 mmol/L (give 2 g empirically)</td><td>Stabilises the membrane, suppresses ectopy, converts a proportion of post-op AF, treats torsades</td></tr>
+      <tr><td><b>Oxygen / CO₂ / pH</b></td><td class="mono">SaO₂ &gt; 92, PaCO₂ normal, pH &gt; 7.3</td><td>Hypoxia, hypercapnia and acidosis are all pro-arrhythmic and blunt drug response</td></tr>
+      <tr><td><b>Catecholamines</b></td><td class="mono">lowest dose that perfuses</td><td>Adrenaline, dobutamine and dopamine drive atrial and ventricular ectopy; milrinone less so; consider the swap</td></tr>
+      <tr><td><b>Mechanical irritants</b></td><td class="mono">check CXR</td><td>A PA catheter in the RV, a CVC tip in the RA, a pacing wire that has migrated, a chest drain against the heart</td></tr>
+      <tr><td><b>Ischaemia / tamponade</b></td><td class="mono">12-lead, echo, drains</td><td>New VT or refractory AF after revascularisation = graft problem until shown otherwise (Module 09 for tamponade)</td></tr>
+      <tr><td><b>Temperature, pain, volume</b></td><td class="mono">normothermic, analgesed, euvolaemic</td><td>Shivering, pain and over- or under-filling all drive sympathetic tone</td></tr>
+    </table></div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">2</span> Atrial fibrillation — the one you will see every day</h3>
+    <p class="muted">Post-operative AF hits roughly a third of cardiac surgical patients, peaking at days 2–4. On a normal ward it is a nuisance; in a low-output heart the loss of the atrial kick and the shortened diastole can cost 20–30% of cardiac output, and a fast ventricular response is often the thing that tips a borderline patient into shock.</p>
+    <div class="subhead">Compromised — electricity</div>
+    <div class="note alarm"><b>Synchronised DC cardioversion</b> — 120–200 J biphasic, sedated or (if already ventilated) deepened; anterior–posterior pads around the dressing. Correct K⁺ / Mg²⁺ and load amiodarone around it or it reverts. Cardioversion is low-yield in the first 48 h if the substrate is uncorrected and the atria are inflamed — <b>but a compromised patient still gets shocked</b>; you buy time while you fix the substrate.</div>
+    <div class="subhead">Not compromised — rate or rhythm?</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Situation</th><th>Strategy</th><th>Agent</th><th>Caution</th></tr>
+      <tr><td>Preserved LV, haemodynamically fine</td><td>Rate control first</td><td><b>β-blocker</b> (metoprolol 2.5–5 mg IV increments, or esmolol if you may need to stop it)</td><td>The evidence-based first line for post-op AF; stop at hypotension or bradycardia</td></tr>
+      <tr><td><b>Low-output heart / on inotropes</b></td><td>Rhythm control</td><td><b>Amiodarone</b> 300 mg over 30–60 min then 900 mg / 24 h; via a central line</td><td>The agent for the heart that cannot afford a negative inotrope. Hypotension with the bolus — give it slowly; thyroid / liver / lung effects are later problems</td></tr>
+      <tr><td>Rate &gt; 130 and the above too slow</td><td>Rate control, bridge</td><td><b>Digoxin</b> 500 µg IV then 250–500 µg, or <b>esmolol</b></td><td>Digoxin is slow (hours) and weak in high-catecholamine states; esmolol is titratable but negatively inotropic</td></tr>
+      <tr><td>Rate control failing, no compromise</td><td>Chemical cardioversion</td><td>Amiodarone (above); vernakalant where available</td><td>Flecainide and other class Ic drugs are <b>contraindicated</b> with structural heart disease / recent ischaemia</td></tr>
+      <tr><td>Pre-excited AF (WPW)</td><td>Electricity or procainamide</td><td>DC cardioversion</td><td><b>No AV-nodal blockers</b> — digoxin, verapamil, adenosine, β-blockers can accelerate conduction down the accessory pathway into VF</td></tr>
+    </table></div>
+    <div class="subhead">Using the pacing wires</div>
+    <div class="note"><b>Atrial overdrive</b> works for flutter and re-entrant atrial tachycardia, not for AF. If AF is slow (post-op AV-nodal stun, β-blockade), <b>VVI backup pacing</b> keeps the ventricle going while you treat; once in sinus, <b>AV-sequential pacing at 80–90</b> restores the atrial kick and often suppresses recurrence. If atrial sensing is lost in AF and the box is in DDD, it will track the fibrillating atrium to the upper rate — <b>switch to DDI or VVI</b> (Module 06).</div>
+    <div class="subhead">Anticoagulation — the surgical reality</div>
+    <div class="note warn">AF persisting &gt; 48 h warrants anticoagulation by the usual rules, but the risk calculus is different in a chest that was open two days ago: <b>bleeding risk is high and front-loaded</b>, drains may still be in, and a return to theatre is possible. Decide with the surgeon, often deferring to day 3–5 and starting with heparin rather than a DOAC. Rate control and a TOE-guided cardioversion are the alternatives when the bleeding risk is prohibitive.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">3</span> Atrial flutter and the regular SVTs</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Rhythm</th><th>First move</th><th>Then</th></tr>
+      <tr><td><b>Atrial flutter</b> (typical, 2:1 at 150)</td><td><b>Atrial overdrive pacing</b> via the epicardial wires — fast atrial pacing (AOO, ~10–20% above the flutter rate, high output) for 10–30 s then abrupt stop; often terminates to sinus. If you have wires, it is the first-line manoeuvre</td><td>DC cardioversion (50–100 J often enough); amiodarone; rate control is hard in flutter — AV-nodal blockers give 4:1 then 2:1 oscillations</td></tr>
+      <tr><td><b>AVNRT / AVRT</b></td><td>Vagal, then <b>adenosine</b> 6 → 12 → 18 mg via a central or large proximal line, fast flush, monitor running</td><td>Verapamil only with good LV function; electricity if compromised. Adenosine will unmask flutter / atrial tachycardia by briefly blocking the node — read the strip</td></tr>
+      <tr><td><b>Atrial tachycardia</b> (ectopic or re-entrant)</td><td>Correct K⁺ / Mg²⁺; overdrive pacing for re-entrant forms; β-blocker or amiodarone</td><td>Adenosine does not terminate most ectopic ATs but reveals them</td></tr>
+      <tr><td><b>Sinus tachycardia</b></td><td><b>Treat the cause</b> — it is a sign, not an arrhythmia: pain, volume, bleeding, tamponade, fever, hypoxia, catecholamines, low output</td><td>Rate-controlling an appropriate sinus tachycardia drops cardiac output — do not</td></tr>
+    </table></div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">4</span> Ventricular arrhythmias and VT storm</h3>
+    <div class="note alarm"><b>New sustained VT after cardiac surgery is ischaemia until proven otherwise</b> — a graft that has gone down, spasm, an air embolus, or a mechanical problem. Get the 12-lead and the echo, look at the ST segments and wall motion, and involve the surgeon <i>as</i> you treat the rhythm.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Rhythm</th><th>Compromised</th><th>Tolerated</th></tr>
+      <tr><td><b>Monomorphic VT</b></td><td><b>Synchronised DC shock</b> 100–200 J; pulseless → unsynchronised 150–200 J, start CPR, CALS algorithm (sternotomy re-opening if 3 shocks fail)</td><td>Amiodarone 300 mg over 20–60 min; correct K⁺ / Mg²⁺; <b>ventricular overdrive pacing</b> via the wires can terminate re-entrant VT (and can accelerate it — defibrillator charged first); lidocaine 1 mg/kg as second line especially if ischaemic</td></tr>
+      <tr><td><b>Polymorphic VT / VF</b></td><td>Unsynchronised shock, CPR, CALS</td><td>Treat ischaemia; magnesium; β-blockade; correct electrolytes; look at the QT</td></tr>
+      <tr><td><b>Torsades (long QT)</b></td><td>Shock if pulseless</td><td><b>Magnesium 2 g</b> (repeat), stop QT-prolonging drugs (amiodarone, ondansetron, haloperidol, macrolides), correct K⁺, and <b>pace at 90–110</b> to shorten the QT — overdrive pacing is the definitive bridge; isoprenaline if no wires</td></tr>
+      <tr><td><b>Frequent ectopy / NSVT</b></td><td>—</td><td>K⁺ 4.5–5, Mg²⁺, reduce catecholamines, exclude ischaemia and a wire or catheter in the ventricle. Not treated for its own sake</td></tr>
+    </table></div>
+    <div class="subhead">VT storm — three or more episodes in 24 h</div>
+    <div class="note warn"><b>Turn down the sympathetic system:</b> deep sedation (propofol), <b>β-blockade</b> (esmolol or propranolol — non-selective is better here), intubate and ventilate if not already, treat pain and fever. <b>Amiodarone</b> plus <b>lidocaine</b> together. <b>Correct everything</b>: K⁺, Mg²⁺, pH, oxygen. <b>Overdrive pace</b> at 90–110 to suppress the pause-dependent triggers. <b>Treat the ischaemia</b> — angiography / graft assessment. Refractory: stellate ganglion block, VA-ECMO as a bridge to catheter ablation. A storm in a low-output heart is an MCS conversation early, not late.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">5</span> Bradycardia and heart block — and when to call for a permanent system</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Rhythm</th><th>Acute</th><th>Expect</th></tr>
+      <tr><td><b>Sinus bradycardia / junctional</b></td><td>Pace AAI / DDD at 80–90 (Module 06); reduce β-blocker / amiodarone; atropine is weak after a denervated-feeling post-op heart</td><td>Usually resolves over days as oedema settles and drugs wash out</td></tr>
+      <tr><td><b>First-degree / Mobitz I</b></td><td>Observe; pace if slow and symptomatic</td><td>Benign, resolves</td></tr>
+      <tr><td><b>Mobitz II / complete heart block</b></td><td><b>DDD pacing</b> — never AAI. Keep the output high and the wires protected; a backup transcutaneous pad set if the wires are unreliable</td><td>Depends on the operation — see below</td></tr>
+    </table></div>
+    <div class="subhead">Who needs a permanent pacemaker, and when to decide</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Setting</th><th>Risk of needing a PPM</th><th>Decision point</th></tr>
+      <tr><td><b>Aortic valve surgery</b> — especially a calcified bicuspid valve, root enlargement, or TAVI-in-SAVR</td><td class="mono">~3–7% (surgical AVR); higher for TAVI</td><td>CHB persisting beyond <b>day 5–7</b> is unlikely to recover — refer. Conduction tissue sits in the membranous septum beneath the non/right-coronary commissure</td></tr>
+      <tr><td><b>Septal myectomy</b></td><td class="mono">~5–10%; higher with prior RBBB (resection causes LBBB)</td><td>Pre-existing RBBB + new LBBB = CHB; refer early</td></tr>
+      <tr><td><b>Tricuspid / mitral surgery, VSD closure, Ebstein repair</b></td><td class="mono">variable; tricuspid annulus abuts the AV node</td><td>As for AVR — persistence beyond a week</td></tr>
+      <tr><td><b>Isolated CABG</b></td><td class="mono">&lt; 1%</td><td>Post-op block after CABG alone is usually ischaemic, inflammatory or drug-related and recovers — wait longer, treat the cause</td></tr>
+      <tr><td><b>Sinus node dysfunction post-op</b> (common after atrial incisions, Maze, transplant)</td><td class="mono">varies</td><td>Give it 1–2 weeks off rate-slowing drugs before committing</td></tr>
+    </table></div>
+    <div class="note"><b>Practical rule:</b> remove rate-slowing drugs, wait for the oedema and the inflammation to settle, and <b>reassess daily with the wires in a backup mode (VVI 40–50) to see what underlying rhythm emerges</b>. High-grade block that persists at 5–7 days, or any pacing-dependence as the wires approach removal, triggers the electrophysiology referral — a temporary transvenous wire is the bridge if the epicardial wires fail before the system goes in. <b>Do not remove epicardial wires from a pacing-dependent patient</b> without a plan.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">6</span> Drugs in a low-output heart — what each one costs</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Drug</th><th>Use</th><th>The cost in LCOS</th></tr>
+      <tr><td><b>Amiodarone</b></td><td>AF, VT, almost everything — the default in a weak heart</td><td>Hypotension with the bolus (give slowly, dilute); bradycardia and block; QT prolongation; phlebitis peripherally. Minimal negative inotropy — that is its virtue here</td></tr>
+      <tr><td><b>β-blockers</b> (metoprolol, esmolol)</td><td>Rate control, VT storm, torsades suppression</td><td><b>Negatively inotropic</b> — in a low-output state use esmolol so you can switch it off; avoid in cardiogenic shock without support</td></tr>
+      <tr><td><b>Digoxin</b></td><td>Rate control when β-blockade is not tolerated</td><td>Slow, weak against catecholamines, toxic with hypokalaemia and renal failure; mildly positively inotropic</td></tr>
+      <tr><td><b>Verapamil / diltiazem</b></td><td>SVT, rate control in a good LV</td><td><b>Avoid in LCOS</b> — potent negative inotropes and vasodilators</td></tr>
+      <tr><td><b>Adenosine</b></td><td>Diagnosis and termination of nodal re-entry</td><td>Transient — bronchospasm, flushing, a pause that a paced heart will cover</td></tr>
+      <tr><td><b>Lidocaine</b></td><td>Ischaemic VT, storm (with amiodarone)</td><td>Neurotoxicity with accumulation in liver failure or low output</td></tr>
+      <tr><td><b>Magnesium</b></td><td>Everything, especially torsades and post-op AF prevention</td><td>Hypotension and weakness if given fast or in excess; almost free otherwise</td></tr>
+      <tr><td><b>Flecainide / propafenone</b></td><td>—</td><td><b>Contraindicated</b> — structural heart disease, recent ischaemia (CAST)</td></tr>
+    </table></div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">7</span> Bedside sequence</h3>
+    <div class="note"><b>Compromised?</b> → electricity (synchronised for VT/AF/flutter with a pulse; CALS if pulseless). <b>Not compromised</b> → K⁺ 4.5–5, Mg²⁺ 2 g, oxygen, pH, cut catecholamines, check the CXR for a wire or line in the heart → <b>AF:</b> β-blocker if the LV is good, amiodarone if it is not; pace VVI if slow, AV-sequential once in sinus → <b>Flutter / re-entrant AT:</b> overdrive pace the atrium → <b>VT:</b> amiodarone, overdrive pacing with the defibrillator charged, look for the ischaemia → <b>Torsades:</b> magnesium, pace at 90–110, stop the QT drugs → <b>Block:</b> DDD, remove rate-slowing drugs, reassess daily, refer if persisting at 5–7 days.</div>
+    <div class="disc">Decision-support aid — energies, doses and referral timing follow local protocol and the resuscitation council / CALS guidance; verify every dose independently (Module 11).</div>
+  </div>
+</section>
+
+<!-- ============ MODULE 08 : LVOTO / SAM ============ -->
 <section class="module" id="m-lvoto">
-  <div class="eyebrow">Module 07 · guided management</div>
+  <div class="eyebrow">Module 08 · guided management</div>
   <h2>Hypotension &amp; low output in dynamic LV outflow obstruction</h2>
   <p class="lead">A bedside guide for the hypotensive, low-output patient whose problem is <b>dynamic obstruction of the LV outflow</b> — from systolic anterior motion (SAM) of the mitral valve, basal (septal) outflow obstruction, or both. The physiology inverts the usual shock reflexes: the instinctive moves (inotrope, vasodilate, restrict fluid) deepen the obstruction. Recognise it, then flip the management.</p>
 
@@ -1390,7 +1500,7 @@ tr:last-child td{border-bottom:none}
     <div class="subhead">Step 1 · Fill</div>
     <div class="note"><b>Volume</b> — fluid bolus (e.g. 250–500 mL crystalloid, repeat to response); passive leg raise as a test. A bigger LV cavity moves the mitral apparatus off the septum and lowers the gradient. Target generous, not dry, filling.</div>
     <div class="subhead">Step 2 · Raise afterload — pure vasoconstrictor</div>
-    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 10 for rate ⇄ dose</span></div>
+    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 11 for rate ⇄ dose</span></div>
     <div class="subhead">Step 3 · Slow &amp; synchronise</div>
     <div class="note"><b>β-blockade</b> — esmolol (titratable, ± load) or metoprolol — lowers contractility and lengthens diastolic filling, the two things that most reduce a dynamic gradient. <b>Restore AV synchrony</b>: cardiovert / rate-control AF, pace atrial or AV-sequential (the atrial kick fills the small stiff LV); avoid RV-only pacing, which loses the kick and can worsen the picture.</div>
     <div class="subhead">Step 4 · Reassess</div>
@@ -1427,13 +1537,13 @@ tr:last-child td{border-bottom:none}
   <div class="panel sec">
     <h3><span class="secnum">7</span> Bedside crash sequence</h3>
     <div class="note"><b>Recognise</b> (worse on inotrope) → <b>echo-confirm</b> (SAM / dagger gradient) → <b>STOP</b> inotropes + vasodilators → <b>FILL</b> → <b>phenylephrine</b> (pure α) to raise MAP → <b>β-block</b> (esmolol) + restore AV synchrony → <b>re-echo</b> and titrate to a falling gradient → <b>refractory:</b> sedation, disopyramide, surgeon (myectomy / repair revision); <b>not</b> IABP, <b>not</b> inotropes.</div>
-    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 10). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
+    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 11). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
   </div>
 </section>
 
-<!-- ============ MODULE 08 : TAMPONADE / BLEEDING ============ -->
+<!-- ============ MODULE 09 : TAMPONADE / BLEEDING ============ -->
 <section class="module" id="m-tamp">
-  <div class="eyebrow">Module 08 · the surgical differential</div>
+  <div class="eyebrow">Module 09 · the surgical differential</div>
   <h2>Tamponade &amp; the bleeding chest after cardiac surgery</h2>
   <p class="lead">The two post-cardiotomy problems that look like pump failure, respond to nothing on the inotrope ladder, and are fixed by a surgeon. <b>Tamponade is the diagnosis that kills fastest on this unit</b>, and it breaks every rule you learned about tamponade elsewhere. Bleeding is its usual cause — so the two are one chapter.</p>
 
@@ -1463,7 +1573,7 @@ tr:last-child td{border-bottom:none}
       <div class="note alarm"><b>Normal echo, abnormal patient = still tamponade.</b> Loculated clot, a poor TTE window with an open sternum and dressings, and clot that looks like myocardium make echo <b>insensitive</b>. The decision to re-open is clinical. If the pattern fits and there is no other explanation, open the chest.</div>
     </div>
     <div class="subhead">Differential — the other things that do this</div>
-    <div class="note">RV failure (dilated, not compressed, RV on echo — Module 04) · tension pneumothorax (hyper-resonant, trachea deviated, drain not swinging) · massive haemothorax · abdominal compartment syndrome · dynamic hyperinflation / auto-PEEP in an obstructed airway · graft occlusion / ischaemia (regional wall-motion change, ST change) · LVOTO/SAM (Module 07). Several of these coexist with tamponade; none of them excludes it.</div>
+    <div class="note">RV failure (dilated, not compressed, RV on echo — Module 04) · tension pneumothorax (hyper-resonant, trachea deviated, drain not swinging) · massive haemothorax · abdominal compartment syndrome · dynamic hyperinflation / auto-PEEP in an obstructed airway · graft occlusion / ischaemia (regional wall-motion change, ST change) · LVOTO/SAM (Module 08). Several of these coexist with tamponade; none of them excludes it.</div>
   </div>
 
   <div class="panel sec">
@@ -1526,13 +1636,13 @@ tr:last-child td{border-bottom:none}
   <div class="panel sec">
     <h3><span class="secnum">7</span> Bedside sequence</h3>
     <div class="note"><b>Suspect</b> (rising filling pressures + falling output + climbing support, or drains that suddenly stopped) → <b>call the surgeon now</b>, not after the echo → <b>fill, keep the rate, vasopressor, drop PEEP</b> → <b>echo / TOE if it does not delay</b>; a normal study does not exclude it → <b>re-open</b>: on the unit if arresting or deteriorating faster than theatre can be reached, otherwise in theatre → <b>bleeding:</b> warm, pH, calcium, Hb → protamine for rebound → ROTEM-guided fibrinogen / platelets / PCC / TXA → <b>corrected and still bleeding = surgical</b>.</div>
-    <div class="disc">Decision-support aid — re-opening criteria, product thresholds and the CALS protocol are governed by local policy; verify every dose independently (Module 10).</div>
+    <div class="disc">Decision-support aid — re-opening criteria, product thresholds and the CALS protocol are governed by local policy; verify every dose independently (Module 11).</div>
   </div>
 </section>
 
-<!-- ============ MODULE 09 : ABG / ACID–BASE ============ -->
+<!-- ============ MODULE 10 : ABG / ACID–BASE ============ -->
 <section class="module" id="m-abg">
-  <div class="eyebrow">Module 09 · interpretation &amp; correction</div>
+  <div class="eyebrow">Module 10 · interpretation &amp; correction</div>
   <h2>The ABG in cardiogenic shock — reading it and fixing it</h2>
   <p class="lead">In low output the gas is a <b>perfusion readout</b> as much as a respiratory one. Read it in a fixed order so nothing is missed, then correct in a fixed order — <b>flow before buffer</b>. The acidosis of cardiogenic shock is a symptom of inadequate delivery; treating the number instead of the delivery is the classic error. Companion to Haemodynamics §8 (values, base excess, lactate types, the Stewart lens).</p>
 
@@ -1671,7 +1781,7 @@ tr:last-child td{border-bottom:none}
       <div class="note alarm"><b>Why it usually doesn't help</b><br>· <b>Generates CO₂</b> — worsens intracellular and CNS acidosis unless ventilation can clear it<br>· <b>Drops ionised calcium</b> — directly reduces contractility and vascular tone<br>· Sodium and volume load · hypernatraemia · hyperosmolality<br>· Left-shifts the oxyhaemoglobin curve — impairs tissue O₂ offloading<br>· Rebound alkalosis once the lactate is metabolised<br>· <b>No mortality benefit</b> in lactic acidosis of shock — it treats the number</div>
     </div>
     <div class="note"><b>If you give it:</b> only in a patient whose ventilation can clear the CO₂ generated; give it as a considered dose with a defined endpoint, re-gas early, and <b>watch ionised calcium</b> (replace it). <b>THAM</b> is an alternative that buffers without generating CO₂ — useful when hypercapnia is the limiting factor — but is contraindicated in anuria and can cause hypoglycaemia and hyperkalaemia.</div>
-    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 10).</div>
+    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 11).</div>
   </div>
 
   <div class="panel sec">
@@ -1693,9 +1803,9 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- ============ MODULE 10 : DOSE CONVERTER ============ -->
+<!-- ============ MODULE 11 : DOSE CONVERTER ============ -->
 <section class="module" id="m-conv">
-  <div class="eyebrow">Module 10 · bedside utility</div>
+  <div class="eyebrow">Module 11 · bedside utility</div>
   <h2>Dose converter — inotropes &amp; vasopressors</h2>
   <p class="lead">Two-way conversion between infusion rate and dose for the common agents, a noradrenaline-equivalent / VIS quick calc, and the standard concentrations. Weight- and concentration-aware; each agent carries its own units.</p>
   <div class="grid g2">
@@ -1738,9 +1848,9 @@ tr:last-child td{border-bottom:none}
   <p class="disc">Bedside aid — always cross-check against your unit's standard-concentration chart and an independent calculation before changing a rate. The concentrations shown are common examples, not a substitute for the prescribed dilution.</p>
 </section>
 
-<!-- ============ MODULE 11 : DERIVED VALUES ============ -->
+<!-- ============ MODULE 12 : DERIVED VALUES ============ -->
 <section class="module" id="m-deriv">
-  <div class="eyebrow">Module 11 · bedside calculator</div>
+  <div class="eyebrow">Module 12 · bedside calculator</div>
   <h2>Derived haemodynamic values</h2>
   <p class="lead">Enter what you have — the calculator derives everything it can (SVR / SVRI, PVR, indices, stroke work, cardiac power, PA gradients, oxygen delivery) and colour-codes each against its normal range. Give CO <i>or</i> CI plus weight &amp; height and it fills the other.</p>
   <div class="grid g2">
@@ -1780,7 +1890,7 @@ tr:last-child td{border-bottom:none}
 </section>
 
 
-<!-- ============ MODULE 11 : FLASHCARDS ============ -->
+<!-- ============ MODULE 12 : FLASHCARDS ============ -->
 
 
 
