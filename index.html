@@ -244,9 +244,10 @@ tr:last-child td{border-bottom:none}
   <button data-m="ecmo"><span class="k">05</span>VA-ECMO</button>
   <button data-m="pace"><span class="k">06</span>Pacing</button>
   <button data-m="lvoto"><span class="k">07</span>LVOTO / SAM</button>
-  <button data-m="abg"><span class="k">08</span>ABG / Acid–Base</button>
-  <button data-m="conv"><span class="k">09</span>Dose Converter</button>
-  <button data-m="deriv"><span class="k">10</span>Derived Values</button>
+  <button data-m="tamp"><span class="k">08</span>Tamponade / Bleeding</button>
+  <button data-m="abg"><span class="k">09</span>ABG / Acid–Base</button>
+  <button data-m="conv"><span class="k">10</span>Dose Converter</button>
+  <button data-m="deriv"><span class="k">11</span>Derived Values</button>
 </nav>
 <div class="wrap">
 
@@ -561,7 +562,7 @@ tr:last-child td{border-bottom:none}
 
     <div class="subhead">The four determinants — why it falls</div>
     <div class="note"><b>Rearranged Fick:</b> SvO₂ ≈ SaO₂ − VO₂ / (CO × Hb × 1.34). There are therefore only <b>four</b> reasons for a low SvO₂ — and the whole management of a low value is deciding which: <b>↓ CO</b> (the cardiogenic one), <b>↓ Hb</b> (anaemia), <b>↓ SaO₂</b> (hypoxaemia), or <b>↑ VO₂</b> (fever, shivering, agitation, work of breathing, thyrotoxicosis, seizure). Fix whichever applies; in post-cardiotomy LCOS it is usually output first, haemoglobin second.</div>
-    <div class="note"><b>Oxygen extraction ratio</b> — O₂ER = (SaO₂ − SvO₂) / SaO₂, normally <b>20–30%</b>. A rising O₂ER is the body compensating for falling delivery; above roughly 50–60% extraction is near-maximal and anaerobic metabolism follows. SvO₂ and O₂ER are two views of the same balance. <span class="pill info">Module 10 computes both</span></div>
+    <div class="note"><b>Oxygen extraction ratio</b> — O₂ER = (SaO₂ − SvO₂) / SaO₂, normally <b>20–30%</b>. A rising O₂ER is the body compensating for falling delivery; above roughly 50–60% extraction is near-maximal and anaerobic metabolism follows. SvO₂ and O₂ER are two views of the same balance. <span class="pill info">Module 11 computes both</span></div>
 
     <div class="subhead">Reading the value</div>
     <div class="tbl-wrap"><table>
@@ -1389,7 +1390,7 @@ tr:last-child td{border-bottom:none}
     <div class="subhead">Step 1 · Fill</div>
     <div class="note"><b>Volume</b> — fluid bolus (e.g. 250–500 mL crystalloid, repeat to response); passive leg raise as a test. A bigger LV cavity moves the mitral apparatus off the septum and lowers the gradient. Target generous, not dry, filling.</div>
     <div class="subhead">Step 2 · Raise afterload — pure vasoconstrictor</div>
-    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 09 for rate ⇄ dose</span></div>
+    <div class="note"><b>Phenylephrine</b> is the cleanest choice — pure α, no inotropy or chronotropy (bolus 50–100 µg, or infusion). Noradrenaline or vasopressin are alternatives (vasopressin useful in vasoplegia). Higher aortic pressure raises LV end-systolic volume and splints the outflow open, cutting the gradient <i>and</i> the SAM-driven MR. Aim MAP ≥ 65 (higher if the gradient persists). <span class="pill info">Module 10 for rate ⇄ dose</span></div>
     <div class="subhead">Step 3 · Slow &amp; synchronise</div>
     <div class="note"><b>β-blockade</b> — esmolol (titratable, ± load) or metoprolol — lowers contractility and lengthens diastolic filling, the two things that most reduce a dynamic gradient. <b>Restore AV synchrony</b>: cardiovert / rate-control AF, pace atrial or AV-sequential (the atrial kick fills the small stiff LV); avoid RV-only pacing, which loses the kick and can worsen the picture.</div>
     <div class="subhead">Step 4 · Reassess</div>
@@ -1426,13 +1427,112 @@ tr:last-child td{border-bottom:none}
   <div class="panel sec">
     <h3><span class="secnum">7</span> Bedside crash sequence</h3>
     <div class="note"><b>Recognise</b> (worse on inotrope) → <b>echo-confirm</b> (SAM / dagger gradient) → <b>STOP</b> inotropes + vasodilators → <b>FILL</b> → <b>phenylephrine</b> (pure α) to raise MAP → <b>β-block</b> (esmolol) + restore AV synchrony → <b>re-echo</b> and titrate to a falling gradient → <b>refractory:</b> sedation, disopyramide, surgeon (myectomy / repair revision); <b>not</b> IABP, <b>not</b> inotropes.</div>
-    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 09). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
+    <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 10). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
   </div>
 </section>
 
-<!-- ============ MODULE 08 : ABG / ACID–BASE ============ -->
+<!-- ============ MODULE 08 : TAMPONADE / BLEEDING ============ -->
+<section class="module" id="m-tamp">
+  <div class="eyebrow">Module 08 · the surgical differential</div>
+  <h2>Tamponade &amp; the bleeding chest after cardiac surgery</h2>
+  <p class="lead">The two post-cardiotomy problems that look like pump failure, respond to nothing on the inotrope ladder, and are fixed by a surgeon. <b>Tamponade is the diagnosis that kills fastest on this unit</b>, and it breaks every rule you learned about tamponade elsewhere. Bleeding is its usual cause — so the two are one chapter.</p>
+
+  <div class="note alarm"><b>The reflex:</b> a post-cardiotomy patient whose <b>filling pressures rise while output falls</b>, whose <b>pressor and inotrope requirement climbs without explanation</b>, or whose <b>drains have suddenly stopped</b>, has tamponade until a surgeon has looked. Echo helps; <b>a normal echo does not exclude it</b>. The treatment is re-opening the chest, and the decision to do so is clinical.</div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">1</span> Why post-cardiotomy tamponade breaks the rules</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Classical teaching</th><th>After cardiac surgery</th><th>So</th></tr>
+      <tr><td>Circumferential effusion</td><td><b>Loculated clot</b> — often posterior, or over a single chamber (RA, RV, LA)</td><td>TTE windows miss it; <b>regional</b> compression of one chamber is enough</td></tr>
+      <tr><td>Equalised diastolic pressures (RA = PAOP)</td><td>Frequently <b>not equalised</b> — one chamber is squeezed</td><td>A “non-equalised” PAC does not exclude it</td></tr>
+      <tr><td>Pulsus paradoxus</td><td>Usually <b>absent</b> — positive-pressure ventilation, an open pericardium, regional compression</td><td>Do not wait for it</td></tr>
+      <tr><td>Beck’s triad</td><td>Hypotension yes; muffled sounds and raised JVP unreliable in a paced, ventilated, open-chested patient</td><td>Rely on the trend, not the triad</td></tr>
+      <tr><td>High CVP</td><td>CVP may be <b>normal or only modestly raised</b> — hypovolaemic from bleeding, or a compressed RA</td><td>A “normal” CVP is not reassurance</td></tr>
+      <tr><td>Large effusion on echo</td><td>Clot is <b>echogenic and can look like myocardium</b>; small volumes compress a stiff post-bypass heart</td><td>Look for <i>chamber collapse</i>, not for fluid</td></tr>
+      <tr><td>Pericardiocentesis</td><td>Useless for clot, dangerous with grafts and an open sternum</td><td><b>Re-open the chest</b></td></tr>
+    </table></div>
+    <div class="note"><b>The physiology:</b> the stiff, oedematous post-bypass heart has almost no reserve, so a small loculated clot — 50–100 mL — can be enough. The classic sequence is <b>bleeding → drains clot off → “bleeding stops” → output falls</b>. A drain that has suddenly gone quiet after a brisk run is more worrying than one that is still draining.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">2</span> Recognition — the pattern</h3>
+    <div class="grid g2">
+      <div class="note warn"><b>Haemodynamic</b><br>Rising CVP / PAOP with falling CI and MAP · narrowing pulse pressure · tachycardia (or inability to raise rate with pacing without worsening) · <b>escalating pressor / inotrope need with no other explanation</b> · rising lactate · falling urine output · <b>fluid gives a brief response then nothing</b></div>
+      <div class="note warn"><b>Drains &amp; chest</b><br><b>Sudden cessation of brisk drainage</b> · drains full of clot · widened mediastinum / loss of the clear heart border on CXR · a chest that drained &gt; 200 mL/h and then stopped · inability to tolerate the chest being closed</div>
+      <div class="note"><b>Echo — what actually counts</b><br>RA systolic collapse / RV diastolic collapse (loses specificity with pacing and ventilation) · <b>a chamber that is small when it should be full</b> · a non-collapsing, plethoric IVC · echogenic posterior or lateral collection · exaggerated respiratory variation of mitral / tricuspid inflow. <b>TOE</b> sees posterior clot that TTE cannot — request it early.</div>
+      <div class="note alarm"><b>Normal echo, abnormal patient = still tamponade.</b> Loculated clot, a poor TTE window with an open sternum and dressings, and clot that looks like myocardium make echo <b>insensitive</b>. The decision to re-open is clinical. If the pattern fits and there is no other explanation, open the chest.</div>
+    </div>
+    <div class="subhead">Differential — the other things that do this</div>
+    <div class="note">RV failure (dilated, not compressed, RV on echo — Module 04) · tension pneumothorax (hyper-resonant, trachea deviated, drain not swinging) · massive haemothorax · abdominal compartment syndrome · dynamic hyperinflation / auto-PEEP in an obstructed airway · graft occlusion / ischaemia (regional wall-motion change, ST change) · LVOTO/SAM (Module 07). Several of these coexist with tamponade; none of them excludes it.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">3</span> Management — the decision is the treatment</h3>
+    <div class="subhead">While you organise the surgeon</div>
+    <div class="note"><b>Fill</b> — the tamponaded heart is preload-dependent; volume buys minutes. <b>Keep the rate</b> — stroke volume is fixed, so output is rate-dependent: do not slow the heart, pace up if needed. <b>Support pressure</b> with a vasopressor rather than more inotrope. <b>Minimise intrathoracic pressure</b> — lower PEEP, avoid breath-stacking. <b>Avoid vasodilation</b> — defer sedation boluses that drop tone. <b>Milk / check the drains</b> — a cleared drain occasionally decompresses; do not rely on it. <b>Cross-match, products to the bedside, cell-saver on.</b></div>
+
+    <div class="subhead">Re-opening on the unit vs returning to theatre</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Situation</th><th>Where</th><th>Note</th></tr>
+      <tr><td><b>Arrest, peri-arrest, or deteriorating faster than theatre can be reached</b></td><td class="mono">OPEN ON THE UNIT</td><td>Sternotomy re-opening is part of the post-cardiac-surgery arrest algorithm (CALS): within 5 min of arrest if the three shocks / pacing / drug steps fail. Every unit should have a re-opening set and a trained team</td></tr>
+      <tr><td>Tamponade with time — stable enough to move</td><td class="mono">THEATRE</td><td>Better light, suction, cell salvage, bypass available, and a proper search for the bleeding point</td></tr>
+      <tr><td>Surgical bleeding — brisk, not improving with correction</td><td class="mono">THEATRE</td><td>Sooner is better — re-exploration within hours has better outcomes than re-exploration after a massive transfusion</td></tr>
+    </table></div>
+    <div class="note alarm"><b>Re-opening on the unit:</b> call for help and the surgeon simultaneously; full asepsis as time allows; cut the sternal wires, open the retractor, <b>evacuate clot by hand</b> — relief is usually immediate; identify and control obvious bleeding with pressure; internal cardiac massage if needed (two-handed, 100/min); internal defibrillation at 20 J. The patient then goes to theatre for definitive haemostasis and closure. <b>Do not delay re-opening to get an echo.</b></div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">4</span> The bleeding chest — is it surgical or medical?</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Drain output</th><th>Read</th></tr>
+      <tr><td class="mono">&gt; 200 mL/h for 2 h, or &gt; 400 mL in 1 h</td><td>Significant bleeding — correct and re-assess in an hour; involve the surgeon now</td></tr>
+      <tr><td class="mono">&gt; 1.5 mL/kg/h sustained, or rising</td><td>Likely surgical; the clock is running</td></tr>
+      <tr><td class="mono">Brisk bleeding that <b>suddenly stops</b></td><td>Clotted drains — tamponade until proven otherwise (§2)</td></tr>
+      <tr><td class="mono">Bright red, pulsatile, warm</td><td>Arterial / anastomotic — surgical</td></tr>
+      <tr><td class="mono">Dark, oozy, generalised, “everything bleeds”</td><td>Coagulopathic — correct first, but <b>re-examine the decision every hour</b></td></tr>
+    </table></div>
+    <div class="note"><b>The rule:</b> correct the coagulopathy aggressively <i>and</i> keep asking whether it is surgical. Bleeding that persists once the ROTEM / coagulation screen is normal <b>is surgical</b> and will not stop with more products. The error is treating a surgical bleed with ever more blood — each unit worsens the coagulopathy and the delay worsens the outcome.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">5</span> Correcting the coagulopathy — the ladder</h3>
+    <p class="muted">Post-bypass coagulopathy is a composite: residual heparin, platelet dysfunction from the circuit, dilution, consumption, hypofibrinogenaemia, hypothermia, acidosis and hypocalcaemia. Treat the <b>conditions</b>, then the <b>factors</b>, guided by <b>viscoelastic testing</b> where you have it.</p>
+    <div class="subhead">Step 1 — the conditions clotting needs</div>
+    <div class="note"><b>Warm</b> to ≥ 36 °C · <b>pH</b> &gt; 7.2 · <b>ionised calcium</b> &gt; 1.1 mmol/L (citrate in every product drops it) · <b>Hb</b> ≥ 80–90 g/L in a bleeding patient (red cells contribute to platelet margination) · <b>MAP</b> controlled — a hypertensive bleeding patient bleeds more; aim for the lowest MAP that perfuses</div>
+    <div class="subhead">Step 2 — residual heparin</div>
+    <div class="note">Check ACT / heparin assay. <b>Protamine 25–50 mg</b> for heparin rebound (common at 2–6 h as tissue-bound heparin re-enters the circulation), repeated if the assay confirms. Do not keep giving protamine blind — excess protamine is itself anticoagulant and impairs platelets.</div>
+    <div class="subhead">Step 3 — factors, guided by ROTEM / TEG</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Test</th><th>Deficit</th><th>Give</th><th>Target</th></tr>
+      <tr><td class="mono">FIBTEM A10 &lt; 10 mm (MCF &lt; 12)</td><td>Fibrinogen</td><td><b>Fibrinogen concentrate 3–4 g</b> or cryoprecipitate 2 pools</td><td class="mono">fibrinogen &gt; 2 g/L in active bleeding</td></tr>
+      <tr><td class="mono">EXTEM CT prolonged, FIBTEM normal</td><td>Clotting factors</td><td><b>PCC 15–25 IU/kg</b> (fast, low volume) or FFP 15 mL/kg</td><td class="mono">INR &lt; 1.5</td></tr>
+      <tr><td class="mono">EXTEM A10 low, FIBTEM normal</td><td>Platelets</td><td><b>Platelets 1 adult dose</b> — post-bypass platelets are dysfunctional, so transfuse at a higher count than usual</td><td class="mono">&gt; 100 × 10⁹/L while bleeding</td></tr>
+      <tr><td class="mono">Lysis (ML &gt; 15% / LI30 ↓)</td><td>Hyperfibrinolysis</td><td><b>Tranexamic acid</b> 1 g (re-dose; most will have had it in theatre)</td><td class="mono">lysis abolished</td></tr>
+      <tr><td class="mono">HEPTEM CT &lt;&lt; INTEM CT</td><td>Residual heparin</td><td>Protamine (Step 2)</td><td class="mono">CTs equalise</td></tr>
+      <tr><td class="mono">Everything corrected, still bleeding</td><td colspan="2"><b>Surgical bleeding — theatre.</b> Consider <b>DDAVP 0.3 µg/kg</b> for uraemic / antiplatelet-related platelet dysfunction; <b>rFVIIa</b> is a last resort with a real thrombotic cost (graft occlusion) and no mortality benefit</td><td></td></tr>
+    </table></div>
+    <div class="note warn"><b>Without viscoelastic testing</b> treat empirically in the same order — fibrinogen, then platelets, then factors — and send the lab screen; but a formulaic 1:1:1 approach over-transfuses the post-cardiotomy patient. <b>Antiplatelet history matters:</b> ticagrelor and prasugrel within 5–7 days mean platelet transfusion works poorly (ticagrelor circulates and inhibits the transfused platelets too).</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">6</span> Massive transfusion — the secondary damage</h3>
+    <div class="grid g2">
+      <div class="note warn"><b>Citrate</b> — ionised calcium falls with every unit; replace calcium chloride proactively, not reactively. <b>Hyperkalaemia</b> from stored red cells; <b>hypothermia</b> from cold products — use a warmer. <b>Dilutional coagulopathy</b> if red cells outrun plasma and fibrinogen.</div>
+      <div class="note warn"><b>TRALI / TACO</b> — new hypoxaemia after transfusion: TACO is volume (raised filling pressures, responds to diuresis), TRALI is inflammatory (normal pressures, bilateral infiltrates, supportive care). <b>Volume overload</b> in a heart with no reserve — the LV that was just failing does not tolerate 10 units of anything.</div>
+    </div>
+    <div class="note alarm"><b>The patient who has had a massive transfusion and is still bleeding has a surgical problem.</b> The 5th and 6th units are not a reason for the 7th.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">7</span> Bedside sequence</h3>
+    <div class="note"><b>Suspect</b> (rising filling pressures + falling output + climbing support, or drains that suddenly stopped) → <b>call the surgeon now</b>, not after the echo → <b>fill, keep the rate, vasopressor, drop PEEP</b> → <b>echo / TOE if it does not delay</b>; a normal study does not exclude it → <b>re-open</b>: on the unit if arresting or deteriorating faster than theatre can be reached, otherwise in theatre → <b>bleeding:</b> warm, pH, calcium, Hb → protamine for rebound → ROTEM-guided fibrinogen / platelets / PCC / TXA → <b>corrected and still bleeding = surgical</b>.</div>
+    <div class="disc">Decision-support aid — re-opening criteria, product thresholds and the CALS protocol are governed by local policy; verify every dose independently (Module 10).</div>
+  </div>
+</section>
+
+<!-- ============ MODULE 09 : ABG / ACID–BASE ============ -->
 <section class="module" id="m-abg">
-  <div class="eyebrow">Module 08 · interpretation &amp; correction</div>
+  <div class="eyebrow">Module 09 · interpretation &amp; correction</div>
   <h2>The ABG in cardiogenic shock — reading it and fixing it</h2>
   <p class="lead">In low output the gas is a <b>perfusion readout</b> as much as a respiratory one. Read it in a fixed order so nothing is missed, then correct in a fixed order — <b>flow before buffer</b>. The acidosis of cardiogenic shock is a symptom of inadequate delivery; treating the number instead of the delivery is the classic error. Companion to Haemodynamics §8 (values, base excess, lactate types, the Stewart lens).</p>
 
@@ -1571,7 +1671,7 @@ tr:last-child td{border-bottom:none}
       <div class="note alarm"><b>Why it usually doesn't help</b><br>· <b>Generates CO₂</b> — worsens intracellular and CNS acidosis unless ventilation can clear it<br>· <b>Drops ionised calcium</b> — directly reduces contractility and vascular tone<br>· Sodium and volume load · hypernatraemia · hyperosmolality<br>· Left-shifts the oxyhaemoglobin curve — impairs tissue O₂ offloading<br>· Rebound alkalosis once the lactate is metabolised<br>· <b>No mortality benefit</b> in lactic acidosis of shock — it treats the number</div>
     </div>
     <div class="note"><b>If you give it:</b> only in a patient whose ventilation can clear the CO₂ generated; give it as a considered dose with a defined endpoint, re-gas early, and <b>watch ionised calcium</b> (replace it). <b>THAM</b> is an alternative that buffers without generating CO₂ — useful when hypercapnia is the limiting factor — but is contraindicated in anuria and can cause hypoglycaemia and hyperkalaemia.</div>
-    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 09).</div>
+    <div class="disc">Thresholds and doses are unit- and patient-specific — follow local protocol and verify every dose independently (Module 10).</div>
   </div>
 
   <div class="panel sec">
@@ -1593,9 +1693,9 @@ tr:last-child td{border-bottom:none}
   </div>
 </section>
 
-<!-- ============ MODULE 09 : DOSE CONVERTER ============ -->
+<!-- ============ MODULE 10 : DOSE CONVERTER ============ -->
 <section class="module" id="m-conv">
-  <div class="eyebrow">Module 09 · bedside utility</div>
+  <div class="eyebrow">Module 10 · bedside utility</div>
   <h2>Dose converter — inotropes &amp; vasopressors</h2>
   <p class="lead">Two-way conversion between infusion rate and dose for the common agents, a noradrenaline-equivalent / VIS quick calc, and the standard concentrations. Weight- and concentration-aware; each agent carries its own units.</p>
   <div class="grid g2">
@@ -1638,9 +1738,9 @@ tr:last-child td{border-bottom:none}
   <p class="disc">Bedside aid — always cross-check against your unit's standard-concentration chart and an independent calculation before changing a rate. The concentrations shown are common examples, not a substitute for the prescribed dilution.</p>
 </section>
 
-<!-- ============ MODULE 10 : DERIVED VALUES ============ -->
+<!-- ============ MODULE 11 : DERIVED VALUES ============ -->
 <section class="module" id="m-deriv">
-  <div class="eyebrow">Module 10 · bedside calculator</div>
+  <div class="eyebrow">Module 11 · bedside calculator</div>
   <h2>Derived haemodynamic values</h2>
   <p class="lead">Enter what you have — the calculator derives everything it can (SVR / SVRI, PVR, indices, stroke work, cardiac power, PA gradients, oxygen delivery) and colour-codes each against its normal range. Give CO <i>or</i> CI plus weight &amp; height and it fills the other.</p>
   <div class="grid g2">
