@@ -1184,7 +1184,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
     </table></div>
     <div class="grid g2">
       <div class="note"><b>Fibrinogen is the pivot.</b> It is the first factor to fall to a critical level in consumption and dilution, and low fibrinogen both bleeds <i>and</i> starves the circuit's ability to be safely anticoagulated. Replace early to the target, guided where available by <b>viscoelastic testing</b> (ROTEM FIBTEM / TEG functional fibrinogen) rather than the lab number alone.</div>
-      <div class="note warn"><b>Replacement that doesn't hold = a circuit-change signal.</b> If fibrinogen and platelets keep falling <i>despite</i> adequate replacement and adequate anticoagulation, you are feeding a clotting circuit — stop transfusing into it and <b>change the oxygenator / circuit</b> (§16). Persistent consumption after the swap = look at the patient (sepsis, DIC, HIT).</div>
+      <div class="note warn"><b>Replacement that doesn't hold = a circuit-change signal.</b> If fibrinogen and platelets keep falling <i>despite</i> adequate replacement and adequate anticoagulation, you are feeding a clotting circuit — stop transfusing into it and <b>change the oxygenator / circuit</b> (§16). Persistent consumption after the swap = look at the patient (sepsis, DIC — Module 09 §7, HIT).</div>
     </div>
     <div class="note alarm"><b>Bleeding + clotting at once (the ECMO paradox):</b> a consumptive circuit makes the patient bleed while it clots. Prioritise — <b>secure haemostasis</b> (fibrinogen, platelets, surgical source), then <b>fix the circuit</b>; don't simply escalate anticoagulation into a bleeding patient, and don't simply stop it into a clotting circuit. Exclude <b>HIT</b> whenever platelets fall on heparin — switch to a DTI (bivalirudin) if suspected.</div>
     <div class="subhead">When fibrinogen is <i>high</i></div>
@@ -1710,8 +1710,45 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">7</span> Bedside sequence</h3>
-    <div class="note"><b>Suspect</b> (rising filling pressures + falling output + climbing support, or drains that suddenly stopped) → <b>call the surgeon now</b>, not after the echo → <b>fill, keep the rate, vasopressor, drop PEEP</b> → <b>echo / TOE if it does not delay</b>; a normal study does not exclude it → <b>re-open</b>: on the unit if arresting or deteriorating faster than theatre can be reached, otherwise in theatre → <b>bleeding:</b> warm, pH, calcium, Hb → protamine for rebound → ROTEM-guided fibrinogen / platelets / PCC / TXA → <b>corrected and still bleeding = surgical</b>.</div>
+    <h3><span class="secnum">7</span> DIC — when the bleeding is the clotting</h3>
+    <p class="muted">Disseminated intravascular coagulation is not a disease but a <b>process</b>: systemic activation of coagulation that consumes platelets and factors, deposits fibrin in the microcirculation, and — because fibrinolysis is activated alongside — bleeds. After cardiac surgery it is almost always secondary to something you can name: <b>sepsis, prolonged shock, a massive transfusion, a circuit, or dead tissue</b>. Treat that; the products are temporising.</p>
+
+    <div class="subhead">Recognise it — the ISTH overt-DIC score</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Parameter</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+      <tr><td><b>Platelets</b> (×10⁹/L)</td><td class="mono">&gt; 100</td><td class="mono">50–100</td><td class="mono">&lt; 50</td><td class="mono">—</td></tr>
+      <tr><td><b>D-dimer / fibrin markers</b></td><td class="mono">normal</td><td class="mono">—</td><td class="mono">moderate ↑</td><td class="mono">strong ↑ (&gt; 5–10× ULN)</td></tr>
+      <tr><td><b>PT prolongation</b></td><td class="mono">&lt; 3 s</td><td class="mono">3–6 s</td><td class="mono">&gt; 6 s</td><td class="mono">—</td></tr>
+      <tr><td><b>Fibrinogen</b> (g/L)</td><td class="mono">&gt; 1.0</td><td class="mono">&lt; 1.0</td><td class="mono">—</td><td class="mono">—</td></tr>
+    </table></div>
+    <div class="note"><b>≥ 5 = overt DIC</b> — repeat daily. <b>&lt; 5</b> = not excluded; non-overt DIC is diagnosed on the <b>trend</b> (falling platelets and fibrinogen, rising D-dimer over 24 h) and on the clinical picture. The score needs an underlying condition known to cause DIC before it means anything.</div>
+    <div class="note warn"><b>The post-cardiotomy problem: three things mimic it.</b> All three give low platelets, low fibrinogen and a high D-dimer, and the D-dimer is raised after any operation anyway. Distinguish them before you call it DIC: <b>dilutional coagulopathy</b> after massive transfusion (D-dimer only modestly up, corrects with products and stays corrected); <b>circuit consumption</b> on ECMO or CRRT (localised to the oxygenator — ΔP rising, bundle clot; VA-ECMO §15); and <b>HIT</b> (platelets falling 5–10 days after heparin, thrombosis not bleeding, 4T score — stop all heparin, DTI). True DIC has a <b>driver</b> and a <b>microangiopathy</b>: schistocytes on the film, organ failure out of proportion, and consumption that products cannot keep up with.</div>
+
+    <div class="subhead">Which DIC? — the phenotype decides the treatment</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Phenotype</th><th>Picture</th><th>Typical cause here</th><th>Treatment emphasis</th></tr>
+      <tr><td><b>Bleeding (fibrinolytic)</b></td><td>Oozing from every line and the wound, low fibrinogen, high D-dimer, prolonged PT/APTT</td><td>Massive transfusion, post-bypass with inadequate antifibrinolytic, obstetric-type release, trauma</td><td>Replace what is consumed <i>while bleeding</i>: fibrinogen, platelets, FFP/PCC. <b>No heparin.</b> TXA only if hyperfibrinolysis dominates on ROTEM and the thrombotic risk is accepted</td></tr>
+      <tr><td><b>Thrombotic (organ-failure)</b></td><td>Microvascular thrombosis: AKI, rising LFTs, confusion, digital / acral ischaemia, purpura fulminans; platelets low but little bleeding</td><td><b>Sepsis</b> — the commonest DIC on the unit; malignancy</td><td>Treat the sepsis. <b>Therapeutic-range or prophylactic heparin</b> if not bleeding (it interrupts the consumption). Products only for bleeding or a procedure</td></tr>
+      <tr><td><b>Mixed / consumptive</b></td><td>Both — bleeding from sites, clotting in organs</td><td>Prolonged shock with ischaemic gut or limb, circuit plus sepsis</td><td>Remove the driver (dead bowel, failing circuit, source control); replace while bleeding; anticoagulate once haemostasis is secure</td></tr>
+    </table></div>
+
+    <div class="subhead">Treatment ladder</div>
+    <div class="note alarm"><b>1 · Find and treat the cause — this is the only treatment that works.</b> Cultures and antibiotics for sepsis; source control; restore perfusion (Module 01); exclude and treat <b>mesenteric or limb ischaemia</b> (Module 04 §9) — dead tissue drives DIC until it is removed; change a consuming circuit (VA-ECMO §16); stop heparin and switch to a DTI if HIT is possible.</div>
+    <div class="note"><b>2 · Replace only what is needed, only if bleeding or before a procedure.</b> Targets while bleeding: platelets &gt; 50 (&gt; 100 if CNS or massive bleeding), fibrinogen &gt; 1.5 g/L (cryoprecipitate 2 pools or concentrate 3–4 g), INR &lt; 1.5–2 (FFP 15 mL/kg; PCC only with caution — it adds thrombin substrate to a pro-thrombotic process). Transfusing a non-bleeding patient to normalise numbers <b>fuels the fire</b> — it does not help and may harm.</div>
+    <div class="note"><b>3 · Anticoagulate the thrombotic phenotype.</b> Unfractionated heparin (prophylactic dose, or 5–10 U/kg/h without a bolus) in the non-bleeding patient with organ failure or purpura — it is counter-intuitive and correct. Hold it the moment significant bleeding starts.</div>
+    <div class="note warn"><b>4 · What not to do.</b> <b>Tranexamic acid</b> is contraindicated in DIC with a thrombotic phenotype (it blocks the fibrinolysis that is clearing microthrombi) — reserve it for proven dominant hyperfibrinolysis with bleeding. <b>rFVIIa</b> adds thrombin to a thrombotic process. <b>Antithrombin and thrombomodulin</b> are not routine. Do not treat the score; treat the patient.</div>
+
+    <div class="subhead">On the unit — how it actually presents</div>
+    <div class="grid g2">
+      <div class="note warn"><b>Day 3–5 post-cardiotomy, septic, oozing from lines, platelets 60 and falling, fibrinogen 1.2, D-dimer in the thousands, creatinine rising.</b> This is septic DIC: antibiotics and source control first, products only for the oozing that matters, and prophylactic heparin once the oozing stops. The platelet count will follow the sepsis, not the transfusions.</div>
+      <div class="note warn"><b>On ECMO, fibrinogen falling despite replacement.</b> Before calling it DIC: is the ΔP rising, is there clot in the bundle, is the D-dimer rising faster than the fibrinogen falls? That is circuit consumption and the treatment is an oxygenator change, not more cryoprecipitate (VA-ECMO §15–§16). If the circuit is clean and there is a septic or ischaemic driver, it is DIC and the circuit is a bystander.</div>
+    </div>
+    <div class="note"><b>Monitoring:</b> platelets, fibrinogen, PT, D-dimer every 6–12 h while active; a blood film for schistocytes; lactate and organ markers for the driver; ROTEM where available — it separates the fibrinolytic from the consumptive picture at the bedside. Resolution is a <b>rising platelet count</b> without transfusion — that, not a normal fibrinogen, is the signal the driver has been dealt with.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">8</span> Bedside sequence</h3>
+    <div class="note"><b>Suspect</b> (rising filling pressures + falling output + climbing support, or drains that suddenly stopped) → <b>call the surgeon now</b>, not after the echo → <b>fill, keep the rate, vasopressor, drop PEEP</b> → <b>echo / TOE if it does not delay</b>; a normal study does not exclude it → <b>re-open</b>: on the unit if arresting or deteriorating faster than theatre can be reached, otherwise in theatre → <b>bleeding:</b> warm, pH, calcium, Hb → protamine for rebound → ROTEM-guided fibrinogen / platelets / PCC / TXA → <b>corrected and still bleeding = surgical</b> → <b>DIC?</b> score it (§7), find the driver, replace only while bleeding, heparin for the thrombotic phenotype.</div>
     <div class="disc">Decision-support aid — re-opening criteria, product thresholds and the CALS protocol are governed by local policy; verify every dose independently (Module 12).</div>
   </div>
 </section>
