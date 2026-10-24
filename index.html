@@ -602,7 +602,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
       <div class="note warn"><b>Continuous oximetry drift</b> — fibreoptic PA catheters drift; <b>re-calibrate against a lab co-oximetry sample</b> before acting on an unexpected change, especially a reassuring one.</div>
     </div>
 
-    <div class="note alarm"><b>Never read SvO₂ alone.</b> Pair it with <b>lactate</b> and the <b>CO₂ gap</b> (P<sub>v-a</sub>CO₂, normal &lt; 6 mmHg / 0.8 kPa). A normal-to-high SvO₂ with a <b>wide</b> CO₂ gap means flow is still inadequate for metabolic demand despite the reassuring saturation — the combination that most often prevents a missed low-output state. The four-quadrant reading is in the ABG module (§4).</div>
+    <div class="note alarm"><b>Never read SvO₂ alone.</b> Pair it with <b>lactate</b> and the <b>CO₂ gap</b> (P<sub>v-a</sub>CO₂, normal &lt; 6 mmHg / 0.8 kPa). A normal-to-high SvO₂ with a <b>wide</b> CO₂ gap means flow is still inadequate for metabolic demand despite the reassuring saturation — the combination that most often prevents a missed low-output state. The four-quadrant reading is in the ABG module (§5).</div>
 
     <div class="subhead">Using it</div>
     <div class="note"><b>As a resuscitation target:</b> trend it alongside lactate clearance — a rising SvO₂ with falling lactate is the signature of successful escalation. <b>In weaning:</b> a fall in SvO₂ during an inotrope wean, a trial-off, or a spontaneous breathing trial is an early objective sign the patient is not ready, often preceding any change in blood pressure. <b>Before transfusing:</b> a low SvO₂ with a low Hb is one of the more defensible triggers in a shocked patient, since it demonstrates the anaemia is costing delivery.</div>
@@ -1879,10 +1879,10 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
       <tr><td><b>1 · Oxygenation</b></td><td>PaO₂, SaO₂, P/F ratio, A–a gradient — and is the sample from the <i>right</i> site (VA-ECMO: right radial, §04 of the ECMO module)?</td><td>Hypoxaemia → FiO₂ / PEEP / recruitment / oedema; consider Harlequin</td></tr>
       <tr><td><b>2 · pH</b></td><td>Acidaemic (&lt;7.35) or alkalaemic (&gt;7.45)? Which way is the patient <i>actually</i> deranged?</td><td>Names the primary disorder's direction</td></tr>
       <tr><td><b>3 · Respiratory</b></td><td>PaCO₂ — high, low, or normal? Does it move <i>with</i> the pH (primary) or <i>against</i> it (compensating)?</td><td>Primary respiratory disorder vs compensation</td></tr>
-      <tr><td><b>4 · Metabolic</b></td><td>HCO₃⁻ and <b>base excess</b> — the titratable metabolic load, independent of ventilation</td><td>Quantifies the deficit to correct</td></tr>
+      <tr><td><b>4 · Metabolic</b></td><td>HCO₃⁻ and <b>base excess</b> — the titratable metabolic load, independent of ventilation (§4)</td><td>Quantifies the deficit to correct</td></tr>
       <tr><td><b>5 · Compensation</b></td><td>Is compensation <b>as predicted</b>? (§2). Deviation = a second, hidden disorder</td><td>Unmasks mixed disorders</td></tr>
       <tr><td><b>6 · Anion gap + delta</b></td><td>Albumin-corrected AG; ΔAG/ΔHCO₃ delta ratio (§3)</td><td>Separates lactate from chloride from a third process</td></tr>
-      <tr><td><b>7 · Perfusion layer</b></td><td>Lactate, ScvO₂/SvO₂, <b>CO₂ gap</b>, and their trend (§4)</td><td>Is delivery adequate <i>right now</i>?</td></tr>
+      <tr><td><b>7 · Perfusion layer</b></td><td>Lactate, ScvO₂/SvO₂, <b>CO₂ gap</b>, and their trend (§5)</td><td>Is delivery adequate <i>right now</i>?</td></tr>
     </table></div>
     <div class="note"><b>The trend beats the snapshot.</b> A single gas names the disorder; two gases tell you whether your treatment is working. In shock, lactate clearance and base-deficit closure are the resuscitation endpoints (Module 01) — not a normal pH at any particular hour.</div>
   </div>
@@ -1917,7 +1917,42 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">4</span> The perfusion layer — lactate, ScvO₂ and the CO₂ gap</h3>
+    <h3><span class="secnum">4</span> Base excess — what it adds, and what it cannot tell you</h3>
+    <p class="muted">Base excess is the most over-trusted and the most under-used number on the gas, usually by different people. It is worth being precise about what it is.</p>
+    <div class="note"><b>What it is:</b> the amount of acid or base (mmol/L) that would return the blood to <b>pH 7.40 at a PaCO₂ of 5.3 kPa (40 mmHg) and 37 °C</b>. In other words: hold the respiratory component constant and ask how far the <i>metabolic</i> side is from normal. <b>Standard base excess (SBE)</b> — the one most analysers report — does the calculation for the whole extracellular fluid (Hb assumed 50 g/L), which reflects the body better than a sample of blood. Normal −2 to +2; a value below −2 is a <b>base deficit</b>.</div>
+
+    <div class="subhead">Why it matters — what it adds over HCO₃⁻</div>
+    <div class="grid g2">
+      <div class="note"><b>It is respiratory-independent.</b> HCO₃⁻ moves with PaCO₂ on its own (about 1 mmol/L per 10 mmHg acutely), so a bicarbonate of 19 in a hyperventilating patient is partly ventilation, not metabolism. BE strips that out and gives the metabolic load as one number.</div>
+      <div class="note"><b>It is a quantity, not a category.</b> A base deficit of 12 is a titratable amount of acid — it sizes the problem and trends cleanly. That is why <b>closing the base deficit</b> is a resuscitation endpoint alongside lactate clearance (Module 01), and why admission base deficit predicts outcome in shock and trauma. A deficit that <i>deepens</i> on treatment is a failing resuscitation whatever the pH does.</div>
+    </div>
+
+    <div class="subhead">Why it is not enough — the five ways it misleads</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Limitation</th><th>What happens</th><th>So</th></tr>
+      <tr><td><b>It has no cause attached</b></td><td>A base deficit of 10 from lactate, from a litre of 0.9% saline, from ketones and from renal failure are the same number</td><td>BE tells you <i>how much</i>; the anion gap, lactate and chloride tell you <i>what</i> (§3, §5). Never act on a base deficit without partitioning it</td></tr>
+      <tr><td><b>Hyperchloraemia is a base deficit</b></td><td>After pump prime and saline the chloride is 112 and the BE is −6 — and the patient is perfectly perfused</td><td>Chasing a <b>saline base deficit</b> with more flow or more volume is the commonest base-excess error after cardiac surgery. Check the chloride first</td></tr>
+      <tr><td><b>Hypoalbuminaemia hides acid</b></td><td>Albumin is a weak acid: every 10 g/L below 42 <b>raises BE by about 2.5</b>. The post-bypass patient with an albumin of 20 carries +5 of alkalinising effect that masks 5 mmol/L of real acid load</td><td>A “normal” BE in a hypoalbuminaemic patient can conceal a significant lactic or chloride acidosis — the same trap as the uncorrected anion gap (§3)</td></tr>
+      <tr><td><b>Opposing processes cancel</b></td><td>Lactic acidosis (−8) plus a diuretic or citrate alkalosis (+8) gives a BE of 0</td><td>A normal BE does not mean no metabolic disorder; a lactate or a chloride that does not match the BE is the clue to a mixed picture</td></tr>
+      <tr><td><b>It is calculated, not measured</b></td><td>Derived from pH and PaCO₂ by the analyser’s algorithm (Van Slyke) with an assumed haemoglobin; different machines give different numbers for the same blood, and chronic respiratory compensation produces a “metabolic” BE that is not a disease</td><td>Trend on one analyser; and read a CO₂ retainer’s BE of +8 as compensation, not as an alkalosis to treat</td></tr>
+    </table></div>
+
+    <div class="subhead">Partitioning the base deficit — the simplified Fencl–Stewart approach</div>
+    <div class="note"><b>Split the BE into its causes with four lines of arithmetic</b> (Story’s simplification; all in mmol/L, albumin in g/L):</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Component</th><th>Formula</th><th>Reads</th></tr>
+      <tr><td><b>Sodium–chloride effect</b></td><td class="mono">(Na − Cl) − 38</td><td>Negative = hyperchloraemic (saline, prime) acidosis; positive = hypochloraemic (diuretic, NG loss) alkalosis</td></tr>
+      <tr><td><b>Albumin effect</b></td><td class="mono">0.25 × (42 − albumin)</td><td>Positive in hypoalbuminaemia — the amount of acid being <i>hidden</i></td></tr>
+      <tr><td><b>Lactate effect</b></td><td class="mono">1 − lactate</td><td>The perfusion (or type-B) contribution</td></tr>
+      <tr><td><b>Unmeasured anions</b></td><td class="mono">SBE − (sum of the three above)</td><td>Ketones, uraemic acids, toxins, phosphate, citrate — anything you have not measured. A large negative value here is a reason to go looking</td></tr>
+    </table></div>
+    <div class="note"><b>Worked example — the classic post-bypass gas.</b> Na 140, Cl 112, albumin 22, lactate 4, SBE −8. Sodium–chloride effect = 140 − 112 − 38 = <b>−10</b>. Albumin effect = 0.25 × (42 − 22) = <b>+5</b>. Lactate effect = 1 − 4 = <b>−3</b>. Unmeasured = −8 − (−10 + 5 − 3) = <b>0</b>. Reading: the deficit is <b>mostly chloride</b> with a <b>lactate component</b>, and the hypoalbuminaemia is hiding a third of it — the true acid load is 13, not 8. The chloride part needs a change of fluid, not more flow; the lactate part needs the usual question (Module 01). <b>The calculator above does this partition</b> when Na, Cl, albumin and lactate are entered alongside the BE.</div>
+
+    <div class="note alarm"><b>The rule:</b> use base excess to <b>size and trend</b> the metabolic load — it is good at that and bicarbonate is not. Never use it to <b>diagnose</b>: a base deficit is a question, and the anion gap, chloride, albumin and lactate are the answer. And never <b>treat</b> it — bicarbonate to normalise a BE is the error §8 is about.</div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">5</span> The perfusion layer — lactate, ScvO₂ and the CO₂ gap</h3>
     <p class="muted">These three answer the only question that matters in cardiogenic shock: <b>is delivery matching demand?</b> Read them together — each alone misleads.</p>
     <div class="grid g2">
       <div class="note"><b>Lactate</b> — type A (hypoperfusion) vs type B (adrenaline/β-agonist glycolysis, metformin, liver, thiamine). A lactate that climbs <i>as you escalate adrenaline</i> is often type B — don't reflexively add flow the patient doesn't need. <b>Clearance</b> (≥ 10–20% per 2–4 h) is the goal, not a single value.</div>
@@ -1935,7 +1970,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">5</span> Pattern recognition — the gases you will actually see</h3>
+    <h3><span class="secnum">6</span> Pattern recognition — the gases you will actually see</h3>
     <div class="tbl-wrap"><table>
       <tr><th>Clinical picture</th><th>Typical gas</th><th>What it means</th></tr>
       <tr><td>Early cardiogenic shock</td><td>↓ pH, ↓ HCO₃, ↓↓ BE, ↑ lactate, ↓ PaCO₂ (compensating), ↓ ScvO₂</td><td>High-gap lactic acidosis from inadequate DO₂ — fix flow</td></tr>
@@ -1945,13 +1980,13 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
       <tr><td>Aggressive diuresis / NG losses</td><td>↑ pH, ↑ HCO₃, ↑ PaCO₂ (compensating), ↓ K⁺, ↓ Cl⁻</td><td>Contraction / hypochloraemic alkalosis — replace Cl⁻ and K⁺; acetazolamide if needed</td></tr>
       <tr><td>CRRT with regional citrate</td><td>↑ pH, ↑ HCO₃, ↑ total : ionised Ca ratio, ↓ ionised Ca</td><td>Citrate accumulation (liver dysfunction / low flow) — adjust or switch anticoagulation</td></tr>
       <tr><td>VA-ECMO, right radial gas poor but circuit gas superb</td><td>↓ PaO₂ upper body, normal lower body</td><td><b>Harlequin</b> — differential hypoxia (VA-ECMO §11), not a metabolic problem</td></tr>
-      <tr><td>Just cannulated / sweep turned up</td><td>Rapid fall in PaCO₂, rising pH</td><td><b>Iatrogenic</b> — abrupt CO₂ clearance causes cerebral vasoconstriction; correct slowly (§7)</td></tr>
+      <tr><td>Just cannulated / sweep turned up</td><td>Rapid fall in PaCO₂, rising pH</td><td><b>Iatrogenic</b> — abrupt CO₂ clearance causes cerebral vasoconstriction; correct slowly (§8)</td></tr>
       <tr><td>Post-arrest</td><td>Mixed severe metabolic + respiratory acidosis, very high lactate</td><td>Expect it to clear with restored perfusion — ventilate, perfuse, re-gas</td></tr>
     </table></div>
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">6</span> Correction — the ladder</h3>
+    <h3><span class="secnum">7</span> Correction — the ladder</h3>
     <div class="note alarm"><b>The principle: fix delivery, not the number.</b> In cardiogenic shock the acidosis is the readout of inadequate DO₂. Every rung below is subordinate to raising cardiac output and oxygen delivery — buffers treat the pH while the patient goes on dying of low flow.</div>
     <div class="subhead">Rung 1 · Restore flow and delivery <span class="pill info">the actual treatment</span></div>
     <div class="note">Optimise preload · pressors / inotropes by phenotype · rate and rhythm (AV synchrony) · relieve mechanical causes (tamponade, LVOTO, RVOT) · escalate to MCS when the ladder is exhausted — all per <b>Module 01</b>. Then raise the other DO₂ terms: <b>Hb</b> (transfuse if anaemic and shocked) and <b>SaO₂</b>. Reduce demand: sedation, analgesia, treat fever/shivering, take over the work of breathing.</div>
@@ -1963,13 +1998,13 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
     <div class="subhead">Rung 3 · Address the specific mechanism</div>
     <div class="note">Hyperchloraemic → <b>switch to balanced crystalloid</b>, stop the saline/chloride load. Ketoacidosis → insulin + glucose. Toxic → antidote. Renal failure with accumulating acid → <b>RRT</b>. Contraction alkalosis → chloride and potassium replacement ± acetazolamide. Citrate accumulation → reduce/stop citrate. Thiamine for unexplained lactataemia.</div>
     <div class="subhead">Rung 4 · Buffer — last, and narrowly</div>
-    <div class="note warn">See §7. Bicarbonate is a temporising measure for <b>severe acidaemia</b>, not a treatment for shock.</div>
+    <div class="note warn">See §8. Bicarbonate is a temporising measure for <b>severe acidaemia</b>, not a treatment for shock.</div>
     <div class="subhead">Rung 5 · Extracorporeal clearance</div>
     <div class="note"><b>RRT</b> corrects acidosis reliably (bicarbonate-buffered) and removes the acid load in renal failure — a better answer than repeated bicarbonate boluses in the anuric, volume-overloaded, acidotic patient. <b>ECCO₂R / the ECMO circuit</b> clears CO₂ via sweep gas when ventilation cannot.</div>
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">7</span> Sodium bicarbonate — the honest position</h3>
+    <h3><span class="secnum">8</span> Sodium bicarbonate — the honest position</h3>
     <div class="grid g2">
       <div class="note"><b>Where it is defensible</b><br>· Severe acidaemia, conventionally <b>pH &lt; 7.10–7.20</b>, especially with haemodynamic instability or catecholamine unresponsiveness<br>· <b>Normal-gap / bicarbonate-losing</b> acidosis (GI, renal, hyperchloraemic) — here you are genuinely replacing lost buffer<br>· Hyperkalaemia · sodium-channel-blocker toxicity (TCA) · severe acidosis with AKI while arranging RRT (BICAR-ICU signalled benefit in the AKIN 2–3 subgroup)</div>
       <div class="note alarm"><b>Why it usually doesn't help</b><br>· <b>Generates CO₂</b> — worsens intracellular and CNS acidosis unless ventilation can clear it<br>· <b>Drops ionised calcium</b> — directly reduces contractility and vascular tone<br>· Sodium and volume load · hypernatraemia · hyperosmolality<br>· Left-shifts the oxyhaemoglobin curve — impairs tissue O₂ offloading<br>· Rebound alkalosis once the lactate is metabolised<br>· <b>No mortality benefit</b> in lactic acidosis of shock — it treats the number</div>
@@ -1979,7 +2014,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">8</span> The traps</h3>
+    <h3><span class="secnum">9</span> The traps</h3>
     <div class="grid g2">
       <div class="note alarm"><b>Correcting CO₂ too fast</b> — on ECMO initiation or after intubation of a chronically hypercapnic patient, a rapid PaCO₂ fall causes cerebral vasoconstriction (and, with a chronic buffer, a swing to alkalaemia). <b>Reduce PaCO₂ gradually</b> — start the sweep low and titrate.</div>
         <div class="note alarm"><b>Chasing a normal pH with bicarbonate</b> while cardiac output stays low — the commonest and most harmful error on this page.</div>
@@ -1991,7 +2026,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">9</span> Bedside sequence</h3>
+    <h3><span class="secnum">10</span> Bedside sequence</h3>
     <div class="note"><b>Read</b> — oxygenation → pH → PaCO₂ → HCO₃/BE → compensation → albumin-corrected gap + delta ratio → lactate / ScvO₂ / CO₂ gap. <b>Name</b> the primary disorder and every co-existing one. <b>Ask</b> “is this a delivery problem?” — if yes, <b>raise flow</b> (Module 01) and re-gas. <b>Fix the specific mechanism</b> (chloride load, ketones, renal, citrate, diuretic). <b>Support ventilation</b> to match the compensatory demand, respecting PVR. <b>Buffer only</b> for severe acidaemia with an endpoint, watching ionised calcium. <b>Re-gas and trend</b> — lactate clearance and closing base deficit are the endpoints.</div>
     <div class="disc">Decision-support aid — confirm against local protocol and the full clinical picture; formulae are guides, and a gas is never interpreted apart from the patient in front of you.</div>
   </div>
@@ -2185,7 +2220,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
       <tr><td><b>Rising VIS, stable lactate, stable MAP</b></td><td>Escalating to hold the line — early D, or a vasoplegic drift</td><td>Same differential; consider a non-catecholamine pressor before the next catecholamine increment</td></tr>
       <tr><td><b>Plateau at high VIS</b></td><td>Stable but dependent; not recovering</td><td>Define the exit plan: what reverses this, and what is the MCS / destination plan if nothing does (Module 10 §6)</td></tr>
       <tr><td><b>Falling VIS, clearing lactate</b></td><td>Recovering</td><td>Wean to the patient (Module 10)</td></tr>
-      <tr><td><b>Falling VIS, rising lactate</b></td><td>Weaning too fast — or a type-B lactate from adrenaline that is now clearing as the drug comes off</td><td>Check SvO₂ and the CO₂ gap before reversing the wean (Module 11 §4)</td></tr>
+      <tr><td><b>Falling VIS, rising lactate</b></td><td>Weaning too fast — or a type-B lactate from adrenaline that is now clearing as the drug comes off</td><td>Check SvO₂ and the CO₂ gap before reversing the wean (Module 11 §5)</td></tr>
       <tr><td><b>Low VIS, hypotensive, hypoperfused</b></td><td>Under-supported, or a mechanical problem that drugs cannot fix</td><td>Volume status, tamponade, rhythm, obstruction — then escalate deliberately</td></tr>
     </table></div>
     <div class="note warn"><b>The thresholds are population averages.</b> Peak VIS ≥ 20 in the first 24 h after cardiac surgery is the figure most consistently tied to mortality and morbidity in adults; above ~30–45 the outlook is poor without mechanical support. But a VIS of 25 falling fast is a better place than a VIS of 15 rising — the slope beats the level. SCAI staging is a snapshot; re-stage with every change.</div>
@@ -3023,6 +3058,11 @@ function abgCalc(m){
       else{dx='Mixed disorder \u2014 normal pH';dxNote='Components are abnormal in opposing directions; a normal pH here hides two processes.';}
     }
   }
+  // simplified Fencl\u2013Stewart partition of the base excess (Story 2004)
+  const beNaCl=(!isNaN(na)&&!isNaN(cl))?(na-cl)-38:NaN;
+  const beAlb=!isNaN(alb)?0.25*(42-alb):NaN;
+  const beLac=!isNaN(lac)?1-lac:NaN;
+  const beUma=(!isNaN(be)&&!isNaN(beNaCl)&&!isNaN(beAlb)&&!isNaN(beLac))?be-(beNaCl+beAlb+beLac):NaN;
   const cards=[];
   const push=(nm,val,u,band,note)=>cards.push({nm:nm,val:val,u:u,band:band||'na',note:note||''});
   const f=(x,p)=>isNaN(x)?'\u2014':x.toFixed(p);
@@ -3030,6 +3070,11 @@ function abgCalc(m){
   push('PaCO\u2082',isNaN(pco2mm)?'\u2014':(kpa?f(pco2,1):f(pco2mm,0)),kpa?'kPa':'mmHg',isNaN(pco2mm)?'na':((pco2mm>45||pco2mm<35)?'lo':'ok'),kpa?'4.7\u20136.0':'35\u201345');
   push('HCO\u2083\u207b',f(hco3,1),'mmol/L',isNaN(hco3)?'na':((hco3<22||hco3>26)?'lo':'ok'),hco3Derived?'derived from pH & PaCO\u2082':'22\u201326');
   push('Base excess',f(be,1),'mmol/L',isNaN(be)?'na':(be<-6?'hi':((be<-2||be>2)?'lo':'ok')),'\u22122 to +2');
+  const sg=(x)=>isNaN(x)?'\u2014':((x>0?'+':'')+x.toFixed(1));
+  push('BE \u00b7 Na\u2013Cl effect',sg(beNaCl),'mmol/L',isNaN(beNaCl)?'na':(beNaCl<-4?'hi':(beNaCl<-2||beNaCl>4?'lo':'ok')),'(Na\u2212Cl)\u221238 \u00b7 chloride');
+  push('BE \u00b7 albumin effect',sg(beAlb),'mmol/L',isNaN(beAlb)?'na':(beAlb>3?'lo':'ok'),'0.25\u00d7(42\u2212alb) \u00b7 hidden acid');
+  push('BE \u00b7 lactate effect',sg(beLac),'mmol/L',isNaN(beLac)?'na':(beLac<-3?'hi':(beLac<-1?'lo':'ok')),'1\u2212lactate');
+  push('BE \u00b7 unmeasured',sg(beUma),'mmol/L',isNaN(beUma)?'na':(beUma<-4?'hi':(beUma<-2?'lo':'ok')),isNaN(beUma)?'needs BE, Na, Cl, albumin, lactate':'ketones / renal / toxins');
   push('Anion gap',f(ag,1),'mmol/L',isNaN(ag)?'na':(ag>12?'lo':'ok'),'8\u201312 (uncorrected)');
   push('AG \u2014 albumin-corrected',f(agc,1),'mmol/L',isNaN(agc)?'na':(agc>12?'hi':'ok'),isNaN(alb)?'enter albumin to correct':'+2.5 per 10 g/L below 40');
   push('Delta ratio',f(dRatio,2),'',isNaN(dRatio)?'na':'ok','\u0394AG / \u0394HCO\u2083');
@@ -3041,7 +3086,7 @@ function abgCalc(m){
   push('A\u2013a gradient',f(aa,0),'mmHg',isNaN(aa)?'na':(aa>50?'lo':'ok'),'age-dependent');
   const find=[];
   const add=(lv,t)=>find.push({lv:lv,t:t});
-  if(!isNaN(ph)&&ph<7.20)add('alarm','pH < 7.20 \u2014 severe acidaemia. Catecholamine responsiveness falls and contractility is impaired. Raise cardiac output and oxygen delivery first (Module 01); buffer only per \u00a77, watching ionised calcium.');
+  if(!isNaN(ph)&&ph<7.20)add('alarm','pH < 7.20 \u2014 severe acidaemia. Catecholamine responsiveness falls and contractility is impaired. Raise cardiac output and oxygen delivery first (Module 01); buffer only per \u00a78, watching ionised calcium.');
   if(!isNaN(winters)&&!isNaN(pco2mm)&&primary==='metAcid'){
     const dev=pco2mm-winters;
     if(dev>6)add('alarm','PaCO\u2082 is well ABOVE the Winter\u2019s prediction \u2014 a significant co-existing respiratory acidosis. Compensation is failing: exhaustion, over-sedation or inadequate ventilator settings. This is an ominous gas \u2014 support ventilation and match the compensatory minute ventilation.');
@@ -3064,6 +3109,12 @@ function abgCalc(m){
     else add('info','HCO\u2083 fits the expected fall for a respiratory alkalosis.');
   }
   if(primary==='mixed')add('alarm','No compensation is occurring \u2014 both components are driving the pH the same way. Treat both: support ventilation AND restore delivery.');
+  if(!isNaN(beUma)){
+    const parts=[]; if(beNaCl<-2)parts.push('chloride '+beNaCl.toFixed(0)); if(beLac<-1)parts.push('lactate '+beLac.toFixed(0)); if(beUma<-2)parts.push('unmeasured anions '+beUma.toFixed(0)); if(beNaCl>2)parts.push('hypochloraemic alkalosis +'+beNaCl.toFixed(0));
+    const hidden=beAlb>2?(' Hypoalbuminaemia is masking about '+beAlb.toFixed(0)+' mmol/L of acid \u2014 the true load is nearer '+(be-beAlb).toFixed(0)+' than '+be.toFixed(0)+'.'):'';
+    if(parts.length)add(beUma<-4?'warn':'info','Base-excess partition (\u00a74): '+parts.join(', ')+'.'+hidden+(beNaCl<-4?' A chloride-driven deficit is a fluid-choice problem, not a perfusion one.':'')+(beUma<-4?' A large unmeasured component \u2014 ketones, uraemic acids, toxins, citrate: go looking.':''));
+    else if(hidden)add('info','Base-excess partition (\u00a74): no single dominant cause, but'+hidden.toLowerCase());
+  }
   if(!isNaN(agc)){
     if(agc>12)add('warn','Raised albumin-corrected anion gap ('+agc.toFixed(1)+') \u2014 high-gap acidosis: lactate, ketones, renal failure or toxins.');
     else if(!isNaN(ag)&&metAcid)add('info','Normal anion gap with a metabolic acidosis \u2014 hyperchloraemic: saline / pump-prime chloride load, or GI / renal bicarbonate loss. Switch to a balanced crystalloid rather than buffering.');
