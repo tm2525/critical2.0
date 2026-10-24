@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Cardiac Critical Care Suite</title>
+<meta name="description" content="Post-cardiotomy low cardiac output, VA-ECMO, pacing, acid-base — bedside decision support">
+<meta name="theme-color" content="#0c1420">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Cardiac CC">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <style>
 :root{
   --bg:#070a10; --bg2:#0c1119; --panel:#101724; --panel2:#141d2b;
@@ -198,6 +207,8 @@ tr:last-child td{border-bottom:none}
 .dv-card.na .v{color:var(--muted); opacity:.5}
 #m-deriv .unit{text-transform:none}
 #m-abg .unit{text-transform:none}
+.topbar{padding-top:calc(10px + env(safe-area-inset-top))}
+.wrap{padding-left:calc(16px + env(safe-area-inset-left)); padding-right:calc(16px + env(safe-area-inset-right)); padding-bottom:calc(90px + env(safe-area-inset-bottom))}
 a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--cyan)} a.xref:hover{border-bottom-style:solid}
 #m-vis .unit{text-transform:none}
 .vt input{width:100%; min-width:54px; background:#0a121d; border:1px solid var(--line2); color:var(--ink); border-radius:6px; padding:6px 6px; font-family:var(--mono); font-size:13px; outline:none}
@@ -3315,6 +3326,7 @@ function vtInit(){
 cvInit();
 vtInit();
 linkRefs(document.querySelector('.wrap'));
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){navigator.serviceWorker.register('sw.js').catch(function(){});}
 function ecmoSwap(m){
   const num=(x)=>{const v=parseFloat(x);return isNaN(v)?NaN:v;};
   const on=(x)=>x===true||x==='1'||x==='true';
