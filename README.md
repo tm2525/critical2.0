@@ -1,6 +1,6 @@
 # Cardiac Critical Care Suite
 
-The suite is **`index.html`** — one self-contained file. The flashcards are now a **separate** self-contained file, **`flashcards.html`** (76 cards, SM-2 spaced repetition), reachable at `/flashcards.html` once published. No build step, no
+The suite is **`index.html`** — one self-contained file. The flashcards are now a **separate** self-contained file, **`flashcards.html`** (77 cards, SM-2 spaced repetition), reachable at `/flashcards.html` once published. No build step, no
 dependencies, no internet connection needed.
 
 ## Publish on GitHub Pages
