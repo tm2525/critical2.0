@@ -207,6 +207,7 @@ tr:last-child td{border-bottom:none}
 .dv-card.na .v{color:var(--muted); opacity:.5}
 #m-deriv .unit{text-transform:none}
 #m-abg .unit{text-transform:none}
+#m-lcos select#proc{font-family:var(--sans); font-size:14px}
 .topbar{padding-top:calc(10px + env(safe-area-inset-top))}
 .wrap{padding-left:calc(16px + env(safe-area-inset-left)); padding-right:calc(16px + env(safe-area-inset-right)); padding-bottom:calc(90px + env(safe-area-inset-bottom))}
 a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--cyan)} a.xref:hover{border-bottom-style:solid}
@@ -285,6 +286,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
   <div class="grid g2">
     <div class="panel">
       <h3>Haemodynamics &amp; perfusion <span class="tag">enter what you have</span></h3>
+      <div class="field" style="margin-bottom:10px"><label>Operation <span class="unit">weights the differential</span></label><select id="proc"><option value="">Not specified</option><option value="cabg">CABG</option><option value="avr">AVR / aortic valve</option><option value="mv">Mitral repair / replacement</option><option value="tv">Tricuspid ± mitral</option><option value="cabgv">CABG + valve</option><option value="root">Aortic root / arch (Bentall, hemiarch)</option><option value="myect">Septal myectomy</option><option value="tx">Heart transplant</option><option value="lvad">LVAD implant</option><option value="redo">Redo sternotomy</option><option value="other">Other / non-cardiac</option></select></div>
       <div class="fieldgrid">
         <div class="field"><label>MAP <span class="unit">mmHg</span></label><input id="map" inputmode="decimal" placeholder="—"></div>
         <div class="field"><label>SBP / DBP</label><input id="sbpdbp" placeholder="110/60"></div>
@@ -1959,6 +1961,15 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
     </table></div>
     <div class="note"><b>Worked example — the classic post-bypass gas.</b> Na 140, Cl 112, albumin 22, lactate 4, SBE −8. Sodium–chloride effect = 140 − 112 − 38 = <b>−10</b>. Albumin effect = 0.25 × (42 − 22) = <b>+5</b>. Lactate effect = 1 − 4 = <b>−3</b>. Unmeasured = −8 − (−10 + 5 − 3) = <b>0</b>. Reading: the deficit is <b>mostly chloride</b> with a <b>lactate component</b>, and the hypoalbuminaemia is hiding a third of it — the true acid load is 13, not 8. The chloride part needs a change of fluid, not more flow; the lactate part needs the usual question (Module 01). <b>The calculator above does this partition</b> when Na, Cl, albumin and lactate are entered alongside the BE.</div>
 
+    <div class="subhead">Base excess and fluid resuscitation</div>
+    <div class="note"><b>What a base deficit is telling you about volume:</b> in haemorrhage and hypovolaemic shock the base deficit is one of the earliest and best-validated markers of the <i>depth</i> of hypoperfusion — it tracks the oxygen debt, and a deficit beyond −6 on admission predicts transfusion need and mortality better than the blood pressure does. A deficit that <b>closes with volume</b> was a volume problem. That is its legitimate role in resuscitation: a marker of debt, and of whether the debt is being repaid.</div>
+    <div class="note alarm"><b>It cannot tell you whether to give the next bolus.</b> Base excess measures the <i>consequence</i> of hypoperfusion, not the preload state that caused it — a base deficit of 10 is identical in the bleeding, empty patient and in the tamponaded or RV-failing patient who is already over-filled. Giving fluid “for the BE” is how a stiff post-cardiotomy ventricle ends up with a PAOP of 25. <b>The decision to give fluid comes from a preload signal</b> — passive leg raise, SVV/PPV on a controlled ventilator in sinus rhythm, a stroke-volume response to a small bolus, the IVC and LV cavity on echo — and the base excess then tells you, an hour later, whether that fluid did any good.</div>
+    <div class="grid g2">
+      <div class="note warn"><b>The saline paradox.</b> Resuscitate with 0.9% saline and the base deficit <b>worsens</b> as the chloride climbs, while the lactate and the patient improve — hyperchloraemic acidosis masquerading as failing resuscitation. The partition above separates them: a worsening Na–Cl effect with an improving lactate effect is the fluid, not the shock. Use a <b>balanced crystalloid</b> for resuscitation so the base excess stays interpretable, and read it alongside the chloride and the lactate rather than alone.</div>
+      <div class="note warn"><b>Post-cardiotomy specifically.</b> A base deficit after a fluid challenge that fails to close — or deepens — means the problem was never volume: the RV, tamponade, the pump, or a mechanical cause (Module 01 flags, Module 09). <b>Stop filling and re-examine.</b> Two unanswered boluses into a heart with no reserve is pulmonary oedema; the right response to a non-closing deficit is a change of diagnosis, not a third bag.</div>
+    </div>
+    <div class="note"><b>In practice:</b> use the base deficit to decide <b>how worried to be and whether the trend is right</b> — a closing deficit with a clearing lactate is a resuscitation that is working, whatever the pressures say. Use dynamic preload measures to decide <b>whether fluid is the tool</b>. Expect the deficit to lag the lactate by an hour or two as the acid load is metabolised, and expect a transient <i>dip</i> in BE as a large chloride load arrives even when the resuscitation is going well. Treat the pattern, not the number.</div>
+
     <div class="note alarm"><b>The rule:</b> use base excess to <b>size and trend</b> the metabolic load — it is good at that and bicarbonate is not. Never use it to <b>diagnose</b>: a base deficit is a question, and the anion gap, chloride, albumin and lactate are the answer. And never <b>treat</b> it — bicarbonate to normalise a BE is the error §8 is about.</div>
   </div>
 
@@ -2465,7 +2476,7 @@ function readState(){
   const inf={};INF.forEach(d=>inf[d.id]={on:chk('on-'+d.id),dose:num('dose-'+d.id)});
   const fund={};FUND.forEach(f=>fund[f[0]]=chk(f[0]));
   return {
-    map, sbp, dbp, hr:num('hr'), lac:num('lac'), lactTrend:document.getElementById('lactrend').value, glu:num('glu'),
+    proc:document.getElementById('proc').value, map, sbp, dbp, hr:num('hr'), lac:num('lac'), lactTrend:document.getElementById('lactrend').value, glu:num('glu'),
     prevlac:num('prevlac'), dth:num('dth'), svo2:num('svo2'), sao2:num('sao2'), hb:num('hb'),
     uo:num('uo'), svv:num('svv'), ci:num('ci'), svri:num('svri'), cvp:num('cvp'), cvpTrend:document.getElementById('cvptrend').value,
     paop:num('paop'), pasp:num('pasp'), padp:num('padp'), wt:num('wt')||70, ht:num('ht'),
@@ -2658,6 +2669,103 @@ function rationaleHTML(so,ph,s,d,L){
   return html;
 }
 
+const PROCS=[
+ {id:'',nm:'Not specified'},
+ {id:'cabg',nm:'CABG'},
+ {id:'avr',nm:'AVR / aortic valve'},
+ {id:'mv',nm:'Mitral repair / replacement'},
+ {id:'tv',nm:'Tricuspid ± mitral'},
+ {id:'cabgv',nm:'CABG + valve'},
+ {id:'root',nm:'Aortic root / arch (Bentall, hemiarch)'},
+ {id:'myect',nm:'Septal myectomy'},
+ {id:'tx',nm:'Heart transplant'},
+ {id:'lvad',nm:'LVAD implant'},
+ {id:'redo',nm:'Redo sternotomy'},
+ {id:'other',nm:'Other / non-cardiac'}
+];
+function procRec(s,d,ph,st){
+  const p=s.proc||''; if(!p||p==='other')return null;
+  const n=ph.name;
+  const hypo=!isNaN(s.map)&&s.map<65;
+  const lacHi=!isNaN(s.lac)&&s.lac>2;
+  const tachy=!isNaN(s.hr)&&s.hr>100;
+  const cvpUp=s.cvpTrend==='rising';
+  const smallLV=(n==='LV FAILURE'||n==='INDETERMINATE')&&!s.flags.sam&&!s.flags.lv;
+  const i=[]; let t='', w='', c='cyan';
+  if(p==='cabg'||p==='cabgv'){
+    t='After '+(p==='cabg'?'CABG':'CABG + valve')+' — weight the differential';
+    w='New low output after revascularisation is graft ischaemia until shown otherwise — a kinked, spasmed or thrombosed graft, or an air embolus, presents as pump failure that does not respond to the ladder.';
+    i.push('12-lead now and with every change: new ST shift or regional wall-motion abnormality on echo = graft problem — call the surgeon, consider angiography; do not simply escalate inotrope');
+    i.push('Keep diastolic pressure up (graft and native flow are pressure-dependent) — noradrenaline before vasodilating inodilators; avoid tachycardia');
+    i.push('Radial / IMA conduits spasm: GTN or diltiazem infusion per local protocol if an arterial graft was used');
+    if(lacHi)i.push('Lactate '+s.lac+' with a fresh graft: think ischaemic territory and mesenteric / limb perfusion as well as global output (Module 04 §9)');
+    if(p==='cabgv')i.push('Plus the valve-specific points below apply — select the valve procedure alone to see them in full');
+  } else if(p==='avr'){
+    t='After AVR — the hypertrophied, stiff LV and the conduction system';
+    w='The post-AVR ventricle is thick, small and diastolically stiff: it is preload- and AV-synchrony-dependent, tolerates tachycardia badly, and can develop dynamic LVOT obstruction once the fixed obstruction is gone.';
+    if(smallLV)i.push('Low output on an inotrope with a small hyperkinetic LV: consider SAM / basal septal obstruction before escalating — tick the SAM flag if echo shows it (Module 08). The management is inverted');
+    i.push('Fill to a higher filling pressure than you would for a normal LV; avoid vasodilators; keep AV-sequential pacing at 80–90 — the atrial kick is worth 20–30% of output here (Module 06)');
+    i.push('Heart block is the signature complication: DDD never AAI; persistence past day 5–7 → permanent system (Module 07 §5)');
+    if(tachy)i.push('HR '+s.hr+': rate control matters more than usual — a stiff LV loses filling time first');
+    i.push('Paravalvular leak or prosthetic dysfunction if a new murmur or haemolysis — echo the valve, not just the ventricle');
+  } else if(p==='mv'){
+    t='After mitral surgery — the unmasked LV, SAM and the right heart';
+    w='Repairing or replacing the mitral valve removes the low-pressure “pop-off” into the left atrium: an LV that looked fine with MR now faces full afterload and can fail. After repair, a long anterior leaflet or small annulus produces SAM.';
+    i.push('Afterload mismatch: a falling CI with a rising PAOP after MV surgery is the LV meeting its true afterload — inodilator (milrinone) and afterload reduction, not pure pressor');
+    if(smallLV)i.push('Hypotension worse on inotrope after repair = SAM until echo says otherwise — tick the SAM flag; the management is inverted (Module 08)');
+    i.push('Pre-existing pulmonary hypertension loads the RV: PVR control (O₂, CO₂, iNO), milrinone + vasopressin pairing if RV signs appear (Module 04 §3)');
+    i.push('Circumflex injury (annular sutures) and AV-node / block: lateral ST change or new block = call the surgeon');
+    if(cvpUp)i.push('CVP rising after mitral surgery: RV failure vs tamponade — echo now (Module 09)');
+  } else if(p==='tv'){
+    t='After tricuspid surgery — the right ventricle is the patient';
+    w='Tricuspid surgery is done on a failing, dilated RV with high PVR more often than not; post-operatively the RV, not the LV, decides the outcome.';
+    i.push('Weight the RV phenotype: CVP high and rising, PAPi < 1, septal shift — the four levers (Module 04 §3): preload to a CVP of 8–12 not 20, drop PVR, milrinone + vasopressin, AV-sequential pacing');
+    i.push('Heart block from annular sutures near the AV node — DDD backup; expect a permanent system more often than after other valves (Module 07 §5)');
+    i.push('If an RV device is needed, the decision tree is in Module 04 §8');
+    if(cvpUp)i.push('A rising CVP here is also a bleeding / tamponade question — the two coexist (Module 09)');
+  } else if(p==='root'){
+    t='After root / arch surgery — bleeding, the coronaries and a long bypass';
+    w='Long bypass and cross-clamp times, deep hypothermia, suture lines under systemic pressure and reimplanted coronary buttons: the problems are coagulopathy and tamponade, coronary button ischaemia, and vasoplegia.';
+    i.push('Drains, drains, drains: brisk then stopped = tamponade (Module 09); correct coagulopathy ROTEM-guided and ask hourly whether it is surgical');
+    i.push('ST change or regional wall-motion abnormality = a coronary button problem — surgeon and imaging now');
+    i.push('Vasoplegia is expected after a long pump run: vasopressin early, methylene blue if refractory (Module 04 §7)');
+    i.push('Keep MAP controlled — a hypertensive suture line bleeds; aim for the lowest MAP that perfuses');
+    if(cvpUp)i.push('CVP rising with output falling after root surgery: tamponade until the surgeon has looked — do not wait for the echo');
+  } else if(p==='myect'){
+    t='After septal myectomy — the obstruction is gone, the conduction may be too';
+    w='Resection relieves the LVOT gradient, but the septum carries the conduction system: LBBB is near-universal, complete block is common, and a residual gradient or iatrogenic VSD are the surgical complications.';
+    i.push('Pre-existing RBBB + new LBBB = complete heart block — DDD pacing and an early permanent-system conversation (Module 07 §5)');
+    i.push('Hypotension on inotrope after myectomy: residual dynamic gradient or SAM — echo for a residual gradient; the inverted bundle still applies (Module 08)');
+    i.push('New systolic murmur with a step-up in saturation RA → PA = iatrogenic VSD — echo with colour across the septum');
+    i.push('The LV remains hypertrophied and stiff: preload, AV synchrony and rate control as after AVR');
+  } else if(p==='tx'){
+    t='After transplant — a denervated heart with a right ventricle in a foreign circulation';
+    w='The graft has no autonomic innervation: no vagal tone, no reflex tachycardia, no response to atropine, and its output is rate-dependent. Its RV was conditioned to a normal PVR and now meets the recipient’s.';
+    i.push('Rate is the lever: target HR 90–110 — atrial / AV-sequential pacing or isoprenaline (direct β agonist; atropine does nothing). Bradycardia here is low output');
+    i.push('RV failure is the commonest early graft problem: PVR reduction (iNO, O₂, CO₂, avoid acidosis), milrinone, avoid volume overload (Module 04 §3)');
+    i.push('Primary graft dysfunction (biventricular failure in the first 24 h) — early VA-ECMO rather than a long inotrope climb (Module 05)');
+    i.push('Fluid responsiveness is unreliable without sympathetic reflexes; catecholamine sensitivity is increased (denervation supersensitivity) — lower doses do more');
+    i.push('Tamponade is common and often loculated (large pericardial space): CVP up with output down → echo / surgeon (Module 09)');
+  } else if(p==='lvad'){
+    t='After LVAD implant — the right ventricle and the pump';
+    w='The LVAD unloads the LV and increases venous return to an RV that may not cope; the pump itself is preload-dependent and afterload-sensitive. Most early low-output states are RV failure or a suction / preload problem, not LV failure.';
+    i.push('RV failure: CVP > 15 with low pump flows, PAPi < 1 — the four levers (Module 04 §3); milrinone + vasopressin; iNO; early RVAD / ProtekDuo if refractory (Module 04 §8)');
+    i.push('Suction events / low flow with a low CVP = under-filled — volume and lower pump speed, not inotrope; low flow with a high CVP = RV failure or tamponade');
+    i.push('Vasoplegia is common after implant (long bypass, prior ACE-i / heart-failure state): vasopressin early (Module 04 §7); but keep MAP 65–80 — high afterload drops pump flow');
+    i.push('Bleeding and tamponade compress the RV first: a falling flow with rising CVP after a bleeding course = re-explore (Module 09)');
+    i.push('Pump parameters (flow, power, PI) are part of the haemodynamic set — read them with the CVP');
+  } else if(p==='redo'){
+    t='Redo sternotomy — bleeding, adhesions and the previous grafts';
+    w='Re-entry means more bleeding, a more oozy pericardium, loculated collections, patent old grafts at risk during dissection, and often a longer bypass.';
+    i.push('Tamponade is more likely, more loculated and harder to see on TTE — a low threshold for TOE and for re-opening (Module 09)');
+    i.push('Coagulopathy: correct ROTEM-guided, and ask hourly whether it is surgical');
+    i.push('Graft injury during re-entry: ST change or new regional wall-motion abnormality = ischaemia — call the surgeon');
+    i.push('Longer bypass → more vasoplegia and stunning: give the stunned myocardium time and support, and treat the tone (Module 04 §7)');
+  }
+  if(!t)return null;
+  return {c:c,t:t,w:w,i:i};
+}
+
 function computeRecs(s,d,sc,ph,st,L){
   const recs=[];
   const hypo=!isNaN(s.map)&&s.map<65;
@@ -2674,6 +2782,7 @@ function computeRecs(s,d,sc,ph,st,L){
       w:'These blunt the vasoactive response and mimic refractoriness — optimise before climbing the ladder or escalating to MCS.',
       i:fundOn.map(x=>x[1])});
   }
+  const pr=procRec(s,d,ph,st); if(pr)recs.push(pr);
   // agent ceilings
   const over=INF.filter(x=>s.inf[x.id].on&&!isNaN(s.inf[x.id].dose)&&DOSEMAX[x.id]!==undefined&&s.inf[x.id].dose>DOSEMAX[x.id]);
   if(over.length){
@@ -2872,6 +2981,7 @@ function goals(s,d){
   const G=[];
   const push=(has,ok,warn,lab)=>{ if(!has){G.push(goalChip(null,lab,''));return;} G.push(goalChip(1,lab, ok?'done':warn?'miss':'bad')); };
   push(!isNaN(s.map),   s.map>=65, s.map>=60, 'MAP≥65');
+  if(s.proc==='tx')push(!isNaN(s.hr), s.hr>=90&&s.hr<=120, s.hr>=80, 'HR 90–110');
   push(!isNaN(s.ci),    s.ci>=2.2, s.ci>=2.0, 'CI≥2.2');
   push(!isNaN(d.cpo),   d.cpo>=0.6, d.cpo>=0.5, 'CPO≥0.6');
   const lacOk=(!isNaN(s.lac)&&s.lac<2)||(!isNaN(d.lacRate)&&d.lacRate>=10);
