@@ -662,7 +662,7 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
 
   <div class="panel sec">
     <h3><span class="secnum">3</span> RV failure management — the four levers</h3>
-    <div class="note"><b>Recognise:</b> a high CVP with <span class="mono">CVP &gt; PAOP</span>, PAPi &lt;1.0, a dilated / poorly contracting RV, low RVSWI, an under-filled LV and often Kussmaul's sign. Distinguish from tamponade (equalised pressures, blunted y) and from LV failure. Post-cardiotomy drivers: RV stun, coronary air / RCA embolus, protamine reaction, pulmonary hypertension, massive PE, inferior infarction.</div>
+    <div class="note"><b>Recognise:</b> a high CVP with <span class="mono">CVP &gt; PAOP</span>, PAPi &lt;1.0, a dilated / poorly contracting RV, low RVSWI, an under-filled LV (which can itself develop SAM — Module 08 §6) and often Kussmaul's sign. Distinguish from tamponade (equalised pressures, blunted y) and from LV failure. Post-cardiotomy drivers: RV stun, coronary air / RCA embolus, protamine reaction, pulmonary hypertension, massive PE, inferior infarction.</div>
     <div class="grid g2">
       <div class="note"><b>Lever 1 · Preload — optimise, never maximise</b><br>The failing RV is usually over-filled, not under-filled. Give volume only with dynamic evidence of responsiveness; otherwise <b>offload</b> (diuresis or RRT). Over-filling distends the RV, shifts the septum and impairs the LV.</div>
       <div class="note"><b>Lever 2 · Reduce RV afterload (PVR)</b><br>The central lever. Aggressively correct the PVR-raisers — hypoxia, hypercarbia, acidosis, atelectasis, pain. Lung-protective ventilation, avoid over-PEEP and high tidal volumes. Selective pulmonary vasodilators: <b>inhaled nitric oxide</b> or <b>inhaled prostacyclin</b> (iloprost / epoprostenol) — pulmonary effect without systemic hypotension.</div>
@@ -1614,17 +1614,42 @@ a.xref{color:var(--cyan); text-decoration:none; border-bottom:1px dotted var(--c
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">6</span> Do NOT</h3>
+    <h3><span class="secnum">6</span> Two ways it hides — the failing RV, and the balloon pump</h3>
+    <p class="muted">Dynamic obstruction is easiest to miss when something else is already explaining the shock. The two commonest disguises on a cardiac unit: an RV that is genuinely failing, and an IABP that was inserted for “LV failure”.</p>
+
+    <div class="subhead">Can RV failure cause SAM? — yes, by two routes</div>
+    <div class="grid g2">
+      <div class="note"><b>1 · It empties the LV.</b> A failing RV delivers less to the left side, so the LV gets small; a small, under-filled, hyperdynamic LV — above all a hypertrophied one after AVR — is exactly the geometry that drags the anterior leaflet into the outflow. Then the inotrope you started <i>because</i> the RV was failing supplies the other ingredient.</div>
+      <div class="note"><b>2 · It shifts the septum.</b> The dilated RV flattens the interventricular septum and pushes it into the LV cavity (the D-shaped septum). The septum now sits closer to the mitral apparatus, narrowing the outflow from the other side — the same effect as basal septal hypertrophy, produced by pressure rather than muscle.</div>
+    </div>
+    <div class="note warn"><b>The echo tell is two different ventricles:</b> a dilated, sluggish RV with septal shift beside a small, obliterating LV with SAM and a dagger gradient. The numbers alone (high CVP, low CI, low PAPi) say “RV failure” and nothing else.</div>
+    <div class="note alarm"><b>The management is doubly inverted.</b> Treat “the failing RV” with dobutamine or adrenaline alone and both sides get worse. The combination that serves both: <b>milrinone + vasopressin</b> — inotropy and PVR reduction for the RV without catecholamine β₁ drive on the mitral geometry, plus a pure vasoconstrictor that raises LV afterload (splinting the outflow open) <i>and</i> RV-coronary perfusion pressure — with <b>volume titrated to the LV</b>, rate control and AV synchrony. Drop PVR (O₂, CO₂, iNO) so the RV empties forward and refills the left. Reassess the gradient with every change (Module 04 §3 for the four RV levers).</div>
+
+    <div class="subhead">The balloon pump that makes it worse</div>
+    <div class="note"><b>Mechanism:</b> an IABP works by <b>dropping afterload in systole</b> — the balloon deflates just before ejection — and raising diastolic pressure. In a dilated failing LV, lower afterload means a bigger stroke volume. In dynamic obstruction, <b>afterload is what holds the outflow open</b>. Drop it and the Venturi gradient deepens, SAM worsens, the MR it drives increases, and output <i>falls</i>.</div>
+    <div class="note alarm"><b>The spiral:</b> the team sees a worsening shock on a balloon, concludes the heart needs more help, and adds adrenaline — which deepens the gradient again. More balloon, more inotrope, less output. <b>Patients die on an IABP of a condition the balloon is causing</b>, and every instinct in the room is pointing the wrong way.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Recognise</th><th>Confirm</th><th>Escape</th></tr>
+      <tr><td><b>Worse on the balloon, worse on inotrope</b>, with a small hyperdynamic LV — particularly post-AVR, post-mitral repair, hypovolaemic or septic. A falling pulse pressure and rising MR as augmentation is increased</td><td>Echo with the balloon running: SAM, a late-peaking dagger CW gradient across the LVOT, posteriorly-directed MR, cavity obliteration. Compare 1:1 with 1:3 — the gradient should <i>fall</i> as augmentation is reduced</td><td><b>Stop the balloon</b> (1:1 → 1:3 → standby, then remove), <b>stop the inotropes</b>, <b>fill</b>, <b>phenylephrine</b>. The gradient usually collapses within minutes. If mechanical support is still needed it must be one that <i>raises</i> aortic pressure — peripheral VA-ECMO — not one that lowers it (Module 05)</td></tr>
+    </table></div>
+    <div class="grid g2">
+      <div class="note warn"><b>Rule 1:</b> never put a balloon into a post-AVR, post-myectomy, hypertrophied or small-cavity LV without an echo that has looked <i>specifically</i> for SAM and a dynamic gradient — before and after insertion.</div>
+      <div class="note warn"><b>Rule 2:</b> any time a patient gets worse on an IABP, the first question is <b>“is this obstruction?”</b> — before “do they need more support?”. The same question applies to an Impella in a small LV, where the inlet can sit in an obliterating cavity and suction.</div>
+    </div>
+  </div>
+
+  <div class="panel sec">
+    <h3><span class="secnum">7</span> Do NOT</h3>
     <div class="grid g2">
       <div class="note alarm"><b>No inotropes</b> — adrenaline, dobutamine, milrinone, dopamine all deepen the gradient. A BP / lactate that worsens as you uptitrate is the clue you are on the wrong path.</div>
       <div class="note alarm"><b>No vasodilators</b> — GTN, ACE-inhibitors and milrinone's vasodilator effect drop afterload and worsen obstruction.</div>
-      <div class="note alarm"><b>No IABP</b> — diastolic afterload reduction worsens a dynamic outflow gradient.</div>
+      <div class="note alarm"><b>No IABP</b> — systolic afterload reduction worsens a dynamic outflow gradient; a patient who deteriorates on a balloon has obstruction until shown otherwise (§6).</div>
       <div class="note alarm"><b>Don't run dry or fast</b> — over-diuresis and tachycardia shrink the cavity and speed ejection; both feed the Venturi.</div>
     </div>
   </div>
 
   <div class="panel sec">
-    <h3><span class="secnum">7</span> Bedside crash sequence</h3>
+    <h3><span class="secnum">8</span> Bedside crash sequence</h3>
     <div class="note"><b>Recognise</b> (worse on inotrope) → <b>echo-confirm</b> (SAM / dagger gradient) → <b>STOP</b> inotropes + vasodilators → <b>FILL</b> → <b>phenylephrine</b> (pure α) to raise MAP → <b>β-block</b> (esmolol) + restore AV synchrony → <b>re-echo</b> and titrate to a falling gradient → <b>refractory:</b> sedation, disopyramide, surgeon (myectomy / repair revision); <b>not</b> IABP, <b>not</b> inotropes.</div>
     <div class="disc">Decision-support aid — confirm the diagnosis on echo, follow local protocol, and verify every drug dose independently (Module 12). Dynamic obstruction and its inverted management can harm if applied to a fixed structural lesion.</div>
   </div>
@@ -2842,7 +2867,7 @@ function computeRecs(s,d,sc,ph,st,L){
     }
     if(ph.name==='RV FAILURE'){
       recs.push({c:'info',t:'Protect the RV',w:'RV afterload is PVR, not SVR. Drop PVR while defending aortic root pressure for RV coronary perfusion.'+(!isNaN(d.pvr)?' PVR '+d.pvr.toFixed(0)+(!isNaN(d.dpg)?', DPG '+d.dpg.toFixed(0)+' (>7 = precapillary component)':'')+'.':''),
-        i:['Avoid over-filling (offload if CVP high / septal shift)','Reduce PVR: iNO / inhaled prostacyclin / milrinone; optimise oxygenation, avoid hypercarbia & acidosis','Inotrope: dobutamine or milrinone'+(!isNaN(d.rvswi)?' (RVSWI '+d.rvswi.toFixed(1)+')':'')]});
+        i:['Avoid over-filling (offload if CVP high / septal shift)','Reduce PVR: iNO / inhaled prostacyclin / milrinone; optimise oxygenation, avoid hypercarbia & acidosis','Inotrope: dobutamine or milrinone'+(!isNaN(d.rvswi)?' (RVSWI '+d.rvswi.toFixed(1)+')':''),'If the LV is small and hyperdynamic on echo, the failing RV can be CAUSING SAM (under-filled LV, septal shift) \u2014 look for it before adding catecholamine; milrinone + vasopressin serves both sides (Module 08 \u00a76)']});
       if(hypo&&!s.inf.vaso.on) recs.push({c:'go',t:'Add vasopressin to defend SVR',w:'Raises SVR (RV coronary perfusion) without raising PVR — the preferred pressor in RV failure.',i:['Vasopressin ~0.03 U/min']});
       if(!isNaN(d.papi)&&d.papi<1.0) recs.push({c:'warn',t:'Low PAPi',w:'PAPi '+d.papi.toFixed(1)+' — marker of RV failure and higher likelihood of needing RV mechanical support. Escalate the RV plan early.',i:[]});
     }
@@ -2879,7 +2904,7 @@ function computeRecs(s,d,sc,ph,st,L){
       if(L.complete){
         let dev, ecmo=false;
         if(ph.name==='RV FAILURE'||(!isNaN(d.papi)&&d.papi<1.0)){dev='RVAD / ProtekDuo (± oxygenator); VA-ECMO if biventricular'; if(ph.name==='MIXED / BIVENT')ecmo=true;}
-        else if(ph.name==='LV FAILURE') dev=(!isNaN(d.cpo)&&d.cpo<0.6)?'Impella (active LV unloading) or IABP':'IABP → Impella';
+        else if(ph.name==='LV FAILURE') dev=((!isNaN(d.cpo)&&d.cpo<0.6)?'Impella (active LV unloading) or IABP':'IABP → Impella')+' \u2014 echo for SAM / a dynamic gradient FIRST: a balloon pump makes obstruction worse (Module 08 \u00a76)';
         else {dev='VA-ECMO (± LV vent)'; ecmo=true;}
         recs.push({c:'alarm',t:'Four-agent ladder complete — escalate',
           w:'Vasopressin + adrenaline + dobutamine + milrinone all at therapeutic dose with persistent hypoperfusion.'+(ctx.length?' '+ctx.join(' · ')+'.':''),
